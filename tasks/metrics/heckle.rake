@@ -35,9 +35,9 @@ begin
         raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
       end
       
-      project.require
+      require config.library
 
-      root_module_regexp = Regexp.union(*config.namespaces)
+      root_module_regexp = Regexp.union(config.namespace)
 
       spec_dir = Pathname('spec/unit')
 

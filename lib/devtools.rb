@@ -28,20 +28,22 @@ module Devtools
 
   # Initialize project
   #
-  # @param [String] path
-  #
-  # @return [Param]
+  # @return [self]
   #
   # @api private
   #
-  def self.init(path)
+  def self.init
     if defined?(@project) 
       raise 'project is already initialized!'
     end
 
-    @project = Project.new(File.expand_path(File.join(File.dirname(path))))
+    root =File.dirname(caller(1).first.split(':').first)
+
+    @project = Project.new(root)
 
     FileList["#{Devtools.root}/tasks/**/*.rake"].each { |task| import(task) }
+
+    self
   end
 
   # Return project

@@ -43,41 +43,50 @@ module Devtools
     end
     memoize :raw
 
-    module Threshold
-      # Return threshold
-      #
-      # @return [Float]
-      #
-      # @api private
-      #
-      def threshold
-        raw.fetch('threshold')
+    # Declare raw accesors
+    #
+    # @api private
+    #
+    # @return [self]
+    #
+    def self.access(*names)
+      names.each do |name|
+        define_accessor(name)
       end
     end
+    private_class_method :access
 
-    module TotalScore
-      # Return total score
-      #
-      # @return [Float]
-      #
-      # @api private
-      #
-      def total_score
-        raw.fetch('total_score')
+    # Define accessor
+    #
+    # @param [Symbol] name
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def self.define_accessor(name)
+      define_method(name) do
+        raw.fetch(name.to_s)
       end
     end
+    private_class_method :define_accessor
 
     # Flay configuration
     class Flay < self
-      include Threshold
-      include TotalScore
       FILE = 'flay.yml'.freeze
+      access :total_score, :threshold
     end
 
     # Yardstick configuration
     class Yardstick < self
-      include Threshold
       FILE = 'yardstick.yml'.freeze
+      access :threshold
+    end
+
+    # Heckle configuration
+    class Heckle < self
+      FILE = 'heckle.yml'.freeze
+      access :library, :namespace
     end
 
     # Roodi configuration
@@ -87,19 +96,8 @@ module Devtools
 
     # Flog configuration
     class Flog < self
-      include Threshold
-      include TotalScore
       FILE = 'flog.yml'.freeze
-    end
-
-    # Deserialize config file
-    #
-    # @param [String] path
-    #
-    # @return [Hash, Array]
-    #
-    def self.deserialize(file)
-      YAML.load_file(file)
+      access :total_score, :threshold
     end
   end
 end
