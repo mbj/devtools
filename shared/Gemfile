@@ -48,6 +48,7 @@ group :metrics do
 
   platforms :rbx do
     gem 'pelusa', '~> 0.2.1'
-    gem 'mutant', '~> 0.0.1', :git => 'https://github.com/mbj/mutant'
+    gem 'anima',  '~> 0.0.1', :git => 'https://github.com/mbj/anima.git'
+    gem 'mutant', '~> 0.0.1', :git => 'https://github.com/mbj/mutant.git'
   end
 end
