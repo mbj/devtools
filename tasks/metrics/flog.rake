@@ -11,9 +11,9 @@ begin
   end
 
   project   = Devtools.project
-  config    = project.flog 
+  config    = project.flog
 
-  threshold = config.threshold
+  threshold = config.threshold.to_f.round_to(1) 
 
   namespace :metrics do
     # original code by Marty Andrews:
