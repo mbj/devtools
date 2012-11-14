@@ -3,10 +3,8 @@ source = Devtools.shared_gemfile_path
 
 
 namespace :devtools do
-  desc 'Update devtools assets in project'
-  task :update => [target]
-
-  file(target => source) do |t|
+  desc 'Sync Gemfile.devtools with gem'
+  task :sync  do
     cp source, target, :verbose => true
   end
 end
