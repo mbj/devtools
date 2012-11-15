@@ -1,6 +1,5 @@
 require 'yaml'
 require 'adamantium'
-require 'equalizer'
 
 # Namespace for library
 module Devtools
