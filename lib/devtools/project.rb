@@ -1,7 +1,7 @@
 module Devtools
   # The project devtools supports
   class Project
-    include Adamantium, Equalizer.new(:root)
+    include Adamantium
 
     # Return project root
     #
