@@ -1,26 +1,19 @@
 # encoding: utf-8
 
-spec_defaults = lambda do |spec|
-  spec.ruby_opts = %w[ -r./spec/support/config_alias ]
-  spec.spec_opts << '--options' << 'spec/spec.opts'
-end
-
 begin
-  require 'spec/rake/spectask'
+  require 'rspec/core/rake_task'
 
   desc 'Run all specs'
   task :spec => %w[ spec:unit spec:integration ]
 
   namespace :spec do
     desc 'Run unit specs'
-    Spec::Rake::SpecTask.new(:unit) do |unit|
-      spec_defaults.call(unit)
+    RSpec::Core::RakeTask.new(:unit) do |unit|
       unit.pattern = 'spec/unit/**/*_spec.rb'
     end
 
     desc 'Run integration specs'
-    Spec::Rake::SpecTask.new(:integration) do |integration|
-      spec_defaults.call(integration)
+    RSpec::Core::RakeTask.new(:integration) do |integration|
       integration.pattern = 'spec/integration/**/*_spec.rb'
     end
   end
