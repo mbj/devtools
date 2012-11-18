@@ -29,8 +29,7 @@ namespace :metrics do
   begin
     if RUBY_VERSION < '1.9'
       desc 'Generate code coverage'
-      Spec::Rake::SpecTask.new(:coverage) do |rcov|
-        spec_defaults.call(rcov)
+      RSpec::Core::RakeTask.new(:coverage) do |rcov|
         rcov.rcov      = true
         rcov.pattern   = 'spec/unit/**/*_spec.rb'
         rcov.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
