@@ -1,7 +1,9 @@
 # encoding: utf-8
 
+# Fix some warnings
+::Config = RbConfig unless defined?(::Config)
+
 spec_defaults = lambda do |spec|
-  spec.ruby_opts = %w[ -r./spec/support/config_alias ]
   spec.spec_opts << '--options' << 'spec/spec.opts'
 end
 
