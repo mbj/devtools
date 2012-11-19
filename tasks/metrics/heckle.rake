@@ -46,7 +46,8 @@ begin
         NameMap::MAP[op] = { :default => method }
       end
 
-      aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
+      aliases = config.aliases
+
       map     = NameMap.new
 
       heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }
