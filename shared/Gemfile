@@ -27,6 +27,10 @@ group :metrics do
   gem 'reek',      '~> 1.2.8', :git => 'https://github.com/dkubb/reek.git'
   gem 'roodi',     '~> 2.1.0'
   gem 'yardstick', '~> 0.7.0'
+  gem 'to_source',             :git => 'https://github.com/mbj/to_source.git'
+  gem 'melbourne',             :git => 'https://github.com/mbj/melbourne.git'
+  gem 'inflector',             :git => 'https://github.com/mbj/inflector.git'
+  gem 'mutant',    '~> 0.0.1', :git => 'https://github.com/mbj/mutant.git'
   gem 'simplecov'
 
   platforms :ruby_18, :ruby_19 do
@@ -46,7 +50,5 @@ group :metrics do
 
   platforms :rbx do
     gem 'pelusa', '~> 0.2.1'
-    gem 'anima',  '~> 0.0.1', :git => 'https://github.com/mbj/anima.git'
-    gem 'mutant', '~> 0.0.1', :git => 'https://github.com/mbj/mutant.git'
   end
 end
