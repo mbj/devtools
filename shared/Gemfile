@@ -26,7 +26,9 @@ group :metrics do
   gem 'flog',      '~> 2.5.1'
   gem 'reek',      '~> 1.2.8', :git => 'https://github.com/dkubb/reek.git'
   gem 'roodi',     '~> 2.1.0'
-  gem 'yardstick', '~> 0.7.0'
+  gem 'yardstick', '~> 0.8.0'
+
+  # Mutant stuff
   gem 'to_source',             :git => 'https://github.com/mbj/to_source.git'
   gem 'melbourne',             :git => 'https://github.com/mbj/melbourne.git'
   gem 'inflector',             :git => 'https://github.com/mbj/inflector.git'
@@ -34,7 +36,6 @@ group :metrics do
   gem 'abstract_class',        :git => 'https://github.com/dkubb/abstract_class.git'
   gem 'equalizer',             :git => 'https://github.com/dkubb/equalizer.git'
   gem 'mutant',    '~> 0.0.1', :git => 'https://github.com/mbj/mutant.git'
-  gem 'yardstick', '~> 0.8.0'
   gem 'simplecov'
 
   platforms :ruby_18, :ruby_19 do
