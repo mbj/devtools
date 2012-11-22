@@ -26,7 +26,7 @@ group :metrics do
   gem 'flog',      '~> 2.5.1'
   gem 'reek',      '~> 1.2.8', :git => 'https://github.com/dkubb/reek.git'
   gem 'roodi',     '~> 2.1.0'
-  gem 'yardstick', '~> 0.7.0'
+  gem 'yardstick', '~> 0.8.0'
   gem 'simplecov'
 
   platforms :ruby_18, :ruby_19 do
