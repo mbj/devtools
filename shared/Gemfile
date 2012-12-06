@@ -30,7 +30,7 @@ group :metrics do
 
   # Mutant stuff
   gem 'to_source',             :git => 'https://github.com/mbj/to_source.git'
-  gem 'melbourne',             :git => 'https://github.com/mbj/melbourne.git'
+  gem 'mutant-melbourne',      :git => 'https://github.com/mbj/melbourne.git'
   gem 'inflector',             :git => 'https://github.com/mbj/inflector.git'
   gem 'mutant',    '~> 0.0.1', :git => 'https://github.com/mbj/mutant.git'
   gem 'simplecov'
