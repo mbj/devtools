@@ -25,15 +25,4 @@ rescue LoadError
   end
 end
 
-namespace :metrics do
-  unless RUBY_VERSION < '1.9'
-    desc 'Generate code coverage'
-    RSpec::Core::RakeTask.new(:coverage) do |rcov|
-      rcov.rcov      = true
-      rcov.pattern   = 'spec/unit/**/*_spec.rb'
-      rcov.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
-    end
-  end
-end
-
 task :test => :spec
