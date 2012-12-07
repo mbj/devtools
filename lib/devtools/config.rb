@@ -93,5 +93,11 @@ module Devtools
       FILE = 'flog.yml'.freeze
       access :total_score, :threshold
     end
+
+    # Mutant configuration
+    class Mutant < self
+      FILE = 'mutant.yml'.freeze
+      access :name, :namespace
+    end
   end
 end
