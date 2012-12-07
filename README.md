@@ -9,13 +9,13 @@ Installation
 
 Add git source to your Gemfile like this:
 
-```
+```ruby
 gem 'devtools', :git => 'https://github.com/mbj/devtools.git'
 ```
 
 Create a ``Rakefile`` in project root with the following contents:
 
-```
+```ruby
 require 'devtools'
 Devtools.init
 ```
@@ -28,7 +28,7 @@ rake devtools:sync
 And append the following line to Gemfile that pulls the devtools shared Gemfile 
 that is maintained in this repo
 
-```
+```ruby
 eval File.read('Gemfile.devtools')
 ```
 
