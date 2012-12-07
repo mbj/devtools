@@ -83,37 +83,6 @@ module Devtools
       access :threshold
     end
 
-    # Heckle configuration
-    class Heckle < self
-      FILE = 'heckle.yml'.freeze
-      access :library, :namespace
-
-      class Methods
-        def initialize(hash)
-          @map = hash
-        end
-
-        def [](name)
-          @map.fetch(name,name)
-        end
-      end
-
-      class Aliases
-        def initialize(map)
-          @map = map
-        end
-
-        def [](name)
-          Methods.new(@map.fetch(name, {}))
-        end
-      end
-
-      def aliases
-        Aliases.new(raw.fetch('aliases', {}))
-      end
-      memoize :aliases
-    end
-
     # Roodi configuration
     class Roodi < self
       FILE = 'roodi.yml'.freeze
