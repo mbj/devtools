@@ -111,5 +111,16 @@ module Devtools
     end
     memoize :flay
 
+    # Return mutant configuration
+    #
+    # @return [Config::Mutant]
+    #
+    # @api private
+    #
+    def mutant
+      Config::Mutant.new(self)
+    end
+    memoize :flay
+
   end
 end
