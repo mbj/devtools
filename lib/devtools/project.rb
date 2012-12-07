@@ -111,15 +111,5 @@ module Devtools
     end
     memoize :flay
 
-    # Return heckle configuration
-    #
-    # @return [Config::Heckle]
-    #
-    # @api private
-    #
-    def heckle
-      Config::Heckle.new(self)
-    end
-    memoize :heckle
   end
 end
