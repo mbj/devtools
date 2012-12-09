@@ -1,7 +1,7 @@
 devtools
 ========
 
-Metagem to assist dm-2 style development. 
+Metagem to assist dm-2 style development.
 Used to centralize metric setup and development gem dependencies.
 
 Installation
@@ -10,7 +10,7 @@ Installation
 Add git source to your Gemfile like this:
 
 ```ruby
-gem 'devtools', :git => 'https://github.com/mbj/devtools.git'
+gem 'devtools', :git => 'https://github.com/datamapper/devtools.git'
 ```
 
 Create a ``Rakefile`` in project root with the following contents:
@@ -37,7 +37,7 @@ Now you have access to the dm-2 metrics rake tasks.
 Credits
 -------
 
-The whole dm-2 team that created and maintained all these tasks before they where centralized here.
+The whole dm-2 team that created and maintained all these tasks before they were centralized here.
 
 Contributing
 -------------
