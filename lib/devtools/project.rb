@@ -120,7 +120,7 @@ module Devtools
     def mutant
       Config::Mutant.new(self)
     end
-    memoize :flay
+    memoize :mutant
 
   end
 end
