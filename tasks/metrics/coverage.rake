@@ -11,4 +11,9 @@ begin
     end
   end
 rescue LoadError
+  namespace :metrics do
+    task :coverage do
+      $stderr.puts 'Coverage is not available. In order to run coverage, you must: gem install rspec'
+    end
+  end
 end
