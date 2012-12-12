@@ -45,6 +45,70 @@ module Devtools
     self
   end
 
+  # Return ruby engine string
+  #
+  # @return [String]
+  #
+  # @api private
+  #
+  def self.ruby_engine
+    @ruby_engine ||= (defined?(RUBY_ENGINE) && RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'
+  end
+
+  # Test for beeing executed under jruby
+  #
+  # @return [true]
+  #   if running under jruby
+  #
+  # @return [false]
+  #   otherwise
+  #
+  def self.jruby?
+    ruby_engine == 'jruby'
+  end
+
+  # Test for 1.8 mode
+  #
+  # @return [true]
+  #   if running under 1.8.x
+  # 
+  # @return [false]
+  #   otherwise
+  #
+  # @api private
+  #
+  def ruby18?
+    !!(RUBY_VERSION =~ /\A1\.8\./)
+  end
+
+  # Test for 1.9 mode
+  #
+  # @return [true]
+  #   if running under 1.9.x
+  # 
+  # @return [false]
+  #   otherwise
+  #
+  # @api private
+  #
+  def ruby18?
+    !!(RUBY_VERSION =~ /\A1\.9\./)
+  end
+
+  # Test for 2.0 mode
+  #
+  # @return [true]
+  #   if running under 1.9.x
+  # 
+  # @return [false]
+  #   otherwise
+  #
+  # @api private
+  #
+  def ruby18?
+    !!(RUBY_VERSION =~ /\A2\.0\./)
+  end
+
   # Return project
   #
   # @return [Project]
