@@ -1,9 +1,9 @@
 devtools
 ========
 
-[![Build Status](https://secure.travis-ci.org/devtools/devtools.png?branch=master)](http://travis-ci.org/devtools/devtools)
-[![Dependency Status](https://gemnasium.com/devtools/devtools.png)](https://gemnasium.com/devtools/devtools)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/devtools/devtools)
+[![Build Status](https://secure.travis-ci.org/datamapper/devtools.png?branch=master)](http://travis-ci.org/datamapper/devtools)
+[![Dependency Status](https://gemnasium.com/datamapper/devtools.png)](https://gemnasium.com/datamapper/devtools)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/datamapper/devtools)
 
 Metagem to assist dm-2 style development.
 Used to centralize metric setup and development gem dependencies.
