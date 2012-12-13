@@ -4,7 +4,7 @@ namespace :metrics do
     task :mutant do
       project = Devtools.project
       config  = project.mutant
-      cmd = %[bundle exec mutant -I lib -r #{config.name} "::#{config.namespace}" --rspec-dm2]
+      cmd = %[bundle exec mutant -I lib -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2]
       Kernel.system(cmd)
     end
   else
