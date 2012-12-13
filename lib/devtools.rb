@@ -1,3 +1,4 @@
+require 'rake'
 require 'yaml'
 require 'adamantium'
 
@@ -62,6 +63,8 @@ module Devtools
   #
   # @return [false]
   #   otherwise
+  #
+  # @api private
   #
   def self.jruby?
     ruby_engine == 'jruby'

@@ -2,4 +2,4 @@ source :rubyforge
 
 gemspec
 
-eval File.read('shared/gemfile')
+eval File.read('shared/Gemfile')

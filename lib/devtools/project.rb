@@ -36,7 +36,7 @@ module Devtools
 
     # Return lib directory
     #
-    # @param [String] 
+    # @return [String] 
     #
     # @api private
     #
