@@ -17,6 +17,11 @@ Add git source to your Gemfile like this:
 gem 'devtools', :git => 'https://github.com/datamapper/devtools.git'
 ```
 
+Run:
+```
+bundle install
+```
+
 Create a ``Rakefile`` in project root with the following contents:
 
 ```ruby
@@ -25,6 +30,7 @@ Devtools.init
 ```
 
 After ``bundle update`` run:
+
 ```
 rake devtools:sync
 ```
