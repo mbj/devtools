@@ -35,7 +35,7 @@ Devtools.init
 After ``bundle update`` run:
 
 ```
-rake devtools:sync
+bundle exec rake devtools:sync
 ```
 
 And append the following line to Gemfile that pulls the devtools shared Gemfile 
