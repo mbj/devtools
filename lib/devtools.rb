@@ -80,7 +80,7 @@ module Devtools
   #
   # @api private
   #
-  def ruby18?
+  def self.ruby18?
     !!(RUBY_VERSION =~ /\A1\.8\./)
   end
 
@@ -94,7 +94,7 @@ module Devtools
   #
   # @api private
   #
-  def ruby18?
+  def self.ruby19?
     !!(RUBY_VERSION =~ /\A1\.9\./)
   end
 
@@ -108,7 +108,7 @@ module Devtools
   #
   # @api private
   #
-  def ruby18?
+  def self.ruby20?
     !!(RUBY_VERSION =~ /\A2\.0\./)
   end
 
