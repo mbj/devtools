@@ -4,7 +4,7 @@ begin
   require 'reek/rake/task'
 
 
-  allowed_failures = %w(mri-1.9.2 rbx-1.7.7)
+  allowed_failures = %w(mri-1.9.2 rbx-1.8.7)
   allow_failure = allowed_failures.include?(Devtools.rvm)
 
   namespace :metrics do
