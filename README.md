@@ -42,6 +42,10 @@ that is maintained in this repo
 eval File.read('Gemfile.devtools')
 ```
 
+And run (again):
+```
+bundle install
+```
 Now you have access to the dm-2 metrics rake tasks.
 
 Credits
