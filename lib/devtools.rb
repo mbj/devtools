@@ -56,6 +56,28 @@ module Devtools
     @ruby_engine ||= (defined?(RUBY_ENGINE) && RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'
   end
 
+  # Return rvm name
+  #
+  # @return [String]
+  #
+  # @api private
+  #
+  def self.rvm_name
+    engine = ruby_engine
+    engine = 'mri' if engine == 'ruby'
+    engine
+  end
+
+  # Return rvm string
+  #
+  # @return [String]
+  #
+  # @api private
+  #
+  def self.rvm
+    @rvm ||= "#{rvm_name}-#{RUBY_VERSION}"
+  end
+
   # Test for beeing executed under jruby
   #
   # @return [true]

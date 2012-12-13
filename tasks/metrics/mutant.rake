@@ -1,9 +1,16 @@
 namespace :metrics do
-  desc "Run mutant"
-  task :mutant do
-    project = Devtools.project
-    config  = project.mutant
-    cmd = %[bundle exec mutant -I lib -r #{config.name} "::#{config.namespace}" --rspec-dm2]
-    Kernel.system(cmd)
+  if %w(mri-1.9.3 rbx-1.9.3).include?(Devtools.rvm)
+    desc "Run mutant"
+    task :mutant do
+      project = Devtools.project
+      config  = project.mutant
+      cmd = %[bundle exec mutant -I lib -r #{config.name} "::#{config.namespace}" --rspec-dm2]
+      Kernel.system(cmd)
+    end
+  else
+    desc 'Run Mutant'
+    task :mutant do
+      $stderr.puts "Mutant is disabled under ruby vms other than mri and rbx in 1.9 mode"
+    end
   end
 end

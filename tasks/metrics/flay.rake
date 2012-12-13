@@ -12,9 +12,9 @@ begin
 
   files = Flay.expand_dirs_to_files(project.lib_dir).sort
 
-  if Devtools.jruby? and Devtools.ruby18?
+  if Devtools.rvm != 'mri-1.9.3'
     task :flay do
-      $stderr.puts 'Flay is disabled under jruby-18mode, it is not score compatible to mri-1.9.3'
+      $stderr.puts 'Flay is disabled under anythign else as mri-1.9.3, it is not score compatible between implementations'
     end
   else
     namespace :metrics do
