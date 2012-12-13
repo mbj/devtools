@@ -11,6 +11,9 @@ Used to centralize metric setup and development gem dependencies.
 Installation
 ------------
 
+The installation looks stupid, but Gemfiles are not nestable. A Gemfile cannot include another Gemfile from 
+a remote repository. Because auf this we use a updatable local copy of the shared parts.
+
 Add git source to your Gemfile like this:
 
 ```ruby
