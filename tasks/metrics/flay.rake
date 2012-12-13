@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+
 begin
   require 'flay'
   require 'yaml'
@@ -12,9 +13,12 @@ begin
 
   files = Flay.expand_dirs_to_files(project.lib_dir).sort
 
+
   if Devtools.rvm != 'mri-1.9.3'
-    task :flay do
-      $stderr.puts 'Flay is disabled under anythign else as mri-1.9.3, it is not score compatible between implementations'
+    namespace :metrics do
+      task :flay do
+        $stderr.puts 'Flay is disabled under implenentations other than mri-1.9.3, it is not score compatible between implementations'
+      end
     end
   else
     namespace :metrics do
@@ -48,7 +52,9 @@ begin
     end
   end
 rescue LoadError
-  task :flay do
-    $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
+  namespace :metrics do
+    task :flay do
+      $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
+    end
   end
 end
