@@ -17,7 +17,7 @@ begin
   if Devtools.rvm != 'mri-1.9.3'
     namespace :metrics do
       task :flay do
-        $stderr.puts 'Flay is disabled under implenentations other than mri-1.9.3, it is not score compatible between implementations'
+        $stderr.puts 'Flay is disabled under implementations other than mri-1.9.3, it is not score compatible between implementations'
       end
     end
   else
