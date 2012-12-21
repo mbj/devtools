@@ -11,7 +11,7 @@ Used to centralize metric setup and development gem dependencies.
 Installation
 ------------
 
-The installation looks stupid, but Gemfiles are not nestable. A Gemfile cannot include another Gemfile from 
+The installation looks stupid, but Gemfiles are not nestable. A Gemfile cannot include another Gemfile from
 a remote repository. Because auf this we use a updatable local copy of the shared parts.
 
 Add git source to your Gemfile like this:
@@ -35,10 +35,10 @@ Devtools.init
 After ``bundle update`` run:
 
 ```
-bundle exec rake devtools:sync
+bundle exec rake devtools:prepare
 ```
 
-And append the following line to Gemfile that pulls the devtools shared Gemfile 
+And append the following line to Gemfile that pulls the devtools shared Gemfile
 that is maintained in this repo
 
 ```ruby
