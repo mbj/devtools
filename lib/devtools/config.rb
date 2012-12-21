@@ -40,6 +40,8 @@ module Devtools
     #
     def raw
       YAML.load_file(config_file)
+    rescue Errno::ENOENT
+      {}
     end
     memoize :raw
 
@@ -66,7 +68,7 @@ module Devtools
     #
     def self.define_accessor(name)
       define_method(name) do
-        raw.fetch(name.to_s)
+        raw.fetch(name.to_s, '')
       end
     end
     private_class_method :define_accessor
