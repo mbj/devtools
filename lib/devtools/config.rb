@@ -39,9 +39,8 @@ module Devtools
     # @api private
     #
     def raw
+      return {} unless File.exists?(config_file)
       YAML.load_file(config_file)
-    rescue Errno::ENOENT
-      {}
     end
     memoize :raw
 
