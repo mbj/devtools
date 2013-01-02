@@ -1,4 +1,4 @@
-#encoding: utf-8
+# encoding: utf-8
 
 Gem::Specification.new do |gem|
   gem.name        = 'devtools'
@@ -7,12 +7,12 @@ Gem::Specification.new do |gem|
   gem.email       = [ 'mbj@seonic.net' ]
   gem.description = 'A metagem for dm-2 style development'
   gem.summary     = gem.description
-  gem.homepage    = 'https://github.com/mbj/devtools'
+  gem.homepage    = 'https://github.com/datamapper/devtools'
 
-  gem.require_paths    = [ 'lib' ]
-  gem.files            = `git ls-files`.split("\n")
-  gem.test_files       = `git ls-files -- spec`.split("\n")
-  gem.extra_rdoc_files = %w[TODO]
+  gem.require_paths    = %w[lib]
+  gem.files            = `git ls-files`.split($/)
+  gem.test_files       = `git ls-files -- spec`.split($/)
+  gem.extra_rdoc_files = %w[README.md TODO]
 
   gem.add_dependency('rake',       '~> 10.0.3')
   gem.add_dependency('adamantium', '~> 0.0.4')
