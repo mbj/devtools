@@ -13,11 +13,12 @@ begin
 
   files = Flay.expand_dirs_to_files(project.lib_dir).sort
 
+  compatible_scores = %w(mri-1.9.3 mri-2.0.0)
 
-  if Devtools.rvm != 'mri-1.9.3'
+  unless compatible_scores.include?(Devtools.rvm)
     namespace :metrics do
       task :flay do
-        $stderr.puts 'Flay is disabled under implementations other than mri-1.9.3, it is not score compatible between implementations'
+        $stderr.puts "Flay is disabled under #{Devtools.rvm} since it is not score compatible with other implementations"
       end
     end
   else
