@@ -28,8 +28,8 @@ end
 
 group :metrics do
   gem 'backports', '~> 2.6.5'
-  gem 'flay',      '~> 1.4.2'
-  gem 'flog',      '~> 2.5.1'
+  gem 'flay',      '~> 1.4.3'
+  gem 'flog',      '~> 2.5.3'
   gem 'mutant',    '~> 0.2.9'
   gem 'reek',      '~> 1.2.13', :git => 'https://github.com/dkubb/reek.git', :branch => 'fix-redundant-irresponsible-module-warnings'
   gem 'roodi',     '~> 2.1.0'
