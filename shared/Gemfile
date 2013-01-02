@@ -26,16 +26,6 @@ group :guard do
   gem 'terminal-notifier-guard', '~> 1.5.3', :require => false
 end
 
-group :benchmarks do
-  gem 'rbench', '~> 0.2.3'
-end
-
-platform :jruby do
-  group :jruby do
-    gem 'jruby-openssl', '~> 0.8.2'
-  end
-end
-
 group :metrics do
   gem 'backports', '~> 2.6.5'
   gem 'flay',      '~> 1.4.2'
@@ -60,5 +50,15 @@ group :metrics do
 
   platforms :rbx do
     gem 'pelusa', '~> 0.2.2'
+  end
+end
+
+group :benchmarks do
+  gem 'rbench', '~> 0.2.3'
+end
+
+platform :jruby do
+  group :jruby do
+    gem 'jruby-openssl', '~> 0.8.2'
   end
 end
