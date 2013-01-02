@@ -26,8 +26,12 @@ namespace :metrics do
     else
       desc 'Generate code coverage'
       task :coverage do
-        ENV['COVERAGE'] = 'true'
-        Rake::Task['spec:unit'].execute
+        begin
+          original, ENV['COVERAGE'] = ENV['COVERAGE'], 'true'
+          Rake::Task['spec:unit'].execute
+        ensure
+          ENV['COVERAGE'] = original
+        end
       end
     end
   rescue LoadError
