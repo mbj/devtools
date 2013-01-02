@@ -2,9 +2,10 @@
 
 namespace :metrics do
   begin
-    require 'rspec/core/rake_task'
-
     if RUBY_VERSION < '1.9'
+      require 'rspec/core/rake_task'
+      require 'rcov'
+
       desc 'Generate code coverage'
       RSpec::Core::RakeTask.new(:coverage) do |rcov|
         rcov.rcov      = true
@@ -20,6 +21,8 @@ namespace :metrics do
         ]
       end
     else
+      require 'simplecov'
+
       desc 'Generate code coverage'
       task :coverage do
         ENV['COVERAGE'] = 'true'
