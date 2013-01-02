@@ -48,7 +48,7 @@ group :metrics do
     gem 'yard-spellcheck', '~> 0.1.5'
   end
 
-  platforms :ruby_18 do
+  platforms :mri_18 do
     gem 'rcov', '~> 1.0.0'
   end
 
