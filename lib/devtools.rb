@@ -17,7 +17,7 @@ module Devtools
   end
 
   # Return shared gemfile path
-  # 
+  #
   # @return [String]
   #
   # @api private
@@ -33,7 +33,7 @@ module Devtools
   # @api private
   #
   def self.init
-    if defined?(@project) 
+    if defined?(@project)
       raise 'project is already initialized!'
     end
 
@@ -96,7 +96,7 @@ module Devtools
   #
   # @return [true]
   #   if running under 1.8.x
-  # 
+  #
   # @return [false]
   #   otherwise
   #
@@ -110,7 +110,7 @@ module Devtools
   #
   # @return [true]
   #   if running under 1.9.x
-  # 
+  #
   # @return [false]
   #   otherwise
   #
@@ -124,7 +124,7 @@ module Devtools
   #
   # @return [true]
   #   if running under 1.9.x
-  # 
+  #
   # @return [false]
   #   otherwise
   #

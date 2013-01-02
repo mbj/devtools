@@ -5,7 +5,7 @@ begin
   require 'yardstick/rake/verify'
   require 'yaml'
 
-  config = Devtools.project.yardstick 
+  config = Devtools.project.yardstick
 
   namespace :metrics do
     # yardstick_measure task

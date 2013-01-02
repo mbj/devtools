@@ -21,7 +21,7 @@ module Devtools
       @project = project
     end
 
-    # Return config path 
+    # Return config path
     #
     # @return [String]
     #

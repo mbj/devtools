@@ -24,7 +24,7 @@ module Devtools
     end
 
     # Return shared gemfile path
-    # 
+    #
     # @return [String]
     #
     # @api private
@@ -36,7 +36,7 @@ module Devtools
 
     # Return lib directory
     #
-    # @return [String] 
+    # @return [String]
     #
     # @api private
     #
