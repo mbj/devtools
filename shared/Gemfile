@@ -18,7 +18,7 @@ group :guard do
   # file system change event handling
   gem 'rb-fchange', '~> 0.0.6', :require => false
   gem 'rb-fsevent', '~> 0.9.3', :require => false
-  gem 'rb-inotify', '~> 0.8.8', :require => false, :git => 'https://github.com/mbj/rb-inotify'
+  gem 'rb-inotify', '~> 0.8.8', :require => false, :git => 'https://github.com/nex3/rb-inotify'
 
   # notification handling
   gem 'libnotify',               '~> 0.8.0', :require => false
