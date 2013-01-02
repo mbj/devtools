@@ -1,10 +1,13 @@
 # encoding: utf-8
 
 namespace :metrics do
+  lib = RUBY_VERSION < '1.9' ? 'rcov' : 'simplecov'
+
   begin
-    if RUBY_VERSION < '1.9'
+    require lib
+
+    if lib == 'rcov'
       require 'rspec/core/rake_task'
-      require 'rcov'
 
       desc 'Generate code coverage'
       RSpec::Core::RakeTask.new(:coverage) do |rcov|
@@ -21,8 +24,6 @@ namespace :metrics do
         ]
       end
     else
-      require 'simplecov'
-
       desc 'Generate code coverage'
       task :coverage do
         ENV['COVERAGE'] = 'true'
@@ -31,7 +32,6 @@ namespace :metrics do
     end
   rescue LoadError
     task :coverage do
-      lib = RUBY_VERSION < '1.9' ? 'rcov' : 'simplecov'
       $stderr.puts "coverage is not available. In order to run #{lib}, you must: gem install #{lib}"
     end
   end
