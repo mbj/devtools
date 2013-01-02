@@ -14,6 +14,6 @@ Gem::Specification.new do |gem|
   gem.test_files       = `git ls-files -- spec`.split("\n")
   gem.extra_rdoc_files = %w[TODO]
 
-  gem.add_dependency('rake',       '~> 10.0')
-  gem.add_dependency('adamantium', '~> 0.0.3')
+  gem.add_dependency('rake',       '~> 10.0.3')
+  gem.add_dependency('adamantium', '~> 0.0.4')
 end
