@@ -20,7 +20,7 @@ module Devtools
     # @api private
     #
     def initialize(root)
-      @root = root
+      @root = Pathname(root)
     end
 
     # Return shared gemfile path
@@ -30,7 +30,7 @@ module Devtools
     # @api private
     #
     def shared_gemfile_path
-      File.join(root, 'Gemfile.devtools')
+      root.join('Gemfile.devtools')
     end
     memoize :shared_gemfile_path
 
@@ -41,7 +41,7 @@ module Devtools
     # @api private
     #
     def lib_dir
-      File.join(root, 'lib')
+      root.join('lib')
     end
     memoize :lib_dir
 
@@ -52,7 +52,7 @@ module Devtools
     # @api private
     #
     def file_pattern
-      File.join(lib_dir, '**/*.rb')
+      lib_dir.join('**/*.rb')
     end
     memoize :file_pattern
 
@@ -63,7 +63,7 @@ module Devtools
     # @api private
     #
     def config_dir
-      File.join(root, 'config')
+      root.join('config')
     end
     memoize :config_dir
 

@@ -1,6 +1,7 @@
+require 'adamantium'
+require 'pathname'
 require 'rake'
 require 'yaml'
-require 'adamantium'
 
 # Namespace for library
 module Devtools
@@ -13,7 +14,7 @@ module Devtools
   # @api private
   #
   def self.root
-    @root ||= File.join(File.dirname(__FILE__), '..').freeze
+    @root ||= Pathname('../../').expand_path(__FILE__).freeze
   end
 
   # Return shared gemfile path
@@ -23,7 +24,7 @@ module Devtools
   # @api private
   #
   def self.shared_gemfile_path
-    @shared_gemfile_path ||= File.join(root, 'shared/Gemfile')
+    @shared_gemfile_path ||= root.join('shared/Gemfile')
   end
 
   # Initialize project
@@ -37,11 +38,9 @@ module Devtools
       raise 'project is already initialized!'
     end
 
-    root =File.dirname(caller(1).first.split(':').first)
+    @project = Project.new(Pathname(caller(1).first.split(':').first).dirname)
 
-    @project = Project.new(root)
-
-    FileList["#{Devtools.root}/tasks/**/*.rake"].each { |task| import(task) }
+    import_tasks
 
     self
   end
@@ -143,6 +142,17 @@ module Devtools
   def self.project
     @project || raise("#{self.class.name}#=init(path) was not called!")
   end
+
+  # Import the rake tasks
+  #
+  # @return [undefined]
+  #
+  # @api private
+  #
+  def self.import_tasks
+    FileList[root.join('tasks/**/*.rake').to_s].each { |task| import(task) }
+  end
+  private_class_method :import_tasks
 end
 
 require 'devtools/project'

@@ -28,7 +28,7 @@ module Devtools
     # @api private
     #
     def config_file
-      File.join(project.config_dir, self.class::FILE)
+      project.config_dir.join(self.class::FILE)
     end
     memoize :config_file
 
