@@ -1,29 +1,26 @@
 # encoding: utf-8
 
+namespace :metrics do
+  begin
+    require 'flay'
+    require 'yaml'
 
-begin
-  require 'flay'
-  require 'yaml'
+    project = Devtools.project
+    config  = Devtools.project.flay
 
-  project = Devtools.project
-  config  = Devtools.project.flay
+    threshold   = config.threshold
+    total_score = config.total_score
 
-  threshold   = config.threshold
-  total_score = config.total_score
+    files = Flay.expand_dirs_to_files(project.lib_dir).sort
 
-  files = Flay.expand_dirs_to_files(project.lib_dir).sort
+    compatible_scores = %w(mri-1.9.3 mri-2.0.0)
 
-  compatible_scores = %w(mri-1.9.3 mri-2.0.0)
-
-  unless compatible_scores.include?(Devtools.rvm)
-    namespace :metrics do
+    unless compatible_scores.include?(Devtools.rvm)
       task :flay do
         $stderr.puts "Flay is disabled under #{Devtools.rvm} since it is not score compatible with other implementations"
       end
-    end
-  else
-    namespace :metrics do
-      # original code by Marty Andrews:
+    else
+       # original code by Marty Andrews:
       # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
       desc 'Analyze for code duplication'
       task :flay do
@@ -51,9 +48,7 @@ begin
         end
       end
     end
-  end
-rescue LoadError
-  namespace :metrics do
+  rescue LoadError
     task :flay do
       $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
     end

@@ -1,15 +1,15 @@
 # encoding: utf-8
 
-begin
-  require 'backports'
-  require 'flog'
-  require 'yaml'
+namespace :metrics do
+  begin
+    require 'backports'
+    require 'flog'
+    require 'yaml'
 
-  project   = Devtools.project
-  config    = project.flog
-  threshold = config.threshold.to_f.round(1)
+    project   = Devtools.project
+    config    = project.flog
+    threshold = config.threshold.to_f.round(1)
 
-  namespace :metrics do
     # original code by Marty Andrews:
     # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
     desc 'Analyze for code complexity'
@@ -37,9 +37,9 @@ begin
         raise "#{bad_methods.size} methods have a flog complexity > #{threshold}"
       end
     end
-  end
-rescue LoadError
-  task :flog do
-    $stderr.puts 'Flog is not available. In order to run flog, you must: gem install flog'
+  rescue LoadError
+    task :flog do
+      $stderr.puts 'Flog is not available. In order to run flog, you must: gem install flog'
+    end
   end
 end
