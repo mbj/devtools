@@ -22,6 +22,7 @@ platform :jruby do
 end
 
 group :metrics do
+  gem 'backports', '~> 2.6.5'
   gem 'flay',      '~> 1.4.2'
   gem 'flog',      '~> 2.5.1'
   gem 'mutant',    '~> 0.2.9'

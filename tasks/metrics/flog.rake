@@ -1,19 +1,13 @@
 # encoding: utf-8
 
 begin
+  require 'backports'
   require 'flog'
   require 'yaml'
 
-  class Float
-    def round_to(n)
-      (self * 10**n).round.to_f * 10**-n
-    end
-  end
-
   project   = Devtools.project
   config    = project.flog
-
-  threshold = config.threshold.to_f.round_to(1) 
+  threshold = config.threshold.to_f.round(1)
 
   namespace :metrics do
     # original code by Marty Andrews:
@@ -23,8 +17,8 @@ begin
       flog = Flog.new
       flog.flog project.lib_dir
 
-      totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }.
-                           map     { |name, score| [ name, score.round_to(1) ] }.
+      totals = flog.totals.select  { |name, score| name[-5, 5] != '#none'   }.
+                           map     { |name, score| [ name, score.round(1) ] }.
                            sort_by { |name, score| score }
 
       if totals.any?
