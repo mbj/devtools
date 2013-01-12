@@ -20,6 +20,9 @@ group :guard do
   gem 'rb-fsevent', '~> 0.9.3', :require => false
   gem 'rb-inotify', '~> 0.9.0', :require => false
 
+  # Remove this one https://github.com/guard/listen/pull/78 is merged
+  gem 'listen', '~> 0.7.2', :git => 'https://github.com/mbj/listen'
+
   # notification handling
   gem 'libnotify',               '~> 0.8.0', :require => false
   gem 'rb-notifu',               '~> 0.0.4', :require => false
