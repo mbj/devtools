@@ -21,7 +21,7 @@ group :guard do
   gem 'rb-inotify', '~> 0.9.0', :require => false
 
   # Remove this one https://github.com/guard/listen/pull/78 is released
-  gem 'listen', '~> 0.7.2', :git => 'https://github.com/guard/listen'
+  gem 'listen', '~> 0.7.2', :git => 'https://github.com/guard/listen.git'
 
   # notification handling
   gem 'libnotify',               '~> 0.8.0', :require => false
