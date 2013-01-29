@@ -15,7 +15,7 @@ namespace :metrics do
     end
   rescue LoadError
     task :coverage do
-      $stderr.puts "coverage is not available. In order to run #{lib}, you must: gem install #{lib}"
+      $stderr.puts "coverage is not available. In order to run simplecov, you must: gem install simplecov
     end
   end
 end
