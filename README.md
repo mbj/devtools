@@ -3,7 +3,7 @@ devtools
 
 [![Build Status](https://secure.travis-ci.org/datamapper/devtools.png?branch=master)](http://travis-ci.org/datamapper/devtools)
 [![Dependency Status](https://gemnasium.com/datamapper/devtools.png)](https://gemnasium.com/datamapper/devtools)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/datamapper/devtools)
+[![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
 
 Metagem to assist dm-2 style development.
 Used to centralize metric setup and development gem dependencies.
