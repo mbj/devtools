@@ -3,7 +3,7 @@
 namespace :metrics do
   allowed_versions = %w(mri-1.9.3 rbx-1.9.3)
 
-  if allowed_versions.include?(Devtools.rvm) && system("which mutant > #{File::NULL}")
+  if allowed_versions.include?(Devtools.rvm) && system("mutant --version > #{File::NULL} 2>&1")
     desc 'Run mutant'
     task :mutant => :coverage do
       project = Devtools.project
