@@ -3,7 +3,7 @@
 namespace :metrics do
   allowed_versions = %w(mri-1.9.3 rbx-1.9.3)
 
-  if allowed_versions.include?(Devtools.rvm)
+  if allowed_versions.include?(Devtools.rvm) && system("which mutant > #{File::NULL}")
     desc 'Run mutant'
     task :mutant => :coverage do
       project = Devtools.project
@@ -14,7 +14,7 @@ namespace :metrics do
   else
     desc 'Run Mutant'
     task :mutant => :coverage do
-      $stderr.puts "Mutant is disabled under ruby vms other than #{allowed_versions.join(', ')}"
+      $stderr.puts 'Mutant is disabled'
     end
   end
 end
