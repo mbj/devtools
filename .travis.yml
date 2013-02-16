@@ -13,9 +13,6 @@ rvm:
   - ruby-head
   - jruby-head
 notifications:
-  allowed_failures:
-    matrix:
-      - ree
   email:
     - mbj@seonic.net
     - dan.kubb@gmail.com
