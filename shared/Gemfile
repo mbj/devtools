@@ -42,7 +42,7 @@ group :metrics do
   end
 
   platforms :mri_19, :rbx do
-#    gem 'mutant', '~> 0.2.16'
+   gem 'mutant', '~> 0.2.17'
   end
 
   platforms :mri_19 do

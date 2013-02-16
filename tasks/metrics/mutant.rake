@@ -3,13 +3,19 @@
 namespace :metrics do
   allowed_versions = %w(mri-1.9.3 rbx-1.9.3)
 
-  if allowed_versions.include?(Devtools.rvm) && system("mutant --version > #{File::NULL} 2>&1")
+  require 'mutant' rescue LoadError
+
+  mutant_present = defined?(Mutant)
+
+  if allowed_versions.include?(Devtools.rvm) and mutant_present
     desc 'Run mutant'
     task :mutant => :coverage do
       project = Devtools.project
       config  = project.mutant
-      cmd = %W[mutant -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2]
-      system(*cmd) or raise 'Mutant task is not successful'
+      successful = Mutant::Cli.run(%W(mutant -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2))
+      unless successful
+        raise 'Mutant task is not successful'
+      end
     end
   else
     desc 'Run Mutant'
