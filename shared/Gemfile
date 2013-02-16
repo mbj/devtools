@@ -32,7 +32,6 @@ end
 group :metrics do
   gem 'flay',      '~> 1.4.3'
   gem 'flog',      '~> 2.5.3'
-#  gem 'mutant',    '~> 0.2.16'
   gem 'reek',      '~> 1.2.13', :git => 'https://github.com/troessner/reek.git', :ref => 'ef77fcecaa21c9ebcbe4d9a79d41b0e70196bf18'
   gem 'roodi',     '~> 2.2.0'
   gem 'yardstick', '~> 0.9.2'
@@ -40,6 +39,10 @@ group :metrics do
   platforms :ruby_18, :ruby_19 do
     # this indirectly depends on ffi which does not build on ruby-head
     gem 'yard-spellcheck', '~> 0.1.5'
+  end
+
+  platforms :mri_19, :rbx do
+#    gem 'mutant', '~> 0.2.16'
   end
 
   platforms :mri_19 do
