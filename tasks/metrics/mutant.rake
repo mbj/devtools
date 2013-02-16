@@ -8,7 +8,7 @@ namespace :metrics do
     task :mutant => :coverage do
       project = Devtools.project
       config  = project.mutant
-      cmd = %[bundle exec mutant -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2]
+      cmd = %[mutant -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2]
       Kernel.system(cmd) || raise('Mutant task is not successful')
     end
   else
