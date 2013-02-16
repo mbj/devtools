@@ -15,7 +15,7 @@ namespace :metrics do
     task :mutant => :coverage do
       project = Devtools.project
       config  = project.mutant
-      successful = Mutant::Cli.run(%W(mutant -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2))
+      successful = Mutant::CLI.run(%W(mutant -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2))
       unless successful
         raise 'Mutant task is not successful'
       end
