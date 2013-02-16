@@ -3,7 +3,10 @@
 namespace :metrics do
   allowed_versions = %w(mri-1.9.3 rbx-1.9.3)
 
-  require 'mutant' rescue LoadError
+  begin
+    require 'mutant' 
+  rescue LoadError
+  end
 
   mutant_present = defined?(Mutant)
 
