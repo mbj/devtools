@@ -9,7 +9,7 @@ namespace :metrics do
       project = Devtools.project
       config  = project.mutant
       cmd = %[mutant -r ./spec/spec_helper.rb "::#{config.namespace}" --rspec-dm2]
-      Kernel.system(cmd) || raise('Mutant task is not successful')
+      Kernel.system(cmd) or raise 'Mutant task is not successful'
     end
   else
     desc 'Run Mutant'
