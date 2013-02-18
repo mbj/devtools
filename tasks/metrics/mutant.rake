@@ -10,7 +10,7 @@ namespace :metrics do
 
   mutant_present = defined?(Mutant)
 
-  if allowed_versions.include?(Devtools.rvm) and mutant_present
+  if allowed_versions.include?(Devtools.rvm) and mutant_present and !ENV['DEVTOOLS_SELF']
     desc 'Run mutant'
     task :mutant => :coverage do
       project = Devtools.project
