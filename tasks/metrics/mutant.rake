@@ -4,7 +4,7 @@ namespace :metrics do
   allowed_versions = %w(mri-1.9.3 rbx-1.9.3)
 
   begin
-    require 'mutant' 
+    require 'mutant'
   rescue LoadError
   end
 
