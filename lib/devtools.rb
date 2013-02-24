@@ -89,9 +89,11 @@ module Devtools
     self
   end
 
-  # Deprecated version of Devtools.init_rake_tasks
+  # Initialize project and load tasks
   #
   # Should *only* be called from your $application_root/Rakefile
+  #
+  # @deprecated Use Devtools.init_rake_tasks
   #
   # @return [self]
   #
