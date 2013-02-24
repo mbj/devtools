@@ -46,7 +46,7 @@ module Devtools
   # @api private
   #
   def self.init_spec_helper
-    init_project(Pathname.new(caller(1).first.split(':').first).dirname.parent)
+    init_project(root_from_caller)
     project.setup_rspec
     self
   end
@@ -83,7 +83,7 @@ module Devtools
   # @api private
   #
   def self.init_rake_tasks
-    init_project(Pathname.new(caller(1).first.split(':').first).dirname)
+    init_project(root_from_caller)
     import_tasks
 
     self
@@ -99,7 +99,7 @@ module Devtools
   #
   def self.init
     $stderr.puts("Devtools.init is deprecated, use Devtools.init_rake_tasks")
-    init_project(Pathname.new(caller(1).first.split(':').first).dirname)
+    init_project(root_from_caller)
     import_tasks
   end
 
@@ -221,8 +221,21 @@ module Devtools
   # @api private
   #
   def self.require_shared_examples
-    Dir[shared_examples_path.join('**/*.rb')].each { |f| require(f) }
+    Dir[shared_examples_path.join('**/*.rb')].each { |file| require(file) }
   end
+
+  # Return root from caller level 
+  #
+  # @param [Fixnum] level
+  #
+  # @return [Pathname]
+  #
+  # @api private
+  #
+  def self.root_from_caller(level=1)
+    Pathname.new(caller(level).first.split(':').first).dirname.parent
+  end
+  private_class_method :root_from_caller
 
 end
 

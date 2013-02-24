@@ -1,7 +1,3 @@
-require 'rake'
-
 require 'devtools'
-
 ENV['DEVTOOLS_SELF']='1'
-
-Devtools.init
+Devtools.init_rake_tasks
