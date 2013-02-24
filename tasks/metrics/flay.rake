@@ -6,12 +6,7 @@ namespace :metrics do
     require 'yaml'
 
     project = Devtools.project
-    config  = Devtools.project.flay
 
-    threshold   = config.threshold
-    total_score = config.total_score
-
-    files = Flay.expand_dirs_to_files(project.lib_dir).sort
 
     compatible_scores = %w(mri-1.9.3 mri-2.0.0)
 
@@ -24,6 +19,11 @@ namespace :metrics do
       # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
       desc 'Analyze for code duplication'
       task :flay do
+        config  = project.flay
+        threshold   = config.threshold
+        total_score = config.total_score
+        files = Flay.expand_dirs_to_files(project.lib_dir).sort
+
         # run flay once without a threshold to ensure the max mass matches the threshold
         flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
         flay.process(*files)
