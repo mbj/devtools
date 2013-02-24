@@ -77,7 +77,7 @@ module Devtools
       require 'rspec'
       Devtools.require_shared_examples
       require_shared_examples_and_support
-      prepare_18_specific_quircks
+      prepare_18_specific_quirks
     end
 
     # Return config directory
@@ -161,13 +161,13 @@ module Devtools
       self
     end
 
-    # Prepare spec quircks for 1.8 
+    # Prepare spec quirks for 1.8 
     #
     # @return [self]
     #
     # @api private
     #
-    def prepare_18_specific_quircks
+    def prepare_18_specific_quirks
       if Devtools.ruby18?
         require 'rspec/autorun'
       end
