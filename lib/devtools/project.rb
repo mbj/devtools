@@ -56,6 +56,28 @@ module Devtools
     end
     memoize :file_pattern
 
+    # Return spec root
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    #
+    def spec_root
+      root.join('spec')
+    end
+    memoize :spec_root
+
+    # Setup rspec
+    #
+    # @api private
+    #
+    def setup_rspec
+      require 'rspec'
+      Devtools.require_shared_examples
+      require_shared_examples_and_support
+      prepare_18_specific_quircks
+    end
+
     # Return config directory
     #
     # @return [String]
@@ -121,6 +143,35 @@ module Devtools
       Config::Mutant.new(self)
     end
     memoize :mutant
+
+  private
+
+    # Require shared examples and spec support
+    #
+    # Requires all files in $root/spec/{shared,support}/**/*.rb
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def require_shared_examples_and_support
+      Dir[spec_root.join('{shared,support}/**/*.rb')].each { |file| require(file) }
+      self
+    end
+
+    # Prepare spec quircks for 1.8 
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def prepare_18_specific_quircks
+      if Devtools.ruby18?
+        require 'rspec/autorun'
+      end
+
+      self
+    end
 
   end
 end

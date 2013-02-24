@@ -24,25 +24,83 @@ module Devtools
   # @api private
   #
   def self.shared_gemfile_path
-    @shared_gemfile_path ||= root.join('shared/Gemfile')
+    @shared_gemfile_path ||= root.join('shared/Gemfile').freeze
+  end
+
+  # Return shared examples path
+  #
+  # @return [Pathname]
+  #
+  # @pai private
+  #
+  def self.shared_examples_path
+    @shared_example_path ||= root.join('shared/examples').freeze
+  end
+
+  # Initialize proejct and load shared specs
+  #
+  # Expects to be called from $application_root/spec/spec_helper.rb
+  #
+  # @return [self]
+  #
+  # @api private
+  #
+  def self.init_spec_helper
+    init_project(Pathname.new(caller(1).first.split(':').first).dirname.parent)
+    project.setup_rspec
+    self
   end
 
   # Initialize project
+  #
+  # Might be called from $application_root/Rakefile (Devtools.init_rake_tasks) or
+  # $application_root/spec/spec_helper.rb (Devtools.init_spec_helper), as rake ci also 
+  # runs rspec it can be called multiple times.
+  #
+  # @param [Pathname] root
+  #
+  # @return [self]
+  #
+  # @api private
+  #
+  def self.init_project(root)
+    if defined?(@project)
+      if @project.root != root
+        raise 'project is already initialized with different root'
+      end
+      return self
+    end
+    @project = Project.new(root)
+    self
+  end
+
+  # Initialize project and load tasks
+  #
+  # Should *only* be called from your $application_root/Rakefile
+  #
+  # @return [self]
+  #
+  # @api private
+  #
+  def self.init_rake_tasks
+    init_project(Pathname.new(caller(1).first.split(':').first).dirname)
+    import_tasks
+
+    self
+  end
+
+  # Deprecated version of Devtools.init_rake_tasks
+  #
+  # Should *only* be called from your $application_root/Rakefile
   #
   # @return [self]
   #
   # @api private
   #
   def self.init
-    if defined?(@project)
-      raise 'project is already initialized!'
-    end
-
-    @project = Project.new(Pathname(caller(1).first.split(':').first).dirname)
-
+    $stderr.puts("Devtools.init is deprecated, use Devtools.init_rake_tasks")
+    init_project(Pathname.new(caller(1).first.split(':').first).dirname)
     import_tasks
-
-    self
   end
 
   # Return ruby engine string
@@ -52,7 +110,7 @@ module Devtools
   # @api private
   #
   def self.ruby_engine
-    @ruby_engine ||= (defined?(RUBY_ENGINE) && RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'
+    @ruby_engine ||= ((defined?(RUBY_ENGINE) && RUBY_ENGINE) ? RUBY_ENGINE : 'ruby').freeze
   end
 
   # Return rvm name
@@ -62,9 +120,11 @@ module Devtools
   # @api private
   #
   def self.rvm_name
-    engine = ruby_engine
-    engine = 'mri' if engine == 'ruby'
-    engine
+    @rvm_name ||= begin
+      engine = ruby_engine
+      engine = 'mri' if engine == 'ruby'
+      engine
+    end.freeze
   end
 
   # Return rvm string
@@ -74,7 +134,7 @@ module Devtools
   # @api private
   #
   def self.rvm
-    @rvm ||= "#{rvm_name}-#{RUBY_VERSION}"
+    @rvm ||= "#{rvm_name}-#{RUBY_VERSION}".freeze
   end
 
   # Test for beeing executed under jruby
@@ -122,7 +182,7 @@ module Devtools
   # Test for 2.0 mode
   #
   # @return [true]
-  #   if running under 1.9.x
+  #   if running under 2.0.x
   #
   # @return [false]
   #   otherwise
@@ -140,7 +200,7 @@ module Devtools
   # @api private
   #
   def self.project
-    @project || raise("#{self.class.name}#=init(path) was not called!")
+    @project || raise('No active project')
   end
 
   # Import the rake tasks
@@ -153,6 +213,17 @@ module Devtools
     FileList[root.join('tasks/**/*.rake').to_s].each { |task| import(task) }
   end
   private_class_method :import_tasks
+
+  # Require shared examples
+  #
+  # @return [undefined]
+  #
+  # @api private
+  #
+  def self.require_shared_examples
+    Dir[shared_examples_path.join('**/*.rb')].each { |f| require(f) }
+  end
+
 end
 
 require 'devtools/project'
