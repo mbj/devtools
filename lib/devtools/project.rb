@@ -69,6 +69,8 @@ module Devtools
 
     # Setup rspec
     #
+    # @return [self]
+    #
     # @api private
     #
     def setup_rspec

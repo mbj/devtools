@@ -31,7 +31,7 @@ module Devtools
   #
   # @return [Pathname]
   #
-  # @pai private
+  # @api private
   #
   def self.shared_examples_path
     @shared_example_path ||= root.join('shared/examples').freeze
