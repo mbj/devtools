@@ -9,7 +9,7 @@ module Devtools
 
   # Return library directory
   #
-  # @return [String]
+  # @return [Pathname]
   #
   # @api private
   #
@@ -19,7 +19,7 @@ module Devtools
 
   # Return shared gemfile path
   #
-  # @return [String]
+  # @return [Pathname]
   #
   # @api private
   #
