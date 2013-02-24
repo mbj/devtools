@@ -37,7 +37,7 @@ module Devtools
     @shared_example_path ||= root.join('shared/examples').freeze
   end
 
-  # Initialize proejct and load shared specs
+  # Initialize project and load shared specs
   #
   # Expects to be called from $application_root/spec/spec_helper.rb
   #
