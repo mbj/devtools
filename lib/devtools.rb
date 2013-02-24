@@ -46,7 +46,7 @@ module Devtools
   # @api private
   #
   def self.init_spec_helper
-    init_project(root_from_caller(2))
+    init_project(extract_call_path(2).parent)
     project.setup_rspec
     self
   end
@@ -83,7 +83,7 @@ module Devtools
   # @api private
   #
   def self.init_rake_tasks
-    init_project(root_from_caller(2))
+    init_project(extract_call_path(2))
     import_tasks
 
     self
@@ -226,7 +226,7 @@ module Devtools
     Dir[shared_examples_path.join('**/*.rb')].each { |file| require(file) }
   end
 
-  # Return root from caller level 
+  # Return call path at level
   #
   # @param [Fixnum] level
   #
@@ -234,10 +234,10 @@ module Devtools
   #
   # @api private
   #
-  def self.root_from_caller(level)
-    Pathname.new(caller(level).first.split(':').first).dirname.parent
+  def self.extract_call_path(level)
+    Pathname.new(caller(level).first.split(':').first).dirname
   end
-  private_class_method :root_from_caller
+  private_class_method :extract_call_path
 
 end
 
