@@ -13,14 +13,14 @@ module Devtools
 
     # Initialize object
     #
-    # @param [String] root
+    # @param [Pathname] root
     #
     # @return [undefined]
     #
     # @api private
     #
     def initialize(root)
-      @root = Pathname(root)
+      @root = root
     end
 
     # Return shared gemfile path

@@ -46,7 +46,7 @@ module Devtools
   # @api private
   #
   def self.init_spec_helper
-    init_project(root_from_caller)
+    init_project(root_from_caller(2))
     project.setup_rspec
     self
   end
@@ -83,7 +83,7 @@ module Devtools
   # @api private
   #
   def self.init_rake_tasks
-    init_project(root_from_caller)
+    init_project(root_from_caller(2))
     import_tasks
 
     self
@@ -99,7 +99,7 @@ module Devtools
   #
   def self.init
     $stderr.puts("Devtools.init is deprecated, use Devtools.init_rake_tasks")
-    init_project(root_from_caller)
+    init_project(root_from_caller(2))
     import_tasks
   end
 
@@ -232,7 +232,7 @@ module Devtools
   #
   # @api private
   #
-  def self.root_from_caller(level=1)
+  def self.root_from_caller(level)
     Pathname.new(caller(level).first.split(':').first).dirname.parent
   end
   private_class_method :root_from_caller
