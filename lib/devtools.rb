@@ -37,20 +37,6 @@ module Devtools
     @shared_example_path ||= root.join('shared/examples').freeze
   end
 
-  # Initialize project and load shared specs
-  #
-  # Expects to be called from $application_root/spec/spec_helper.rb
-  #
-  # @return [self]
-  #
-  # @api private
-  #
-  def self.init_spec_helper
-    init_project(extract_call_path(2).parent)
-    project.setup_rspec
-    self
-  end
-
   # Initialize project
   #
   # Might be called from $application_root/Rakefile (Devtools.init_rake_tasks) or
@@ -74,6 +60,20 @@ module Devtools
     self
   end
 
+  # Initialize project and load shared specs
+  #
+  # Expects to be called from $application_root/spec/spec_helper.rb
+  #
+  # @return [self]
+  #
+  # @api private
+  #
+  def self.init_spec_helper
+    init_project(extract_call_path).parent
+    project.setup_rspec
+    self
+  end
+
   # Initialize project and load tasks
   #
   # Should *only* be called from your $application_root/Rakefile
@@ -83,7 +83,7 @@ module Devtools
   # @api private
   #
   def self.init_rake_tasks
-    init_project(extract_call_path(2))
+    init_project(extract_call_path)
     import_tasks
 
     self
@@ -101,7 +101,7 @@ module Devtools
   #
   def self.init
     $stderr.puts("Devtools.init is deprecated, use Devtools.init_rake_tasks")
-    init_project(extract_call_path(2))
+    init_project(extract_call_path)
     import_tasks
   end
 
@@ -226,6 +226,9 @@ module Devtools
     Dir[shared_examples_path.join('**/*.rb')].each { |file| require(file) }
   end
 
+  # The depth of call stack from project code
+  CALL_STACK_DEPTH_FROM_PROJECT = 2
+
   # Return call path at level
   #
   # @param [Fixnum] level
@@ -234,8 +237,8 @@ module Devtools
   #
   # @api private
   #
-  def self.extract_call_path(level)
-    Pathname.new(caller(level).first.split(':').first).dirname
+  def self.extract_call_path
+    Pathname.new(caller(CALL_STACK_DEPTH_FROM_PROJECT).first.split(':').first).dirname
   end
   private_class_method :extract_call_path
 
