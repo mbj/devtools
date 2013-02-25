@@ -69,7 +69,7 @@ module Devtools
   # @api private
   #
   def self.init_spec_helper
-    init_project(extract_call_path).parent
+    init_project(extract_call_path.parent)
     project.setup_rspec
     self
   end
