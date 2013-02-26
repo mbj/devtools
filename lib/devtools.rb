@@ -1,4 +1,3 @@
-require 'adamantium'
 require 'pathname'
 require 'rake'
 require 'yaml'
