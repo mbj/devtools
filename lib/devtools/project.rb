@@ -1,8 +1,6 @@
 module Devtools
   # The project devtools supports
   class Project
-    include Adamantium
-
     # Return project root
     #
     # @return [String] root
@@ -30,9 +28,8 @@ module Devtools
     # @api private
     #
     def shared_gemfile_path
-      root.join('Gemfile.devtools')
+      @shared_gemfile_path ||= root.join('Gemfile.devtools').freeze
     end
-    memoize :shared_gemfile_path
 
     # Return lib directory
     #
@@ -41,9 +38,8 @@ module Devtools
     # @api private
     #
     def lib_dir
-      root.join('lib')
+      @lib_dir ||= root.join('lib').freeze
     end
-    memoize :lib_dir
 
     # Return file pattern
     #
@@ -52,9 +48,8 @@ module Devtools
     # @api private
     #
     def file_pattern
-      lib_dir.join('**/*.rb')
+      @file_pattern ||= lib_dir.join('**/*.rb').freeze
     end
-    memoize :file_pattern
 
     # Return spec root
     #
@@ -63,9 +58,8 @@ module Devtools
     # @api private
     #
     def spec_root
-      root.join('spec')
+      @spec_root ||= root.join('spec').freeze
     end
-    memoize :spec_root
 
     # Setup rspec
     #
@@ -87,9 +81,8 @@ module Devtools
     # @api private
     #
     def config_dir
-      root.join('config')
+      @config_dir ||= root.join('config').freeze
     end
-    memoize :config_dir
 
     # Return flog configuration
     #
@@ -98,9 +91,8 @@ module Devtools
     # @api private
     #
     def flog
-      Config::Flog.new(self)
+      @flog ||= Config::Flog.new(self)
     end
-    memoize :flog
 
     # Return roodi configuration
     #
@@ -109,9 +101,8 @@ module Devtools
     # @api private
     #
     def roodi
-      Config::Roodi.new(self)
+      @roodi ||= Config::Roodi.new(self)
     end
-    memoize :roodi
 
     # Return yardstick configuration
     #
@@ -120,9 +111,8 @@ module Devtools
     # @api private
     #
     def yardstick
-      Config::Yardstick.new(self)
+      @yardstick ||= Config::Yardstick.new(self)
     end
-    memoize :yardstick
 
     # Return flay configuration
     #
@@ -131,9 +121,8 @@ module Devtools
     # @api private
     #
     def flay
-      Config::Flay.new(self)
+      @flay ||= Config::Flay.new(self)
     end
-    memoize :flay
 
     # Return mutant configuration
     #
@@ -142,9 +131,8 @@ module Devtools
     # @api private
     #
     def mutant
-      Config::Mutant.new(self)
+      @mutant ||= Config::Mutant.new(self)
     end
-    memoize :mutant
 
   private
 

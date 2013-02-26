@@ -1,7 +1,6 @@
 module Devtools
   # Abtract base class of tool configuration
   class Config
-    include Adamantium
 
     # Return project
     #
@@ -28,9 +27,8 @@ module Devtools
     # @api private
     #
     def config_file
-      project.config_dir.join(self.class::FILE)
+      @config_file ||= project.config_dir.join(self.class::FILE).freeze
     end
-    memoize :config_file
 
     # Return raw data
     #
@@ -39,9 +37,8 @@ module Devtools
     # @api private
     #
     def raw
-      YAML.load_file(config_file)
+      @raw ||= YAML.load_file(config_file).freeze
     end
-    memoize :raw
 
     # Declare raw accesors
     #
