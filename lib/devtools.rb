@@ -111,7 +111,7 @@ module Devtools
   # @api private
   #
   def self.ruby_engine
-    @ruby_engine ||= ((defined?(RUBY_ENGINE) && RUBY_ENGINE) ? RUBY_ENGINE : 'ruby').freeze
+    @ruby_engine ||= (defined?(RUBY_ENGINE) && RUBY_ENGINE || 'ruby').freeze
   end
 
   # Return rvm name
