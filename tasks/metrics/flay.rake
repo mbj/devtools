@@ -3,7 +3,6 @@
 namespace :metrics do
   begin
     require 'flay'
-    require 'yaml'
 
     project = Devtools.project
 

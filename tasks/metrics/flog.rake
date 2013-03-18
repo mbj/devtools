@@ -4,7 +4,6 @@ namespace :metrics do
   begin
     require 'backports'
     require 'flog'
-    require 'yaml'
 
     project   = Devtools.project
     config    = project.flog

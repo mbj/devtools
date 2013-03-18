@@ -4,7 +4,6 @@ namespace :metrics do
   begin
     require 'yardstick/rake/measurement'
     require 'yardstick/rake/verify'
-    require 'yaml'
 
     config = Devtools.project.yardstick
 
