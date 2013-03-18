@@ -7,6 +7,11 @@ namespace :metrics do
 
     config = Devtools.project.yardstick
 
+    # Enable the legacy parser for JRuby until ripper is fully supported
+    if Devtools.jruby? && Devtools.ruby19?
+      YARD::Parser::SourceParser.parser_type = :ruby18
+    end
+
     # yardstick_measure task
     Yardstick::Rake::Measurement.new
 
