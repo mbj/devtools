@@ -57,6 +57,6 @@ end
 
 platform :jruby do
   group :jruby do
-    gem 'jruby-openssl', '~> 0.8.2'
+    gem 'jruby-openssl', '~> 0.8.5'
   end
 end
