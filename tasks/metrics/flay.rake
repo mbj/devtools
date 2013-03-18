@@ -6,7 +6,6 @@ namespace :metrics do
 
     project = Devtools.project
 
-
     compatible_scores = %w(mri-1.9.3 mri-2.0.0)
 
     unless compatible_scores.include?(Devtools.rvm)

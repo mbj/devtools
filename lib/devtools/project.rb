@@ -149,7 +149,7 @@ module Devtools
       self
     end
 
-    # Prepare spec quirks for 1.8 
+    # Prepare spec quirks for 1.8
     #
     # @return [self]
     #
