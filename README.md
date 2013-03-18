@@ -53,8 +53,7 @@ bundle install
 Adjust `spec/spec_helper.rb` to include
 
 ```ruby
-require 'devtools'
-Devtools.init_spec_helper
+require 'devtools/spec_helper'
 ```
 
 Now you have access to the dm-2 rake tasks, metrics, and spec helpers.
