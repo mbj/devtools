@@ -96,7 +96,7 @@ module Devtools
       # @api private
       #
       def raw
-        @raw ||= File.exist?(config_file) ? yaml_config : DEFAULT_CONFIG
+        @raw ||= config_file.file? ? yaml_config : DEFAULT_CONFIG
       end
 
       # Return the raw config data from a yaml file
