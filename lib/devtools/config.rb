@@ -2,6 +2,34 @@ module Devtools
   # Abtract base class of tool configuration
   class Config
 
+    # Declare raw accesors
+    #
+    # @api private
+    #
+    # @return [self]
+    #
+    def self.access(*names)
+      names.each do |name|
+        define_accessor(name)
+      end
+    end
+    private_class_method :access
+
+    # Define accessor
+    #
+    # @param [Symbol] name
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def self.define_accessor(name)
+      define_method(name) do
+        raw.fetch(name.to_s)
+      end
+    end
+    private_class_method :define_accessor
+
     # Return project
     #
     # @return [Project]
@@ -39,34 +67,6 @@ module Devtools
     def raw
       @raw ||= YAML.load_file(config_file).freeze
     end
-
-    # Declare raw accesors
-    #
-    # @api private
-    #
-    # @return [self]
-    #
-    def self.access(*names)
-      names.each do |name|
-        define_accessor(name)
-      end
-    end
-    private_class_method :access
-
-    # Define accessor
-    #
-    # @param [Symbol] name
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def self.define_accessor(name)
-      define_method(name) do
-        raw.fetch(name.to_s)
-      end
-    end
-    private_class_method :define_accessor
 
     # Flay configuration
     class Flay < self
