@@ -31,6 +31,16 @@ module Devtools
       @shared_gemfile_path ||= root.join('Gemfile.devtools').freeze
     end
 
+    # Return default config path
+    #
+    # @return [String]
+    #
+    # @api private
+    #
+    def default_config_path
+      @default_config_path ||= root.join('config').freeze
+    end
+
     # Return lib directory
     #
     # @return [String]

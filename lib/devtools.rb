@@ -36,6 +36,16 @@ module Devtools
     @shared_example_path ||= root.join('shared/examples').freeze
   end
 
+  # Return default config path
+  #
+  # @return [Pathname]
+  #
+  # @api private
+  #
+  def self.default_config_path
+    @default_config_path ||= root.join('default/config').freeze
+  end
+
   # Initialize project
   #
   # Might be called from $application_root/Rakefile (Devtools.init_rake_tasks) or
