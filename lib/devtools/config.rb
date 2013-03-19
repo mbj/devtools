@@ -58,6 +58,8 @@ module Devtools
       @config_file ||= project.config_dir.join(self.class::FILE).freeze
     end
 
+    private
+
     # Return raw data
     #
     # @return [Hash]
@@ -85,12 +87,24 @@ module Devtools
         'threshold' => DEFAULT_THRESHOLD
       }.freeze
 
+      private
+
+      # Return raw data
+      #
+      # @return [Hash]
+      #
+      # @api private
+      #
       def raw
         @raw ||= File.exist?(config_file) ? yaml_config : DEFAULT_CONFIG
       end
 
-      private
-
+      # Return the raw config data from a yaml file
+      #
+      # @return [Hash]
+      #
+      # @api private
+      #
       def yaml_config
         YAML.load_file(config_file).freeze
       end
