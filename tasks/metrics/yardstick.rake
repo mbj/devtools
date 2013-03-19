@@ -5,8 +5,6 @@ namespace :metrics do
     require 'yardstick/rake/measurement'
     require 'yardstick/rake/verify'
 
-    config = Devtools.project.yardstick
-
     # Enable the legacy parser for JRuby until ripper is fully supported
     if Devtools.jruby? && Devtools.ruby19?
       YARD::Parser::SourceParser.parser_type = :ruby18
@@ -17,6 +15,7 @@ namespace :metrics do
 
     # verify_measurements task
     Yardstick::Rake::Verify.new do |verify|
+      config = Devtools.project.yardstick
       verify.threshold = config.threshold
     end
   rescue LoadError

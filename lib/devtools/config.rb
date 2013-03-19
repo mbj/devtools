@@ -78,6 +78,22 @@ module Devtools
     class Yardstick < self
       FILE = 'yardstick.yml'.freeze
       access :threshold
+
+      DEFAULT_THRESHOLD = 100
+
+      DEFAULT_CONFIG = {
+        'threshold' => DEFAULT_THRESHOLD
+      }.freeze
+
+      def raw
+        @raw ||= File.exist?(config_file) ? yaml_config : DEFAULT_CONFIG
+      end
+
+      private
+
+      def yaml_config
+        YAML.load_file(config_file).freeze
+      end
     end
 
     # Roodi configuration

@@ -5,14 +5,14 @@ namespace :metrics do
     require 'backports'
     require 'flog'
 
-    project   = Devtools.project
-    config    = project.flog
-    threshold = config.threshold.to_f.round(1)
+    project = Devtools.project
 
     # original code by Marty Andrews:
     # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
     desc 'Analyze for code complexity'
     task :flog do
+      config    = project.flog
+      threshold = config.threshold.to_f.round(1)
       flog = Flog.new
       flog.flog project.lib_dir
 
