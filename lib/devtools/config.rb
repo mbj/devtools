@@ -110,11 +110,6 @@ module Devtools
       end
     end
 
-    # Roodi configuration
-    class Roodi < self
-      FILE = 'roodi.yml'.freeze
-    end
-
     # Flog configuration
     class Flog < self
       FILE = 'flog.yml'.freeze
