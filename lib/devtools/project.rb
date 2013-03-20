@@ -104,16 +104,6 @@ module Devtools
       @flog ||= Config::Flog.new(self)
     end
 
-    # Return roodi configuration
-    #
-    # @return [Config::Roodi]
-    #
-    # @api private
-    #
-    def roodi
-      @roodi ||= Config::Roodi.new(self)
-    end
-
     # Return yardstick configuration
     #
     # @return [Config::Yardstick]
