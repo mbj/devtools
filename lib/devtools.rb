@@ -18,6 +18,17 @@ module Devtools
     @root ||= Pathname('../../').expand_path(__FILE__).freeze
   end
 
+  # Return the project root directory
+  #
+  # Delegates to `Dir.pwd`
+  #
+  # @return [Pathname]
+  #
+  # @api private
+  def self.project_root
+    @project_root ||= Pathname.pwd.freeze
+  end
+
   # Return path to shared files
   #
   # @return [Pathname]
@@ -236,17 +247,6 @@ module Devtools
     Dir[shared_path.join("spec/#{SHARED_SPEC_FILES_GLOB}")].each do |file|
       require(file)
     end
-  end
-
-  # Return the project root directory
-  #
-  # Delegates to `Dir.pwd`
-  #
-  # @return [Pathname]
-  #
-  # @api private
-  def self.project_root
-    Pathname.new(Dir.pwd)
   end
 
 end
