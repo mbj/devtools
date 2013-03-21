@@ -17,4 +17,4 @@ namespace :devtools do
 end
 
 desc 'Default: run all specs'
-task :default => [:spec]
+task :default => [ :spec ]
