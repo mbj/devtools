@@ -10,8 +10,8 @@ namespace :devtools do
     cp source_gemfile, target_gemfile, :verbose => true
   end
 
-  desc "Create default config files in #{target_config.join('config')}"
-  task :init  do
+  desc "Copy default configs and Gemfile.devtools to #{target_config}"
+  task :init => [ :sync ]  do
     cp_r source_config, target_config, :verbose => true
   end
 end
