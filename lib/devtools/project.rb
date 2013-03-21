@@ -79,8 +79,8 @@ module Devtools
     #
     def setup_rspec
       require 'rspec'
-      Devtools.require_shared_examples
-      require_shared_examples_and_support
+      Devtools.require_shared_spec_files
+      require_shared_spec_files
       prepare_18_specific_quirks
     end
 
@@ -144,8 +144,10 @@ module Devtools
     #
     # @api private
     #
-    def require_shared_examples_and_support
-      Dir[spec_root.join('{shared,support}/**/*.rb')].each { |file| require(file) }
+    def require_shared_spec_files
+      Dir[spec_root.join(Devtools::SHARED_SPEC_FILES_GLOB)].each do |file|
+        require(file)
+      end
       self
     end
 

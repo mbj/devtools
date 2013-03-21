@@ -6,6 +6,8 @@ require 'yaml'
 module Devtools
   extend Rake::DSL
 
+  SHARED_SPEC_FILES_GLOB = '{shared,support}/**/*.rb'.freeze
+
   # Return library directory
   #
   # @return [Pathname]
@@ -16,6 +18,15 @@ module Devtools
     @root ||= Pathname('../../').expand_path(__FILE__).freeze
   end
 
+  # Return path to shared files
+  #
+  # @return [Pathname]
+  #
+  # @api private
+  def self.shared_path
+    @shared_path ||= root.join('shared').freeze
+  end
+
   # Return shared gemfile path
   #
   # @return [Pathname]
@@ -23,17 +34,7 @@ module Devtools
   # @api private
   #
   def self.shared_gemfile_path
-    @shared_gemfile_path ||= root.join('shared/Gemfile').freeze
-  end
-
-  # Return shared examples path
-  #
-  # @return [Pathname]
-  #
-  # @api private
-  #
-  def self.shared_examples_path
-    @shared_example_path ||= root.join('shared/spec/shared').freeze
+    @shared_gemfile_path ||= shared_path.join('Gemfile').freeze
   end
 
   # Return default config path
@@ -231,8 +232,10 @@ module Devtools
   #
   # @api private
   #
-  def self.require_shared_examples
-    Dir[shared_examples_path.join('**/*.rb')].each { |file| require(file) }
+  def self.require_shared_spec_files
+    Dir[shared_path.join("spec/#{SHARED_SPEC_FILES_GLOB}")].each do |file|
+      require(file)
+    end
   end
 
   # Return the project root directory

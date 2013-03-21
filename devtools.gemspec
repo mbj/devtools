@@ -13,4 +13,6 @@ Gem::Specification.new do |gem|
   gem.files            = `git ls-files`.split($/)
   gem.test_files       = `git ls-files -- spec`.split($/)
   gem.extra_rdoc_files = %w[README.md TODO]
+
+  gem.add_dependency 'ice_nine', '~> 0.7.0'
 end
