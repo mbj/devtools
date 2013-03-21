@@ -78,7 +78,7 @@ module Devtools
   # @api private
   #
   def self.init_spec_helper
-    init_project(extract_call_path.parent)
+    init_project(project_root)
     project.setup_rspec
     self
   end
@@ -92,7 +92,7 @@ module Devtools
   # @api private
   #
   def self.init_rake_tasks
-    init_project(extract_call_path)
+    init_project(project_root)
     import_tasks
 
     self
@@ -235,21 +235,16 @@ module Devtools
     Dir[shared_examples_path.join('**/*.rb')].each { |file| require(file) }
   end
 
-  # The depth of call stack from project code
-  CALL_STACK_DEPTH_FROM_PROJECT = 2
-
-  # Return call path at level
+  # Return the project root directory
   #
-  # @param [Fixnum] level
+  # Delegates to `Dir.pwd`
   #
   # @return [Pathname]
   #
   # @api private
-  #
-  def self.extract_call_path
-    Pathname.new(caller(CALL_STACK_DEPTH_FROM_PROJECT).first.split(':').first).dirname
+  def self.project_root
+    Pathname.new(Dir.pwd)
   end
-  private_class_method :extract_call_path
 
 end
 
