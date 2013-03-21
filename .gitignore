@@ -1,2 +1,4 @@
 /.rbx
+/.yardoc
+/measurements
 /Gemfile.lock
