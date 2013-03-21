@@ -111,7 +111,7 @@ module Devtools
   #
   def self.init
     $stderr.puts("Devtools.init is deprecated, use Devtools.init_rake_tasks")
-    init_project(extract_call_path)
+    init_project(project_root)
     import_tasks
   end
 
