@@ -73,7 +73,7 @@ module Devtools
   def self.init_project(root)
     if defined?(@project)
       if @project.root != root
-        raise 'project is already initialized with different root'
+        raise "project is already initialized with different root, expected #{root} was #{@project.root}"
       end
       return self
     end
