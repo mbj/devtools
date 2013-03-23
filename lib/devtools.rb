@@ -106,7 +106,6 @@ module Devtools
   def self.init_rake_tasks
     init_project(project_root)
     import_tasks
-
     self
   end
 
