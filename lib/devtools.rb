@@ -185,7 +185,7 @@ module Devtools
   # @api private
   #
   def self.ruby18?
-    !!(RUBY_VERSION =~ /\A1\.8\./)
+    RUBY_VERSION.start_with?('1.8.')
   end
 
   # Test for 1.9 mode
@@ -199,7 +199,7 @@ module Devtools
   # @api private
   #
   def self.ruby19?
-    !!(RUBY_VERSION =~ /\A1\.9\./)
+    RUBY_VERSION.start_with?('1.9.')
   end
 
   # Test for 2.0 mode
@@ -213,7 +213,7 @@ module Devtools
   # @api private
   #
   def self.ruby20?
-    !!(RUBY_VERSION =~ /\A2\.0\./)
+    RUBY_VERSION.start_with?('2.0.')
   end
 
   # Return project
