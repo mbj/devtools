@@ -1,5 +1,6 @@
 ---
 UnusedParameters:
+  enabled: true
   exclude: []
 UncommunicativeParameterName:
   accept: []
@@ -91,3 +92,6 @@ LongYieldList:
   max_params: 2
   exclude: []
   enabled: true
+NilCheck:
+  enabled: true
+  exclude: []
