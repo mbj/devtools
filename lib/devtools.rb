@@ -76,9 +76,9 @@ module Devtools
       if project_root != root
         raise "project is already initialized with different root, expected #{root} was #{project_root}"
       end
-      return self
+    else
+      @project = Project.new(root)
     end
-    @project = Project.new(root)
     self
   end
 
