@@ -2,8 +2,8 @@
 Attribute:
   enabled: true
   exclude:
-    - Devtools::Config
-    - Devtools::Project
+  - Devtools::Config
+  - Devtools::Project
 BooleanParameter:
   enabled: true
   exclude: []
@@ -66,32 +66,32 @@ UncommunicativeMethodName:
   enabled: true
   exclude: []
   reject:
-    - !ruby/regexp /^[a-z]$/
-    - !ruby/regexp /[0-9]$/
-    - !ruby/regexp /[A-Z]/
+  - !ruby/regexp /^[a-z]$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
   accept: []
 UncommunicativeModuleName:
   enabled: true
   exclude: []
   reject:
-    - !ruby/regexp /^.$/
-    - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
   accept: []
 UncommunicativeParameterName:
   enabled: true
   exclude: []
   reject:
-    - !ruby/regexp /^.$/
-    - !ruby/regexp /[0-9]$/
-    - !ruby/regexp /[A-Z]/
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
   accept: []
 UncommunicativeVariableName:
   enabled: true
   exclude: []
   reject:
-    - !ruby/regexp /^.$/
-    - !ruby/regexp /[0-9]$/
-    - !ruby/regexp /[A-Z]/
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
   accept: []
 UnusedParameters:
   enabled: true
