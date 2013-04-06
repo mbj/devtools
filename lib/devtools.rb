@@ -7,6 +7,7 @@ module Devtools
   extend Rake::DSL
 
   SHARED_SPEC_FILES_GLOB = '{shared,support}/**/*.rb'.freeze
+  DEFAULT_RVM_NAME = 'mri'.freeze
 
   # Return library directory
   #
@@ -145,9 +146,8 @@ module Devtools
   def self.rvm_name
     @rvm_name ||= begin
       engine = ruby_engine
-      engine = 'mri' if engine == 'ruby'
-      engine
-    end.freeze
+      engine == 'ruby' ? DEFAULT_RVM_NAME : engine
+    end
   end
 
   # Return rvm string
