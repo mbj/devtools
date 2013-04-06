@@ -3,7 +3,7 @@ module Devtools
   class Project
     # Return project root
     #
-    # @return [String] root
+    # @return [Pathname]
     #
     # @api private
     #
@@ -23,7 +23,7 @@ module Devtools
 
     # Return shared gemfile path
     #
-    # @return [String]
+    # @return [Pathname]
     #
     # @api private
     #
@@ -33,7 +33,7 @@ module Devtools
 
     # Return default config path
     #
-    # @return [String]
+    # @return [Pathname]
     #
     # @api private
     #
@@ -43,7 +43,7 @@ module Devtools
 
     # Return lib directory
     #
-    # @return [String]
+    # @return [Pathname]
     #
     # @api private
     #
@@ -53,7 +53,7 @@ module Devtools
 
     # Return file pattern
     #
-    # @return [String]
+    # @return [Pathname]
     #
     # @api private
     #
