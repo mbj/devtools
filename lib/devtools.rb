@@ -6,7 +6,6 @@ require 'yaml'
 module Devtools
   extend Rake::DSL
 
-  SHARED_SPEC_FILES_GLOB = '{shared,support}/**/*.rb'.freeze
   DEFAULT_RVM_NAME = 'mri'.freeze
 
   # Return library directory
@@ -236,18 +235,6 @@ module Devtools
     FileList[root.join('tasks/**/*.rake').to_s].each { |task| import(task) }
   end
   private_class_method :import_tasks
-
-  # Require shared examples
-  #
-  # @return [undefined]
-  #
-  # @api private
-  #
-  def self.require_shared_spec_files
-    Dir[shared_path.join("spec/#{SHARED_SPEC_FILES_GLOB}")].each do |file|
-      require(file)
-    end
-  end
 
 end
 

@@ -1,6 +1,11 @@
 module Devtools
   # The project devtools supports
   class Project
+
+    SHARED_SPEC_PATTERN   = '{shared,support}/**/*.rb'.freeze
+    UNIT_TEST_TIMEOUT     = 0.1  # 100ms
+    UNIT_TEST_PATH_REGEXP = %r{\bspec/unit/}.freeze
+
     # Return project root
     #
     # @return [Pathname]
@@ -8,6 +13,46 @@ module Devtools
     # @api private
     #
     attr_reader :root
+
+    # Setup rspec
+    #
+    # @param [Pathname] spec_root
+    #
+    # @return [Class<Devtools::Project>]
+    #
+    # @api private
+    #
+    def self.setup_rspec(spec_root)
+      require 'rspec'
+      require_shared_spec_files(Devtools.shared_path.join('spec'))
+      require_shared_spec_files(spec_root)
+      prepare_18_specific_quirks
+      self
+    end
+
+    # Require shared examples
+    #
+    # @param [Pathname] spec_root
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
+    def self.require_shared_spec_files(spec_root)
+      Dir[spec_root.join(SHARED_SPEC_PATTERN)].each { |file| require file }
+    end
+    private_class_method :require_shared_spec_files
+
+    # Prepare spec quirks for 1.8
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
+    def self.prepare_18_specific_quirks
+      require 'rspec/autorun' if Devtools.ruby18?
+    end
+    private_class_method :prepare_18_specific_quirks
 
     # Initialize object
     #
@@ -78,10 +123,8 @@ module Devtools
     # @api private
     #
     def setup_rspec
-      require 'rspec'
-      Devtools.require_shared_spec_files
-      require_shared_spec_files
-      prepare_18_specific_quirks
+      self.class.setup_rspec(spec_root)
+      self
     end
 
     # Return config directory
@@ -132,37 +175,6 @@ module Devtools
     #
     def mutant
       @mutant ||= Config::Mutant.new(self)
-    end
-
-  private
-
-    # Require shared examples and spec support
-    #
-    # Requires all files in $root/spec/{shared,support}/**/*.rb
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def require_shared_spec_files
-      Dir[spec_root.join(Devtools::SHARED_SPEC_FILES_GLOB)].each do |file|
-        require(file)
-      end
-      self
-    end
-
-    # Prepare spec quirks for 1.8
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def prepare_18_specific_quirks
-      if Devtools.ruby18?
-        require 'rspec/autorun'
-      end
-
-      self
     end
 
   end
