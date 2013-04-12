@@ -40,7 +40,8 @@ LongYieldList:
   max_params: 0
 NestedIterators:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Project#self.timeout_unit_tests
   max_allowed_nesting: 1
   ignore_iterators: []
 NilCheck:
@@ -60,7 +61,8 @@ TooManyMethods:
   max_methods: 15
 TooManyStatements:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Project#self.setup_rspec
   max_statements: 5
 UncommunicativeMethodName:
   enabled: true
