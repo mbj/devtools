@@ -4,6 +4,7 @@ namespace :metrics do
   begin
     require 'backports'
     require 'flog'
+    require 'flog_cli'
 
     project = Devtools.project
 
@@ -13,8 +14,8 @@ namespace :metrics do
     task :flog do
       config    = project.flog
       threshold = config.threshold.to_f.round(1)
-      flog = Flog.new
-      flog.flog project.lib_dir
+      flog      = Flog.new
+      flog.flog *FlogCLI.expand_dirs_to_files(project.lib_dir)
 
       totals = flog.totals.select  { |name, score| name[-5, 5] != '#none'   }.
                            map     { |name, score| [ name, score.round(1) ] }.
