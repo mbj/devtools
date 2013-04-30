@@ -20,7 +20,8 @@ DataClump:
   min_clump_size: 1
 DuplicateMethodCall:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Project#self.timeout_unit_tests
   max_calls: 1
   allow_calls: []
 FeatureEnvy:
@@ -31,7 +32,8 @@ IrresponsibleModule:
   exclude: []
 LongParameterList:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Project#self.setup_rspec
   max_params: 1
   overrides: {}
 LongYieldList:

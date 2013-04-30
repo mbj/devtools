@@ -67,7 +67,17 @@ module Devtools
     # @api private
     #
     def raw
-      @raw ||= YAML.load_file(config_file).freeze
+      @raw ||= config_file.file? ? yaml_config : self.class::DEFAULT_CONFIG
+    end
+
+    # Return the raw config data from a yaml file
+    #
+    # @return [Hash]
+    #
+    # @api private
+    #
+    def yaml_config
+      YAML.load_file(config_file).freeze || self.class::DEFAULT_CONFIG
     end
 
     # Flay configuration
@@ -86,28 +96,6 @@ module Devtools
       DEFAULT_CONFIG = {
         'threshold' => DEFAULT_THRESHOLD
       }.freeze
-
-      private
-
-      # Return raw data
-      #
-      # @return [Hash]
-      #
-      # @api private
-      #
-      def raw
-        @raw ||= config_file.file? ? yaml_config : DEFAULT_CONFIG
-      end
-
-      # Return the raw config data from a yaml file
-      #
-      # @return [Hash]
-      #
-      # @api private
-      #
-      def yaml_config
-        YAML.load_file(config_file).freeze
-      end
     end
 
     # Flog configuration
@@ -120,6 +108,16 @@ module Devtools
     class Mutant < self
       FILE = 'mutant.yml'.freeze
       access :name, :namespace
+    end
+
+    # Devtools configuration
+    class Devtools < self
+      FILE = 'devtools.yml'.freeze
+      access :unit_test_timeout
+
+      DEFAULT_CONFIG = {
+        'unit_test_timeout' => ::Devtools::Project::UNIT_TEST_TIMEOUT
+      }.freeze
     end
   end
 end

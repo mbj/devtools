@@ -6,6 +6,8 @@ module Devtools
     UNIT_TEST_TIMEOUT     = 0.1  # 100ms
     UNIT_TEST_PATH_REGEXP = %r{\bspec/unit/}.freeze
 
+    TimeoutError = Class.new(StandardError)
+
     # Return project root
     #
     # @return [Pathname]
@@ -22,12 +24,12 @@ module Devtools
     #
     # @api private
     #
-    def self.setup_rspec(spec_root)
+    def self.setup_rspec(spec_root, timeout)
       require 'rspec'
       require_shared_spec_files(Devtools.shared_path.join('spec'))
       require_shared_spec_files(spec_root)
       prepare_18_specific_quirks
-      timeout_unit_tests
+      timeout_unit_tests(timeout)
       self
     end
 
@@ -61,9 +63,14 @@ module Devtools
     #
     # @api private
     #
-    def self.timeout_unit_tests
+    def self.timeout_unit_tests(timeout)
       RSpec.configuration.around :file_path => UNIT_TEST_PATH_REGEXP do |example|
-        Timeout.timeout(UNIT_TEST_TIMEOUT) { example.run }
+        start = Time.now
+        example.run
+        duration = Time.now - start
+        if duration > timeout
+          raise TimeoutError.new("Unit test took #{duration} but max allowed is #{timeout}")
+        end
       end
     end
     private_class_method :timeout_unit_tests
@@ -137,7 +144,7 @@ module Devtools
     # @api private
     #
     def setup_rspec
-      self.class.setup_rspec(spec_root)
+      self.class.setup_rspec(spec_root, devtools.unit_test_timeout)
       self
     end
 
@@ -189,6 +196,15 @@ module Devtools
     #
     def mutant
       @mutant ||= Config::Mutant.new(self)
+    end
+
+    # Return devtools configuration
+    #
+    # @return [Config::Devtools]
+    #
+    # @api private
+    def devtools
+      @devtools ||= Config::Devtools.new(self)
     end
 
   end
