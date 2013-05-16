@@ -29,7 +29,7 @@ module Devtools
       require_shared_spec_files(Devtools.shared_path.join('spec'))
       require_shared_spec_files(spec_root)
       prepare_18_specific_quirks
-      timeout_unit_tests(timeout)
+      timeout_unit_tests(timeout) unless Devtools.jit?
       self
     end
 

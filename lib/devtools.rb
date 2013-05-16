@@ -173,6 +173,34 @@ module Devtools
     ruby_engine == 'jruby'
   end
 
+  # Test for beeing executed under rbx
+  #
+  # @return [true]
+  #   if running under rbx
+  #
+  # @return [false]
+  #   otherwise
+  #
+  # @api private
+  #
+  def self.rbx?
+    ruby_engine == 'rbx'
+  end
+
+  # Test for beeing executed under rubies with a JIT
+  #
+  # @return [true]
+  #   if running under jruby or rbx
+  #
+  # @return [false]
+  #   otherwise
+  #
+  # @api private
+  #
+  def self.jit?
+    jruby? || rbx?
+  end
+
   # Test for 1.8 mode
   #
   # @return [true]
