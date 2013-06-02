@@ -15,7 +15,7 @@ rvm:
   - jruby-19mode
   - jruby-head
 notifications:
-  irc: "irc.freenode.org#datamapper"
+  irc: "irc.freenode.org#rom-rb"
   email:
     - mbj@seonic.net
     - dan.kubb@gmail.com
