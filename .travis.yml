@@ -17,5 +17,5 @@ rvm:
 notifications:
   irc: "irc.freenode.org#rom-rb"
   email:
-    - mbj@seonic.net
+    - mbj@schirp-dso.com
     - dan.kubb@gmail.com
