@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.name        = 'devtools'
   gem.version     = '0.0.1'
   gem.authors     = [ 'Markus Schirp' ]
-  gem.email       = [ 'mbj@seonic.net' ]
+  gem.email       = [ 'mbj@schir-dso.com' ]
   gem.description = 'A metagem for dm-2 style development'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/rom-rb/devtools'
