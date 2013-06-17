@@ -19,6 +19,7 @@ module Devtools
     # Setup rspec
     #
     # @param [Pathname] spec_root
+    # @param [Numeric] timeout
     #
     # @return [Class<Devtools::Project>]
     #
@@ -58,6 +59,8 @@ module Devtools
     private_class_method :prepare_18_specific_quirks
 
     # Timeout unit tests that take longer than 1/10th of a second
+    #
+    # @param [Numeric] timeout
     #
     # @return [undefined]
     #
