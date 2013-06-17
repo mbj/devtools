@@ -65,11 +65,10 @@ module Devtools
     #
     def self.timeout_unit_tests(timeout)
       RSpec.configuration.around :file_path => UNIT_TEST_PATH_REGEXP do |example|
-        start = Time.now
-        example.run
-        duration = Time.now - start
-        if duration > timeout
-          raise TimeoutError.new("Unit test took #{duration} but max allowed is #{timeout}")
+        times    = Benchmark.measure(&example)
+        cpu_time = times.utime + times.stime + times.cutime + times.cstime
+        if cpu_time > timeout
+          raise TimeoutError, "Unit test took #{cpu_time} but max allowed is #{timeout}"
         end
       end
     end
