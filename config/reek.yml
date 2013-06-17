@@ -33,6 +33,7 @@ IrresponsibleModule:
 LongParameterList:
   enabled: true
   exclude:
+  - Devtools::Project#self.assert_within_timeout
   - Devtools::Project#self.setup_rspec
   max_params: 1
   overrides: {}
