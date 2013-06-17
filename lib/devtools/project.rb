@@ -6,8 +6,6 @@ module Devtools
     UNIT_TEST_TIMEOUT     = 0.1  # 100ms
     UNIT_TEST_PATH_REGEXP = %r{\bspec/unit/}.freeze
 
-    TimeoutError = Class.new(StandardError)
-
     # Return project root
     #
     # @return [Pathname]
@@ -80,7 +78,7 @@ module Devtools
     #
     # @return [undefined]
     #
-    # @raise [TimeoutError]
+    # @raise [Timeout::Error]
     #   raised when the times are outside the timeout
     #
     # @api private
@@ -88,7 +86,7 @@ module Devtools
     def self.assert_within_timeout(times, timeout)
       cpu_time = times.utime + times.stime + times.cutime + times.cstime
       return if timeout > cpu_time
-      raise TimeoutError, "Unit test took #{cpu_time} but max allowed is #{timeout}"
+      raise Timeout::Error, "Unit test took #{cpu_time} but max allowed is #{timeout}"
     end
     private_class_method :assert_within_timeout
 

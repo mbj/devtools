@@ -1,6 +1,7 @@
 require 'benchmark'
 require 'pathname'
 require 'rake'
+require 'timeout'
 require 'yaml'
 
 # Namespace for library
