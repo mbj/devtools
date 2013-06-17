@@ -64,15 +64,30 @@ module Devtools
     # @api private
     #
     def self.timeout_unit_tests(timeout)
+      assert = method(:assert_within_timeout)
       RSpec.configuration.around :file_path => UNIT_TEST_PATH_REGEXP do |example|
-        times    = Benchmark.measure(&example)
-        cpu_time = times.utime + times.stime + times.cutime + times.cstime
-        if cpu_time > timeout
-          raise TimeoutError, "Unit test took #{cpu_time} but max allowed is #{timeout}"
-        end
+        assert.call(Benchmark.measure(&example), timeout)
       end
     end
     private_class_method :timeout_unit_tests
+
+    # Assert the cpu time is less than the timeout
+    #
+    # @param [Numeric] timeout
+    #
+    # @return [undefined]
+    #
+    # @raise [TimeoutError]
+    #   raised when the times are outside the timeout
+    #
+    # @api private
+    #
+    def self.assert_within_timeout(times, timeout)
+      cpu_time = times.utime + times.stime + times.cutime + times.cstime
+      return if timeout > cpu_time
+      raise TimeoutError, "Unit test took #{cpu_time} but max allowed is #{timeout}"
+    end
+    private_class_method :assert_within_timeout
 
     # Initialize object
     #
