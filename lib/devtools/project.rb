@@ -84,7 +84,7 @@ module Devtools
     # @api private
     #
     def self.assert_within_timeout(times, timeout)
-      cpu_time = times.utime + times.stime + times.cutime + times.cstime
+      cpu_time = times.total
       return if timeout > cpu_time
       raise Timeout::Error, "Unit test took #{cpu_time} but max allowed is #{timeout}"
     end
