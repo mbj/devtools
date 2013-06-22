@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.email       = [ 'mbj@seonic.net' ]
   gem.description = 'A metagem for dm-2 style development'
   gem.summary     = gem.description
-  gem.homepage    = 'https://github.com/datamapper/devtools'
+  gem.homepage    = 'https://github.com/rom-rb/devtools'
 
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split($/)
