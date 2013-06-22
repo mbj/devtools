@@ -6,7 +6,7 @@ devtools
 [![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
 <!-- [![Code Climate](https://codeclimate.com/github/rom-rb/devtools.png)](https://codeclimate.com/github/rom-rb/devtools) -->
 
-Metagem to assist dm-2 style development.
+Metagem to assist ROM style development.
 Used to centralize metric setup and development gem dependencies.
 
 Installation
@@ -57,12 +57,12 @@ Adjust `spec/spec_helper.rb` to include
 require 'devtools/spec_helper'
 ```
 
-Now you have access to the dm-2 rake tasks, metrics, and spec helpers.
+Now you have access to the ROM rake tasks, metrics, and spec helpers.
 
 Credits
 -------
 
-The whole dm-2 team that created and maintained all these tasks before they were centralized here.
+The whole ROM team that created and maintained all these tasks before they were centralized here.
 
 Contributing
 -------------
