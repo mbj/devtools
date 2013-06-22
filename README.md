@@ -1,9 +1,10 @@
 devtools
 ========
 
-[![Build Status](https://secure.travis-ci.org/datamapper/devtools.png?branch=master)](http://travis-ci.org/datamapper/devtools)
-[![Dependency Status](https://gemnasium.com/datamapper/devtools.png)](https://gemnasium.com/datamapper/devtools)
+[![Build Status](https://secure.travis-ci.org/rom-rb/devtools.png?branch=master)](http://travis-ci.org/rom-rb/devtools)
+[![Dependency Status](https://gemnasium.com/rom-rb/devtools.png)](https://gemnasium.com/rom-rb/devtools)
 [![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
+<!-- [![Code Climate](https://codeclimate.com/github/rom-rb/devtools.png)](https://codeclimate.com/github/rom-rb/devtools) -->
 
 Metagem to assist dm-2 style development.
 Used to centralize metric setup and development gem dependencies.
@@ -17,7 +18,7 @@ a remote repository. Because of this we use a updatable local copy of the shared
 Add git source to your Gemfile like this:
 
 ```ruby
-gem 'devtools', :git => 'https://github.com/datamapper/devtools.git'
+gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
 ```
 
 Run:
