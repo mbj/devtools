@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 namespace :metrics do
-  allowed_versions = %w(mri-1.9.3 rbx-1.9.3)
+  allowed_versions = %w(mri-1.9.3 mri-2.0.0 rbx-1.9.3)
 
   begin
     require 'mutant'
@@ -10,12 +10,12 @@ namespace :metrics do
 
   mutant_present = defined?(Mutant)
 
-  if allowed_versions.include?(Devtools.rvm) and mutant_present and !ENV['DEVTOOLS_SELF']
+  if allowed_versions.include?(Devtools.rvm) && mutant_present && !ENV['DEVTOOLS_SELF']
     desc 'Run mutant'
     task :mutant => :coverage do
       project = Devtools.project
       config  = project.mutant
-      status = Mutant::CLI.run(%W(-r ./spec/spec_helper.rb ::#{config.namespace} --rspec-dm2))
+      status = Mutant::CLI.run(%W(::#{config.namespace}* --rspec-dm2))
       if status.nonzero?
         raise 'Mutant task is not successful'
       end
