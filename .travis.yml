@@ -22,3 +22,7 @@ notifications:
       - mbj@schirp-dso.com
     on_success: never
     on_failure: change
+matrix:
+  allow_failures:
+    # bundler installation error
+    - rvm: ruby-head
