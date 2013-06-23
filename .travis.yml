@@ -11,7 +11,14 @@ rvm:
   - jruby-19mode
   - jruby-head
 notifications:
-  irc: "irc.freenode.org#rom-rb"
+  irc:
+    channels:
+      - irc.freenode.org#rom-rb
+    on_success: never
+    on_failure: change
   email:
-    - mbj@schirp-dso.com
-    - dan.kubb@gmail.com
+    recipients:
+      - dan.kubb@gmail.com
+      - mbj@schirp-dso.com
+    on_success: never
+    on_failure: change
