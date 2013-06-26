@@ -14,7 +14,7 @@ namespace :metrics do
   if allowed_versions.include?(Devtools.rvm) && enabled && !ENV['DEVTOOLS_SELF']
     desc 'Run mutant'
     task :mutant => :coverage do
-      status = Mutant::CLI.run(%W(::#{config.namespace}* --rspec-dm2))
+      status = Mutant::CLI.run(%W(::#{config.namespace}* #{config.strategy}))
       if status.nonzero?
         raise 'Mutant task is not successful'
       end
