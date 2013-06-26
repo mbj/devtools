@@ -103,41 +103,43 @@ module Devtools
     # Flay configuration
     class Flay < self
       FILE = 'flay.yml'.freeze
+
       access :total_score, :threshold
     end
 
     # Yardstick configuration
     class Yardstick < self
-      FILE = 'yardstick.yml'.freeze
-      access :threshold
-
+      FILE              = 'yardstick.yml'.freeze
       DEFAULT_THRESHOLD = 100
-
-      DEFAULT_CONFIG = {
+      DEFAULT_CONFIG    = {
         'threshold' => DEFAULT_THRESHOLD
       }.freeze
+
+      access :threshold
     end
 
     # Flog configuration
     class Flog < self
       FILE = 'flog.yml'.freeze
+
       access :total_score, :threshold
     end
 
     # Mutant configuration
     class Mutant < self
       FILE = 'mutant.yml'.freeze
-      access :name, :namespace
+
+      access :name, :namespace, :strategy
     end
 
     # Devtools configuration
     class Devtools < self
-      FILE = 'devtools.yml'.freeze
-      access :unit_test_timeout
-
+      FILE           = 'devtools.yml'.freeze
       DEFAULT_CONFIG = {
         'unit_test_timeout' => ::Devtools::Project::UNIT_TEST_TIMEOUT
       }.freeze
+
+      access :unit_test_timeout
     end
   end
 end
