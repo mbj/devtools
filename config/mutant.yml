@@ -1,2 +1,3 @@
 name: devtools
 namespace: Devtools
+strategy: --rspec-dm2
