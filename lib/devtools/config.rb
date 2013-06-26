@@ -2,6 +2,9 @@ module Devtools
   # Abtract base class of tool configuration
   class Config
 
+    # Default configuration for all tasks
+    DEFAULT_CONFIG = {}.freeze
+
     # Declare raw accesors
     #
     # @api private
@@ -58,6 +61,19 @@ module Devtools
       @config_file ||= project.config_dir.join(self.class::FILE).freeze
     end
 
+    # Test if the task is enabled
+    #
+    # If there is no config file, and no sensible defaults, then the rake task
+    # should become disabled.
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    #
+    def enabled?
+      raw.any?
+    end
+
     private
 
     # Return raw data
@@ -67,17 +83,21 @@ module Devtools
     # @api private
     #
     def raw
-      @raw ||= config_file.file? ? yaml_config : self.class::DEFAULT_CONFIG
+      @raw ||= yaml_config || self.class::DEFAULT_CONFIG
     end
 
     # Return the raw config data from a yaml file
     #
     # @return [Hash]
+    #   returned if the yaml file is found
+    # @return [nil]
+    #   returned if the yaml file is not found
     #
     # @api private
     #
     def yaml_config
-      YAML.load_file(config_file).freeze || self.class::DEFAULT_CONFIG
+      config_file = self.config_file
+      YAML.load_file(config_file).freeze if config_file.file?
     end
 
     # Flay configuration

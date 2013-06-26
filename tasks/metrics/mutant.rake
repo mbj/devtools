@@ -8,13 +8,12 @@ namespace :metrics do
   rescue LoadError
   end
 
-  mutant_present = defined?(Mutant)
+  config  = Devtools.project.mutant
+  enabled = defined?(Mutant) && config.enabled?
 
-  if allowed_versions.include?(Devtools.rvm) && mutant_present && !ENV['DEVTOOLS_SELF']
+  if allowed_versions.include?(Devtools.rvm) && enabled && !ENV['DEVTOOLS_SELF']
     desc 'Run mutant'
     task :mutant => :coverage do
-      project = Devtools.project
-      config  = project.mutant
       status = Mutant::CLI.run(%W(::#{config.namespace}* --rspec-dm2))
       if status.nonzero?
         raise 'Mutant task is not successful'

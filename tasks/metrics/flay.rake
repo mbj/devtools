@@ -5,22 +5,22 @@ namespace :metrics do
     require 'flay'
 
     project = Devtools.project
+    config  = project.flay
 
     compatible_scores = %w(mri-1.9.3 mri-2.0.0)
 
-    unless compatible_scores.include?(Devtools.rvm)
+    if ! compatible_scores.include?(Devtools.rvm)
       task :flay do
         $stderr.puts "Flay is disabled under #{Devtools.rvm} since it is not score compatible with other implementations"
       end
-    else
+    elsif config.enabled?
        # original code by Marty Andrews:
       # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
       desc 'Analyze for code duplication'
       task :flay do
-        config  = project.flay
         threshold   = config.threshold
         total_score = config.total_score
-        files = Flay.expand_dirs_to_files(project.lib_dir).sort
+        files       = Flay.expand_dirs_to_files(project.lib_dir).sort
 
         # run flay once without a threshold to ensure the max mass matches the threshold
         flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
@@ -46,6 +46,10 @@ namespace :metrics do
           flay.report
           raise "#{flay.masses.size} chunks of code have a duplicate mass > #{threshold}"
         end
+      end
+    else
+      task :flay do
+        $stderr.puts 'Flay is disabled'
       end
     end
   rescue LoadError
