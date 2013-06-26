@@ -2,36 +2,26 @@ module Devtools
   # Abtract base class of tool configuration
   class Config
 
-    # Default configuration for all tasks
-    DEFAULT_CONFIG = {}.freeze
+    # Null object to represent no configuration
+    DEFAULT_CONFIG = BasicObject.new
 
-    # Declare raw accesors
-    #
-    # @api private
-    #
-    # @return [self]
-    #
-    def self.access(*names)
-      names.each do |name|
-        define_accessor(name)
-      end
-    end
-    private_class_method :access
-
-    # Define accessor
+    # Declare an attribute
     #
     # @param [Symbol] name
     #
-    # @return [self]
+    # @yieldreturn [Object]
+    #   the default value to ue
     #
     # @api private
     #
-    def self.define_accessor(name)
+    # @return [self]
+    #
+    def self.attribute(name, *default)
       define_method(name) do
-        raw.fetch(name.to_s)
+        raw.fetch(name.to_s, *default)
       end
     end
-    private_class_method :define_accessor
+    private_class_method :attribute
 
     # Return project
     #
@@ -71,7 +61,7 @@ module Devtools
     # @api private
     #
     def enabled?
-      raw.any?
+      ! raw.equal?(DEFAULT_CONFIG)
     end
 
     private
@@ -83,7 +73,7 @@ module Devtools
     # @api private
     #
     def raw
-      @raw ||= yaml_config || self.class::DEFAULT_CONFIG
+      @raw ||= yaml_config || DEFAULT_CONFIG
     end
 
     # Return the raw config data from a yaml file
@@ -104,42 +94,39 @@ module Devtools
     class Flay < self
       FILE = 'flay.yml'.freeze
 
-      access :total_score, :threshold
+      attribute :total_score
+      attribute :threshold
     end
 
     # Yardstick configuration
     class Yardstick < self
       FILE              = 'yardstick.yml'.freeze
       DEFAULT_THRESHOLD = 100
-      DEFAULT_CONFIG    = {
-        'threshold' => DEFAULT_THRESHOLD
-      }.freeze
 
-      access :threshold
+      attribute :threshold, DEFAULT_THRESHOLD
     end
 
     # Flog configuration
     class Flog < self
       FILE = 'flog.yml'.freeze
 
-      access :total_score, :threshold
+      attribute :total_score
+      attribute :threshold
     end
 
     # Mutant configuration
     class Mutant < self
       FILE = 'mutant.yml'.freeze
 
-      access :name, :namespace, :strategy
+      attribute :name
+      attribute :namespace
     end
 
     # Devtools configuration
     class Devtools < self
-      FILE           = 'devtools.yml'.freeze
-      DEFAULT_CONFIG = {
-        'unit_test_timeout' => ::Devtools::Project::UNIT_TEST_TIMEOUT
-      }.freeze
+      FILE = 'devtools.yml'.freeze
 
-      access :unit_test_timeout
+      attribute :unit_test_timeout, ::Devtools::Project::UNIT_TEST_TIMEOUT
     end
   end
 end
