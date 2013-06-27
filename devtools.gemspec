@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'devtools'
-  gem.version     = '0.0.1'
+  gem.version     = '0.0.2'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@schir-dso.com' ]
   gem.description = 'A metagem for dm-2 style development'
