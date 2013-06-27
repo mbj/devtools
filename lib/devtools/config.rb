@@ -2,8 +2,8 @@ module Devtools
   # Abtract base class of tool configuration
   class Config
 
-    # Null object to represent no configuration
-    DEFAULT_CONFIG = BasicObject.new
+    # Represent no configuration
+    DEFAULT_CONFIG = {}.freeze
 
     # Declare an attribute
     #
