@@ -7,7 +7,7 @@ namespace :metrics do
       require 'yardstick/rake/verify'
 
       # Enable the legacy parser for JRuby until ripper is fully supported
-      if Devtools.jruby? && Devtools.ruby19?
+      if Devtools.jruby?
         YARD::Parser::SourceParser.parser_type = :ruby18
       end
 
