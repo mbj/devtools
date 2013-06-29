@@ -1,4 +1,3 @@
-require 'benchmark'
 require 'pathname'
 require 'rake'
 require 'timeout'
