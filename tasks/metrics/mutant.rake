@@ -12,7 +12,7 @@ namespace :metrics do
   enabled = defined?(Mutant) && config.enabled?
 
   zombify = %w(
-    adamantium equalizer ice_nine infecto anima concord
+    adamantium equalizer ice_nine infecto anima concord abstract_type
     descendants_tracker parser rspec unparser mutant
   ).include?(config.name)
 
