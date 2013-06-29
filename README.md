@@ -6,14 +6,15 @@ devtools
 [![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
 <!-- [![Code Climate](https://codeclimate.com/github/rom-rb/devtools.png)](https://codeclimate.com/github/rom-rb/devtools) -->
 
-Metagem to assist ROM style development.
+Metagem to assist [ROM](https://github.com/rom-rb) style development.
 Used to centralize metric setup and development gem dependencies.
 
 Installation
 ------------
 
-The installation looks stupid, but Gemfiles are not nestable. A Gemfile cannot include another Gemfile from
-a remote repository. Because of this we use a updatable local copy of the shared parts.
+The installation looks stupid because Gemfiles are not nestable (Gemfile cannot
+include another Gemfile from a remote repository). Because of this we use an
+updatable local copy of the shared parts.
 
 Add git source to your Gemfile like this:
 
@@ -57,12 +58,14 @@ Adjust `spec/spec_helper.rb` to include
 require 'devtools/spec_helper'
 ```
 
-Now you have access to the ROM rake tasks, metrics, and spec helpers.
+Now you have access to the [ROM](https://github.com/rom-rb) rake tasks, metrics
+and spec helpers.
 
 Credits
 -------
 
-The whole ROM team that created and maintained all these tasks before they were centralized here.
+The whole [ROM](https://github.com/rom-rb) team that created and maintained all
+these tasks before they were centralized here.
 
 Contributing
 -------------
