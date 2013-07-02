@@ -7,7 +7,7 @@ group :development do
 end
 
 group :yard do
-  gem 'kramdown', '~> 1.0.1'
+  gem 'kramdown', '~> 1.1.0'
 end
 
 group :guard do
@@ -40,7 +40,7 @@ group :metrics do
   end
 
   platforms :ruby_19, :ruby_20 do
-    gem 'mutant', '~> 0.3.0.beta7'
+    gem 'mutant', '~> 0.3.0.beta8'
   end
 
   platforms :rbx do
