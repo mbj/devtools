@@ -28,7 +28,7 @@ namespace :metrics do
         end
       status = namespace::CLI.run(%W(::#{config.namespace}* #{config.strategy}))
       if status.nonzero?
-        raise 'Mutant task is not successful'
+        abort 'Mutant task is not successful'
       end
     end
   else

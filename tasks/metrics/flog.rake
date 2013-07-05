@@ -25,7 +25,7 @@ namespace :metrics do
         if totals.any?
           max = totals.last[1]
           unless max >= threshold
-            raise "Adjust flog score down to #{max}"
+            abort "Adjust flog score down to #{max}"
           end
         end
 
@@ -35,7 +35,7 @@ namespace :metrics do
             puts '%8.1f: %s' % [ score, name ]
           end
 
-          raise "#{bad_methods.size} methods have a flog complexity > #{threshold}"
+          abort "#{bad_methods.size} methods have a flog complexity > #{threshold}"
         end
       end
     else

@@ -29,12 +29,12 @@ namespace :metrics do
 
         max = (flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max) || 0
         unless max >= threshold
-          raise "Adjust flay threshold down to #{max}"
+          abort "Adjust flay threshold down to #{max}"
         end
 
         total = flay.masses.reduce(0.0) { |total, (hash, mass)| total + (mass.to_f / flay.hashes[hash].size) }
         unless total == total_score
-          raise "Flay total is now #{total}, but expected #{total_score}"
+          abort "Flay total is now #{total}, but expected #{total_score}"
         end
 
         # run flay a second time with the threshold set
@@ -44,7 +44,7 @@ namespace :metrics do
 
         if flay.masses.any?
           flay.report
-          raise "#{flay.masses.size} chunks of code have a duplicate mass > #{threshold}"
+          abort "#{flay.masses.size} chunks of code have a duplicate mass > #{threshold}"
         end
       end
     else
