@@ -1,5 +1,6 @@
 module Devtools
-  # Abtract base class of tool configuration
+
+  # Abstract base class of tool configuration
   class Config
 
     # Represent no configuration
@@ -10,7 +11,7 @@ module Devtools
     # @param [Symbol] name
     #
     # @yieldreturn [Object]
-    #   the default value to ue
+    #   the default value to use
     #
     # @api private
     #

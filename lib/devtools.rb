@@ -160,7 +160,7 @@ module Devtools
     @rvm ||= "#{rvm_name}-#{RUBY_VERSION}".freeze
   end
 
-  # Test for beeing executed under jruby
+  # Test for being executed under jruby
   #
   # @return [true]
   #   if running under jruby
@@ -174,7 +174,7 @@ module Devtools
     ruby_engine == 'jruby'
   end
 
-  # Test for beeing executed under rbx
+  # Test for being executed under rbx
   #
   # @return [true]
   #   if running under rbx
@@ -188,7 +188,7 @@ module Devtools
     ruby_engine == 'rbx'
   end
 
-  # Test for beeing executed under rubies with a JIT
+  # Test for being executed under rubies with a JIT
   #
   # @return [true]
   #   if running under jruby or rbx
