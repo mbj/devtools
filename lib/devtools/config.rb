@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Devtools
 
   # Abstract base class of tool configuration

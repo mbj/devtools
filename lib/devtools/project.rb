@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 module Devtools
+
   # The project devtools supports
   class Project
 

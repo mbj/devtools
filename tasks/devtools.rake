@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 target_gemfile = Devtools.project.shared_gemfile_path
 source_gemfile = Devtools.shared_gemfile_path
 
