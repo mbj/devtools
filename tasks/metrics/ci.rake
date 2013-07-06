@@ -5,5 +5,12 @@ task :ci => %w[ ci:metrics metrics:mutant ]
 
 namespace :ci do
   desc 'Run metrics (except mutant) and spec'
-  task :metrics => %w[ metrics:coverage spec:integration metrics:yardstick:verify metrics:flog metrics:flay metrics:reek ]
+  task :metrics => %w[
+    metrics:coverage
+    spec:integration
+    metrics:yardstick:verify
+    metrics:flog
+    metrics:flay
+    metrics:reek
+  ]
 end
