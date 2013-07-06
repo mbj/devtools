@@ -1,0 +1,16 @@
+# Avoid parameter lists longer than five parameters.
+ParameterLists:
+  Max: 3
+  CountKeywordArgs: true
+
+# Avoid more than `Max` levels of nesting.
+BlockNesting:
+  Max: 3
+
+# Align with the style guide.
+CollectionMethods:
+  PreferredMethods:
+    collect:  'map'
+    inject:   'reduce'
+    find:     'detect'
+    find_all: 'select'
