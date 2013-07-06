@@ -5,8 +5,10 @@ namespace :metrics do
   task :rubocop do
     require 'rubocop'
 
-    # TODO: add config file switch
-    args   = ARGV.drop(1)
+    project = Devtools.project
+    config  = project.rubocop
+
+    args   = ARGV.drop(1) << '--config' << config.config_file.to_s
     result = Rubocop::CLI.new.run(args)
 
     exit result if result.nonzero?

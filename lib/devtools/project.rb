@@ -157,6 +157,16 @@ module Devtools
       @config_dir ||= root.join('config').freeze
     end
 
+    # Return rubocop configuration
+    #
+    # @return [Config::Rubocop]
+    #
+    # @api private
+    #
+    def rubocop
+      @rubocop ||= Config::Rubocop.new(self)
+    end
+
     # Return flog configuration
     #
     # @return [Config::Flog]

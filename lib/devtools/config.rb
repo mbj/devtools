@@ -91,6 +91,11 @@ module Devtools
       YAML.load_file(config_file).freeze if config_file.file?
     end
 
+    # Rubocop configuration
+    class Rubocop < self
+      FILE = 'rubocop.yml'.freeze
+    end
+
     # Flay configuration
     class Flay < self
       FILE = 'flay.yml'.freeze

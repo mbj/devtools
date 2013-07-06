@@ -1,6 +1,6 @@
 AllCops:
   Includes:
-    - '**/*.rake'
+    - '../**/*.rake'
 
 # Avoid parameter lists longer than five parameters.
 ParameterLists:
