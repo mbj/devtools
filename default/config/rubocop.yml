@@ -1,3 +1,7 @@
+AllCops:
+  Includes:
+    - '../**/*.rake'
+
 # Avoid parameter lists longer than five parameters.
 ParameterLists:
   Max: 3
