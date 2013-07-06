@@ -8,6 +8,9 @@ shared_examples_for 'an abstract type' do
   context 'called on the class' do
     let(:object) { described_class }
 
-    specify { expect { subject }.to raise_error(NotImplementedError, "#{object} is an abstract type") }
+    specify do
+      expect { subject }
+        .to raise_error(NotImplementedError, "#{object} is an abstract type")
+    end
   end
 end
