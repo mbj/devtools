@@ -58,7 +58,7 @@ RepeatedConditional:
 TooManyInstanceVariables:
   enabled: true
   exclude: []
-  max_instance_variables: 12 # no adamantium ;)
+  max_instance_variables: 13 # no adamantium ;)
 TooManyMethods:
   enabled: true
   exclude: []
