@@ -22,6 +22,6 @@ guard :rspec do
 end
 
 guard :rubocop do
-  watch(%r{.+\.rb\z})
+  watch(%r{.+\.(?:rb|rake)\z})
   watch(%r{(?:.+/)?\.rubocop\.yml\z}) { |m| File.dirname(m[0]) }
 end
