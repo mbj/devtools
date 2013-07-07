@@ -21,7 +21,7 @@ guard :rspec do
   watch(%r{\Aspec/(?:unit|integration)/.+_spec\.rb\z})
 end
 
-guard :rubocop do
+guard :rubocop, cli: %w[--config config/rubocop.yml] do
   watch(%r{.+\.(?:rb|rake)\z})
   watch(%r{(?:.+/)?\.rubocop\.yml\z}) { |m| File.dirname(m[0]) }
 end
