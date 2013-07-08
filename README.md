@@ -16,10 +16,12 @@ The installation looks stupid because Gemfiles are not nestable (Gemfile cannot
 include another Gemfile from a remote repository). Because of this we use an
 updatable local copy of the shared parts.
 
-Add git source to your Gemfile like this:
+Add the git source to your Gemfile's development section:
 
 ```ruby
-gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
+group :development do
+  gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
+end
 ```
 
 Run:
@@ -27,32 +29,37 @@ Run:
 bundle install
 ```
 
-Create a `Rakefile` in project root with the following contents:
+Create a `Rakefile` in the project root with the following contents:
 
 ```ruby
 require 'devtools'
 Devtools.init_rake_tasks
 ```
 
-After `bundle update` run:
+To copy `Gemfile.devtools` to your project, run the following commands:
 
 ```
+bundle update
 bundle exec rake devtools:sync
 ```
 
-And append the following line to Gemfile that pulls the devtools shared Gemfile
-that is maintained in this repo
+To allow bundler to pick up the dependencies, append the following
+line to your Gemfile's development section:
 
 ```ruby
-eval File.read('Gemfile.devtools')
+group :development do
+  # ...
+  eval File.read('Gemfile.devtools')
+end
 ```
 
-And run (again):
+To make the devtools dependencies available to your project, run:
+
 ```
 bundle install
 ```
 
-Adjust `spec/spec_helper.rb` to include
+Finally, adjust `spec/spec_helper.rb` to include
 
 ```ruby
 require 'devtools/spec_helper'
