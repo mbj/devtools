@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'pathname'
 require 'rake'
 require 'timeout'
@@ -61,9 +63,9 @@ module Devtools
 
   # Initialize project
   #
-  # Might be called from $application_root/Rakefile (Devtools.init_rake_tasks) or
-  # $application_root/spec/spec_helper.rb (Devtools.init_spec_helper), as rake ci also
-  # runs rspec it can be called multiple times.
+  # Might be called from $application_root/Rakefile (Devtools.init_rake_tasks)
+  # or $application_root/spec/spec_helper.rb (Devtools.init_spec_helper), as
+  # rake ci also runs rspec it can be called multiple times.
   #
   # @param [Pathname] root
   #
@@ -75,7 +77,7 @@ module Devtools
     if defined?(@project)
       project_root = @project.root
       if project_root != root
-        raise "project is already initialized with different root, expected #{root} was #{project_root}"
+        raise "project root expected #{root}, but was #{project_root}"
       end
     else
       @project = Project.new(root)

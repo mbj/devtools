@@ -6,11 +6,11 @@ namespace :metrics do
 
     Reek::Rake::Task.new do |reek|
       config =
-        if File.exist?("config/site.reek")
-          warn "config/site.reek is deprecated. please 'mv config/site.reek config/reek.yml'"
-          "site.reek"
+        if File.exist?('config/site.reek')
+          warn "site.reek is deprecated. 'mv config/site.reek config/reek.yml'"
+          'site.reek'
         else
-          "reek.yml"
+          'reek.yml'
         end
 
       # silence output for files with no errors
@@ -18,7 +18,7 @@ namespace :metrics do
     end
   rescue LoadError
     task :reek do
-      $stderr.puts 'Reek is not available. In order to run reek, you must: gem install reek'
+      $stderr.puts 'In order to run reek, you must: gem install reek'
     end
   end
 end

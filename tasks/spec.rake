@@ -4,7 +4,7 @@ begin
   require 'rspec/core/rake_task'
 
   desc 'Run all specs'
-  task :spec => %w[ spec:unit spec:integration ]
+  task spec: %w[ spec:unit spec:integration ]
 
   namespace :spec do
     desc 'Run unit specs'
@@ -20,9 +20,9 @@ begin
 rescue LoadError
   %w[ spec spec:unit spec:integration ].each do |name|
     task name do
-      $stderr.puts "rspec is not available. In order to run #{name}, you must: gem install rspec"
+      $stderr.puts "In order to run #{name}, do: gem install rspec"
     end
   end
 end
 
-task :test => :spec
+task test: :spec

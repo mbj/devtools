@@ -16,11 +16,11 @@ namespace :metrics do
       task :flog do
         threshold = config.threshold.to_f.round(1)
         flog      = Flog.new
-        flog.flog *FlogCLI.expand_dirs_to_files(project.lib_dir)
+        flog.flog(*FlogCLI.expand_dirs_to_files(project.lib_dir))
 
-        totals = flog.totals.select  { |name, score| name[-5, 5] != '#none'   }.
-                             map     { |name, score| [ name, score.round(1) ] }.
-                             sort_by { |name, score| score }
+        totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }
+                            .map     { |name, score| [name, score.round(1)] }
+                            .sort_by { |name, score| score }
 
         if totals.any?
           max = totals.last[1]
@@ -32,10 +32,11 @@ namespace :metrics do
         bad_methods = totals.select { |name, score| score > threshold }
         if bad_methods.any?
           bad_methods.reverse_each do |name, score|
-            puts '%8.1f: %s' % [ score, name ]
+            printf "%8.1f: %s\n", score, name
           end
 
-          abort "#{bad_methods.size} methods have a flog complexity > #{threshold}"
+          abort
+            "#{bad_methods.size} methods have a flog complexity > #{threshold}"
         end
       end
     else
@@ -45,7 +46,7 @@ namespace :metrics do
     end
   rescue LoadError
     task :flog do
-      $stderr.puts 'Flog is not available. In order to run flog, you must: gem install flog'
+      $stderr.puts 'In order to run flog, you must: gem install flog'
     end
   end
 end

@@ -1,8 +1,14 @@
+# encoding: utf-8
+
 require 'ice_nine'
 
 module IceNine
+
+  # Freezer namespace
   class Freezer
-    class RSpec < NoFreeze
-    end
+
+    # Rspec freezer
+    class RSpec < NoFreeze; end
+
   end
 end

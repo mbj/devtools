@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Devtools
 
   # Abstract base class of tool configuration
@@ -89,6 +91,11 @@ module Devtools
     def yaml_config
       config_file = self.config_file
       YAML.load_file(config_file).freeze if config_file.file?
+    end
+
+    # Rubocop configuration
+    class Rubocop < self
+      FILE = 'rubocop.yml'.freeze
     end
 
     # Flay configuration

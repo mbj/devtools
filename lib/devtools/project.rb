@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 module Devtools
+
   # The project devtools supports
   class Project
 
@@ -68,7 +71,7 @@ module Devtools
     # @api private
     #
     def self.timeout_unit_tests(timeout)
-      RSpec.configuration.around :file_path => UNIT_TEST_PATH_REGEXP do |example|
+      RSpec.configuration.around file_path: UNIT_TEST_PATH_REGEXP do |example|
         Timeout.timeout(timeout, &example)
       end
     end
@@ -155,6 +158,16 @@ module Devtools
     #
     def config_dir
       @config_dir ||= root.join('config').freeze
+    end
+
+    # Return rubocop configuration
+    #
+    # @return [Config::Rubocop]
+    #
+    # @api private
+    #
+    def rubocop
+      @rubocop ||= Config::Rubocop.new(self)
     end
 
     # Return flog configuration
