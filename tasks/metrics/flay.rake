@@ -11,7 +11,7 @@ namespace :metrics do
 
     if ! compatible_scores.include?(Devtools.rvm)
       task :flay do
-        $stderr.puts "Flay is disabled under #{Devtools.rvm} since it is not score compatible with other implementations"
+        $stderr.puts "Flay is disabled under #{Devtools.rvm}"
       end
     elsif config.enabled?
        # original code by Marty Andrews:
@@ -22,29 +22,35 @@ namespace :metrics do
         total_score = config.total_score
         files       = Flay.expand_dirs_to_files(project.lib_dir).sort
 
-        # run flay once without a threshold to ensure the max mass matches the threshold
-        flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
+        # run flay first to ensure the max mass matches the threshold
+        flay = Flay.new(fuzzy: false, verbose: false, mass: 0)
         flay.process(*files)
         flay.analyze
 
-        max = (flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max) || 0
+        masses = flay.masses.map do |hash, mass|
+          Rational(mass, flay.hashes[hash].size)
+        end
+
+        max = masses.max || 0
         unless max >= threshold
           abort "Adjust flay threshold down to #{max}"
         end
 
-        total = flay.masses.reduce(0.0) { |total, (hash, mass)| total + (mass.to_f / flay.hashes[hash].size) }
+        total = masses.sum
         unless total == total_score
           abort "Flay total is now #{total}, but expected #{total_score}"
         end
 
         # run flay a second time with the threshold set
-        flay = Flay.new(:fuzzy => false, :verbose => false, :mass => threshold.succ)
+        flay = Flay.new(fuzzy: false, verbose: false, mass: threshold.succ)
         flay.process(*files)
         flay.analyze
 
-        if flay.masses.any?
+        mass_size = flay.masses.size
+
+        if mass_size.nonzero?
           flay.report
-          abort "#{flay.masses.size} chunks of code have a duplicate mass > #{threshold}"
+          abort "#{mass_size} chunks have a duplicate mass > #{threshold}"
         end
       end
     else
@@ -54,7 +60,7 @@ namespace :metrics do
     end
   rescue LoadError
     task :flay do
-      $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
+      $stderr.puts 'In order to run flay, you must: gem install flay'
     end
   end
 end

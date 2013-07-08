@@ -10,8 +10,8 @@ namespace :metrics do
       if Devtools.jruby?
         # Remove when https://github.com/lsegal/yard/issues/681 is resolved
         # This code first requires ripper, then removes the constant so
-        # that it does not trigger a bug in YARD where if it checks if Ripper is
-        # available and assumes other constants are defined, when JRuby's
+        # that it does not trigger a bug in YARD where if it checks if Ripper
+        # is available and assumes other constants are defined, when JRuby's
         # implementation does not yet.
         require 'ripper'
         Object.send(:remove_const, :Ripper)
@@ -29,7 +29,7 @@ namespace :metrics do
     rescue LoadError
       %w[ measure verify ].each do |name|
         task name.to_s do
-          $stderr.puts "Yardstick is not available. In order to run #{name}, you must: gem install yardstick"
+          $stderr.puts "In order to run #{name}, do: gem install yardstick"
         end
       end
     end

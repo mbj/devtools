@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 shared_examples_for 'an abstract type' do
   context 'called on a subclass' do
     let(:object) { Class.new(described_class) }
@@ -8,6 +10,9 @@ shared_examples_for 'an abstract type' do
   context 'called on the class' do
     let(:object) { described_class }
 
-    specify { expect { subject }.to raise_error(NotImplementedError, "#{object} is an abstract type") }
+    specify do
+      expect { subject }
+        .to raise_error(NotImplementedError, "#{object} is an abstract type")
+    end
   end
 end
