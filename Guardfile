@@ -1,7 +1,9 @@
+# encoding: utf-8
+
 guard 'bundler' do
   watch('Gemfile')
   watch('Gemfile.lock')
-  watch('.gemspec')
+  watch(%w{.+.gemspec\z})
 end
 
 guard :rspec do
