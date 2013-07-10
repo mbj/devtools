@@ -6,7 +6,7 @@ namespace :metrics do
     require 'rubocop'
     config = Devtools.project.rubocop
     begin
-      Rubocop::CLI.new.run(['--config', config.config_file.to_s])
+      Rubocop::CLI.new.run(%W[--config #{config.config_file.to_s} --debug])
     rescue Encoding::CompatibilityError => exception
       $stderr.puts exception.message
     end
