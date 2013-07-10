@@ -31,12 +31,12 @@ namespace :metrics do
           Rational(mass, flay.hashes[hash].size)
         end
 
-        max = masses.max || 0
+        max = (masses.max || 0).to_i
         unless max >= threshold
           abort "Adjust flay threshold down to #{max}"
         end
 
-        total = masses.sum
+        total = masses.sum.to_i
         unless total == total_score
           abort "Flay total is now #{total}, but expected #{total_score}"
         end
