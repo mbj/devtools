@@ -20,7 +20,7 @@ Add the git source to your Gemfile's development section:
 
 ```ruby
 group :development do
-  gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
+  gem 'devtools', git: 'https://github.com/rom-rb/devtools.git'
 end
 ```
 
