@@ -1,6 +1,7 @@
 AllCops:
   Includes:
     - '**/*.rake'
+    - 'Gemfile'
   Excludes:
     - '**/vendor/**'
 
