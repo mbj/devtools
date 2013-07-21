@@ -47,9 +47,7 @@ To allow bundler to pick up the dependencies, append the following
 line to your Gemfile's development section:
 
 ```ruby
-group :development, :test do
-  eval_gemfile 'Gemfile.devtools'
-end
+eval_gemfile 'Gemfile.devtools'
 ```
 
 To make the devtools dependencies available to your project, run:
