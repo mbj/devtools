@@ -19,7 +19,7 @@ updatable local copy of the shared parts.
 Add the git source to your Gemfile's development section:
 
 ```ruby
-group :development do
+group :development, :test do
   gem 'devtools', git: 'https://github.com/rom-rb/devtools.git'
 end
 ```
@@ -47,9 +47,8 @@ To allow bundler to pick up the dependencies, append the following
 line to your Gemfile's development section:
 
 ```ruby
-group :development do
-  # ...
-  eval File.read('Gemfile.devtools')
+group :development, :test do
+  eval_gemfile 'Gemfile.devtools'
 end
 ```
 

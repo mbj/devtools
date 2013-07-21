@@ -4,4 +4,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-eval File.read('shared/Gemfile')
+group :development, :test do
+  eval_gemfile 'shared/Gemfile'
+end
