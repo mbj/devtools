@@ -10,8 +10,9 @@ module Devtools
   extend Rake::DSL
 
   DEFAULT_RVM_NAME = 'mri'.freeze
-  EVAL_GEMFILE     = "\n# added by devtools\neval_gemfile 'Gemfile.devtools'".freeze
-  INIT_RAKE_TASKS  = "\n# added by devtools\nrequire 'devtools'\nDevtools.init_rake_tasks".freeze
+  EVAL_GEMFILE     = "eval_gemfile 'Gemfile.devtools'".freeze
+  REQUIRE          = "require 'devtools'".freeze
+  INIT_RAKE_TASKS  = "Devtools.init_rake_tasks".freeze
 
   # Return library directory
   #
@@ -264,24 +265,22 @@ module Devtools
   #
   # @api public
   def self.init!
-    unless File.exist?("#{project_root}/config")
-      sh "mkdir #{project_root}/config"
-    end
+    config_path = project_root.join('config')
+    config_path.mkpath
 
-    sh "cp #{default_config_path}/* #{project_root}/config"
+    cp_r default_config_path, project_root
 
     sync!
 
     unless gemfile_ready?
-      File.open("#{project_root}/Gemfile", 'a') do |gemfile|
-        gemfile << EVAL_GEMFILE
+      project_root.join('Gemfile').open('a') do |gemfile|
+        gemfile << annotate(EVAL_GEMFILE)
       end
     end
 
     unless rakefile_ready?
-      sh "touch #{project_root}/Rakefile" unless File.exist?("#{project_root}/Rakefile")
-      File.open("#{project_root}/Rakefile", 'a') do |rakefile|
-        rakefile << INIT_RAKE_TASKS
+      project_root.join('Rakefile').open('a') do |rakefile|
+        rakefile << annotate([REQUIRE, INIT_RAKE_TASKS].join("\n"))
       end
     end
   end
@@ -292,7 +291,7 @@ module Devtools
   #
   # @api public
   def self.sync!
-    sh "cp #{root}/shared/Gemfile #{project_root}/Gemfile.devtools"
+    cp "#{root}/shared/Gemfile", "#{project_root}/Gemfile.devtools"
   end
 
   # Sync gemfiles and run bundle update
@@ -318,16 +317,22 @@ module Devtools
 
   # @api private
   def self.gemfile_ready?
-    File.read("#{project_root}/Gemfile").include?(EVAL_GEMFILE)
+    project_root.join('Gemfile').read.include?(EVAL_GEMFILE)
   end
   private_class_method :gemfile_ready?
 
   # @api private
   def self.rakefile_ready?
-    path = "#{project_root}/Rakefile"
-    File.exist?(path) && File.read(path).include?(INIT_RAKE_TASKS)
+    rakefile = project_root.join('Rakefile')
+    rakefile.exist? && rakefile.read.include?(INIT_RAKE_TASKS)
   end
   private_class_method :rakefile_ready?
+
+  # @api private
+  def self.annotate(string)
+    "\n# added by devtools\n#{string}"
+  end
+  private_class_method :annotate
 
 end
 
