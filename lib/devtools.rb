@@ -10,6 +10,7 @@ module Devtools
   extend Rake::DSL
 
   DEFAULT_RVM_NAME = 'mri'.freeze
+  EVAL_GEMFILE     = "\n# added by devtools\neval_gemfile 'Gemfile.devtools'".freeze
 
   # Return library directory
   #
@@ -269,6 +270,12 @@ module Devtools
     sh "cp #{default_config_path}/* #{project_root}/config"
 
     sync!
+
+    unless gemfile_ready?
+      File.open("#{project_root}/Gemfile", 'a') do |gemfile|
+        gemfile << EVAL_GEMFILE
+      end
+    end
   end
 
   # Sync gemfiles
@@ -299,6 +306,12 @@ module Devtools
     FileList[root.join('tasks/**/*.rake').to_s].each { |task| import(task) }
   end
   private_class_method :import_tasks
+
+  # @api private
+  def self.gemfile_ready?
+    File.read("#{project_root}/Gemfile").include?(EVAL_GEMFILE)
+  end
+  private_class_method :gemfile_ready?
 
 end
 
