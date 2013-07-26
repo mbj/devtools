@@ -301,7 +301,8 @@ module Devtools
   #
   # @api public
   def self.update!
-    sh 'devtools sync && bundle update'
+    sync!
+    sh 'bundle update'
   end
 
   # Import the rake tasks
