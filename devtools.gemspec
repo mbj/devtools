@@ -14,6 +14,4 @@ Gem::Specification.new do |gem|
   gem.executables      = %w[devtools]
   gem.test_files       = `git ls-files -- spec`.split($/)
   gem.extra_rdoc_files = %w[README.md TODO]
-
-  gem.add_dependency 'ice_nine', '~> 0.8.0'
 end
