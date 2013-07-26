@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+
+Bundler.setup
+
+require 'devtools'
+
+command = ARGV.first
+
+case command
+when 'sync'   then Devtools.sync!
+when 'update' then Devtools.update!
+else
+  puts 'command not supported'
+end

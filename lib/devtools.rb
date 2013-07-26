@@ -256,6 +256,24 @@ module Devtools
     @project || raise('No active project')
   end
 
+  # Sync gemfiles
+  #
+  # @return [undefined]
+  #
+  # @api public
+  def self.sync!
+    sh "cp #{root}/shared/Gemfile #{project_root}/Gemfile.devtools"
+  end
+
+  # Sync gemfiles and run bundle update
+  #
+  # @return [undefined]
+  #
+  # @api public
+  def self.update!
+    sh 'devtools sync && bundle update'
+  end
+
   # Import the rake tasks
   #
   # @return [undefined]
