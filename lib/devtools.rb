@@ -11,6 +11,7 @@ module Devtools
 
   DEFAULT_RVM_NAME = 'mri'.freeze
   EVAL_GEMFILE     = "\n# added by devtools\neval_gemfile 'Gemfile.devtools'".freeze
+  INIT_RAKE_TASKS  = "\n# added by devtools\nrequire 'devtools'\nDevtools.init_rake_tasks".freeze
 
   # Return library directory
   #
@@ -276,6 +277,13 @@ module Devtools
         gemfile << EVAL_GEMFILE
       end
     end
+
+    unless rakefile_ready?
+      sh "touch #{project_root}/Rakefile" unless File.exist?("#{project_root}/Rakefile")
+      File.open("#{project_root}/Rakefile", 'a') do |rakefile|
+        rakefile << INIT_RAKE_TASKS
+      end
+    end
   end
 
   # Sync gemfiles
@@ -312,6 +320,13 @@ module Devtools
     File.read("#{project_root}/Gemfile").include?(EVAL_GEMFILE)
   end
   private_class_method :gemfile_ready?
+
+  # @api private
+  def self.rakefile_ready?
+    path = "#{project_root}/Rakefile"
+    File.exist?(path) && File.read(path).include?(INIT_RAKE_TASKS)
+  end
+  private_class_method :rakefile_ready?
 
 end
 
