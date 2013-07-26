@@ -12,14 +12,13 @@ module Devtools
   DEFAULT_RVM_NAME = 'mri'.freeze
   EVAL_GEMFILE     = "eval_gemfile 'Gemfile.devtools'".freeze
   REQUIRE          = "require 'devtools'".freeze
-  INIT_RAKE_TASKS  = "Devtools.init_rake_tasks".freeze
+  INIT_RAKE_TASKS  = 'Devtools.init_rake_tasks'.freeze
 
   # Return library directory
   #
   # @return [Pathname]
   #
   # @api private
-  #
   def self.root
     @root ||= Pathname('../../').expand_path(__FILE__).freeze
   end
@@ -49,7 +48,6 @@ module Devtools
   # @return [Pathname]
   #
   # @api private
-  #
   def self.shared_gemfile_path
     @shared_gemfile_path ||= shared_path.join('Gemfile').freeze
   end
@@ -59,7 +57,6 @@ module Devtools
   # @return [Pathname]
   #
   # @api private
-  #
   def self.default_config_path
     @default_config_path ||= root.join('default/config').freeze
   end
@@ -75,7 +72,6 @@ module Devtools
   # @return [self]
   #
   # @api private
-  #
   def self.init_project(root)
     if defined?(@project)
       project_root = @project.root
@@ -95,7 +91,6 @@ module Devtools
   # @return [self]
   #
   # @api private
-  #
   def self.init_spec_helper
     init_project(project_root)
     project.setup_rspec
@@ -109,7 +104,6 @@ module Devtools
   # @return [self]
   #
   # @api private
-  #
   def self.init_rake_tasks
     init_project(project_root)
     import_tasks
@@ -125,7 +119,6 @@ module Devtools
   # @return [self]
   #
   # @api private
-  #
   def self.init
     $stderr.puts('Devtools.init is deprecated, use Devtools.init_rake_tasks')
     init_project(project_root)
@@ -137,7 +130,6 @@ module Devtools
   # @return [String]
   #
   # @api private
-  #
   def self.ruby_engine
     @ruby_engine ||= (defined?(RUBY_ENGINE) && RUBY_ENGINE || 'ruby').freeze
   end
@@ -147,7 +139,6 @@ module Devtools
   # @return [String]
   #
   # @api private
-  #
   def self.rvm_name
     @rvm_name ||= begin
       engine = ruby_engine
@@ -160,7 +151,6 @@ module Devtools
   # @return [String]
   #
   # @api private
-  #
   def self.rvm
     @rvm ||= "#{rvm_name}-#{RUBY_VERSION}".freeze
   end
@@ -174,7 +164,6 @@ module Devtools
   #   otherwise
   #
   # @api private
-  #
   def self.jruby?
     ruby_engine == 'jruby'
   end
@@ -188,7 +177,6 @@ module Devtools
   #   otherwise
   #
   # @api private
-  #
   def self.rbx?
     ruby_engine == 'rbx'
   end
@@ -202,7 +190,6 @@ module Devtools
   #   otherwise
   #
   # @api private
-  #
   def self.jit?
     jruby? || rbx?
   end
@@ -216,7 +203,6 @@ module Devtools
   #   otherwise
   #
   # @api private
-  #
   def self.ruby18?
     RUBY_VERSION.start_with?('1.8.')
   end
@@ -230,7 +216,6 @@ module Devtools
   #   otherwise
   #
   # @api private
-  #
   def self.ruby19?
     RUBY_VERSION.start_with?('1.9.')
   end
@@ -244,7 +229,6 @@ module Devtools
   #   otherwise
   #
   # @api private
-  #
   def self.ruby20?
     RUBY_VERSION.start_with?('2.0.')
   end
@@ -254,7 +238,6 @@ module Devtools
   # @return [Project]
   #
   # @api private
-  #
   def self.project
     @project || raise('No active project')
   end
@@ -309,18 +292,25 @@ module Devtools
   # @return [undefined]
   #
   # @api private
-  #
   def self.import_tasks
     FileList[root.join('tasks/**/*.rake').to_s].each { |task| import(task) }
   end
   private_class_method :import_tasks
 
+  # Check if Gemfile is ready
+  #
+  # @return [Boolean]
+  #
   # @api private
   def self.gemfile_ready?
     project_root.join('Gemfile').read.include?(EVAL_GEMFILE)
   end
   private_class_method :gemfile_ready?
 
+  # Check if Rakefile is ready
+  #
+  # @return [Boolean]
+  #
   # @api private
   def self.rakefile_ready?
     rakefile = project_root.join('Rakefile')
@@ -328,6 +318,10 @@ module Devtools
   end
   private_class_method :rakefile_ready?
 
+  # Annotate
+  #
+  # @return [Boolean]
+  #
   # @api private
   def self.annotate(string)
     "\n# added by devtools\n#{string}"
