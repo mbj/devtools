@@ -265,7 +265,10 @@ module Devtools
     unless File.exist?("#{project_root}/config")
       sh "mkdir #{project_root}/config"
     end
+
     sh "cp #{default_config_path}/* #{project_root}/config"
+
+    sync!
   end
 
   # Sync gemfiles
