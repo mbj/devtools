@@ -256,6 +256,18 @@ module Devtools
     @project || raise('No active project')
   end
 
+  # Init devtools using default config
+  #
+  # @return [undefined]
+  #
+  # @api public
+  def self.init!
+    unless File.exist?("#{project_root}/config")
+      sh "mkdir #{project_root}/config"
+    end
+    sh "cp #{default_config_path}/* #{project_root}/config"
+  end
+
   # Sync gemfiles
   #
   # @return [undefined]
