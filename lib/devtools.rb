@@ -324,7 +324,7 @@ module Devtools
   #
   # @api private
   def self.annotate(string)
-    "\n# added by devtools\n#{string}"
+    "\n# Added by devtools\n#{string}"
   end
   private_class_method :annotate
 
