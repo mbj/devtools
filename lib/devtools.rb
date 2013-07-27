@@ -248,24 +248,14 @@ module Devtools
   #
   # @api public
   def self.init!
-    config_path = project_root.join('config')
-    config_path.mkpath
-
-    cp_r default_config_path, project_root
+    config_path = project_root.join('config').tap(&:mkpath)
+    cp_r default_config_path, config_path.parent
 
     sync!
+    init_gemfile
+    init_rakefile
 
-    unless gemfile_ready?
-      project_root.join('Gemfile').open('a') do |gemfile|
-        gemfile << annotate(EVAL_GEMFILE)
-      end
-    end
-
-    unless rakefile_ready?
-      project_root.join('Rakefile').open('a') do |rakefile|
-        rakefile << annotate([REQUIRE, INIT_RAKE_TASKS].join("\n"))
-      end
-    end
+    self
   end
 
   # Sync gemfiles
@@ -274,7 +264,7 @@ module Devtools
   #
   # @api public
   def self.sync!
-    cp "#{root}/shared/Gemfile", "#{project_root}/Gemfile.devtools"
+    cp root.join('shared/Gemfile'), project_root.join('Gemfile.devtools')
   end
 
   # Sync gemfiles and run bundle update
@@ -297,26 +287,35 @@ module Devtools
   end
   private_class_method :import_tasks
 
-  # Check if Gemfile is ready
+  # Initialize the Gemfile
   #
-  # @return [Boolean]
+  # @return [undefined]
   #
   # @api private
-  def self.gemfile_ready?
-    project_root.join('Gemfile').read.include?(EVAL_GEMFILE)
+  def self.init_gemfile
+    gemfile = project_root.join('Gemfile')
+    unless gemfile.file? && gemfile.read.include?(EVAL_GEMFILE)
+      gemfile.open('a') do |file|
+        file << annotate(EVAL_GEMFILE)
+      end
+    end
   end
-  private_class_method :gemfile_ready?
+  private_class_method :init_gemfile
 
-  # Check if Rakefile is ready
+  # Initialize the Rakefile
   #
-  # @return [Boolean]
+  # @return [undefined]
   #
   # @api private
-  def self.rakefile_ready?
+  def self.init_rakefile
     rakefile = project_root.join('Rakefile')
-    rakefile.exist? && rakefile.read.include?(INIT_RAKE_TASKS)
+    unless rakefile.file? && rakefile.read.include?(INIT_RAKE_TASKS)
+      rakefile.open('a') do |file|
+        file << annotate([REQUIRE, INIT_RAKE_TASKS].join("\n"))
+      end
+    end
   end
-  private_class_method :rakefile_ready?
+  private_class_method :init_rakefile
 
   # Annotate
   #
