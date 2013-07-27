@@ -66,6 +66,7 @@ TooManyMethods:
 TooManyStatements:
   enabled: true
   exclude:
+  - Devtools#self.init!
   - Devtools::Project#self.setup_rspec
   max_statements: 5
 UncommunicativeMethodName:
