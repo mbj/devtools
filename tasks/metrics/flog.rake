@@ -9,7 +9,13 @@ namespace :metrics do
     project = Devtools.project
     config  = project.flog
 
-    if config.enabled?
+    compatible_scores = %w(mri-2.0.0)
+
+    if ! compatible_scores.include?(Devtools.rvm)
+      task :flog do
+        $stderr.puts "Flog is disabled under #{Devtools.rvm}"
+      end
+    elsif config.enabled?
       # original code by Marty Andrews:
       # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
       desc 'Analyze for code complexity'
