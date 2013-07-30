@@ -13,7 +13,7 @@ guard :rspec, cli: File.read('.rspec').split.push('--fail-fast').join(' '), keep
   watch('Gemfile.lock')        { 'spec' }
   watch('spec/spec_helper.rb') { 'spec' }
 
-  # Run all specs if supporting files files are modified
+  # Run all specs if supporting files are modified
   watch(%r{\Aspec/(?:fixtures|lib|support|shared)/.+\.rb\z}) { 'spec' }
 
   # Run unit specs if associated lib code is modified
