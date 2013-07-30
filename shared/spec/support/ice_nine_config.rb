@@ -1,14 +1,14 @@
 # encoding: utf-8
 
-require 'ice_nine'
+if defined?(IceNine)
+  module IceNine
 
-module IceNine
+    # Freezer namespace
+    class Freezer
 
-  # Freezer namespace
-  class Freezer
+      # Rspec freezer
+      class RSpec < NoFreeze; end
 
-    # Rspec freezer
-    class RSpec < NoFreeze; end
-
-  end
+    end # Freezer
+  end # IceNine
 end
