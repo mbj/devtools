@@ -24,6 +24,12 @@ group :development, :test do
 end
 ```
 
+NOTE: The https URL is preferred to using `github: 'rom-rb/devtools` because
+that will expand to a `git://` URL which is plain text by default. There is an
+outstanding [pull request](https://github.com/bundler/bundler/pull/2569) that
+will change `github:` to use https by default; when a stable bundler gem is
+released all related gems should be updated to use it.
+
 Run:
 ```
 bundle install
