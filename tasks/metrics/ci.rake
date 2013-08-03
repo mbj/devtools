@@ -4,8 +4,7 @@ desc 'Run metrics with Mutant'
 task ci: %w[ ci:metrics metrics:mutant ]
 
 namespace :ci do
-  desc 'Run metrics (except mutant) and spec'
-  task metrics: %w[
+  tasks = %w[
     metrics:coverage
     spec:integration
     metrics:yardstick:verify
@@ -14,4 +13,11 @@ namespace :ci do
     metrics:flay
     metrics:reek
   ]
+
+  unless Devtools.project.yardstick.enabled?
+    tasks.delete('metrics:yardstick:verify')
+  end
+
+  desc 'Run metrics (except mutant) and spec'
+  task metrics: tasks
 end
