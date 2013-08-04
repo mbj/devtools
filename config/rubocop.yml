@@ -5,6 +5,7 @@ AllCops:
     - 'Gemfile.devtools'
   Excludes:
     - '**/vendor/**'
+    - '**/benchmarks/**'
 
 # Avoid parameter lists longer than five parameters.
 ParameterLists:
