@@ -29,8 +29,7 @@ namespace :metrics do
         end
 
       namespaces = Array(config.namespace).map { |n| "::#{n}*" }
-      args       = [namespaces, config.strategy].flatten
-      status     = namespace::CLI.run(args)
+      status     = namespace::CLI.run([*namespaces, config.strategy])
 
       if status.nonzero?
         abort 'Mutant task is not successful'
