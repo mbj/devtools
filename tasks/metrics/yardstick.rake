@@ -28,7 +28,11 @@ namespace :metrics do
           verify.threshold = config.threshold
         end
       else
-        $stderr.puts "Yardstick is disabled"
+        %w[ measure verify ].each do |name|
+          task name.to_s do
+            $stderr.puts 'Yardstick is disabled'
+          end
+        end
       end
     rescue LoadError
       %w[ measure verify ].each do |name|

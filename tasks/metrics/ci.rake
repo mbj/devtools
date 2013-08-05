@@ -14,10 +14,6 @@ namespace :ci do
     metrics:reek
   ]
 
-  unless Devtools.project.yardstick.enabled?
-    tasks.delete('metrics:yardstick:verify')
-  end
-
   desc 'Run metrics (except mutant) and spec'
   task metrics: tasks
 end
