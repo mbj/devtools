@@ -1,4 +1,3 @@
 ---
 name: your_lib
 namespace: YourLib
-strategy: --rspec-dm2
