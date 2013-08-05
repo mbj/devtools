@@ -98,6 +98,11 @@ module Devtools
       FILE = 'rubocop.yml'.freeze
     end
 
+    # Reek configuration
+    class Reek < self
+      FILE = 'reek.yml'.freeze
+    end
+
     # Flay configuration
     class Flay < self
       FILE = 'flay.yml'.freeze

@@ -160,6 +160,16 @@ module Devtools
       @config_dir ||= root.join('config').freeze
     end
 
+    # Return reek configuration
+    #
+    # @return [Config::Reek]
+    #
+    # @api private
+    #
+    def reek
+      @reek ||= Config::Reek.new(self)
+    end
+
     # Return rubocop configuration
     #
     # @return [Config::Rubocop]
