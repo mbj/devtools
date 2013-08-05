@@ -9,7 +9,7 @@ namespace :metrics do
     project = Devtools.project
     config  = project.flog
 
-    compatible_scores = %w(mri-2.0.0)
+    compatible_scores = %w(mri-1.9.3)
 
     if ! compatible_scores.include?(Devtools.rvm)
       task :flog do
