@@ -1,5 +1,4 @@
-devtools
-========
+# devtools
 
 [![Build Status](https://secure.travis-ci.org/rom-rb/devtools.png?branch=master)](http://travis-ci.org/rom-rb/devtools)
 [![Dependency Status](https://gemnasium.com/rom-rb/devtools.png)](https://gemnasium.com/rom-rb/devtools)
@@ -9,8 +8,7 @@ devtools
 Metagem to assist [ROM](https://github.com/rom-rb) style development.
 Used to centralize metric setup and development gem dependencies.
 
-Installation
-------------
+## Installation
 
 The installation looks stupid because Gemfiles are not nestable (Gemfile cannot
 include another Gemfile from a remote repository). Because of this we use an
@@ -24,61 +22,41 @@ group :development, :test do
 end
 ```
 
-NOTE: The https URL is preferred to using `github: 'rom-rb/devtools` because
-that will expand to a `git://` URL which is plain text by default. There is an
-outstanding [pull request](https://github.com/bundler/bundler/pull/2569) that
-will change `github:` to use https by default; when a stable bundler gem is
-released all related gems should be updated to use it.
+To initialize devtools in a project run the following command:
 
-Run:
+```ruby
+bundle install
+devtools init
 ```
+
+This will *change your Gemfile and Rakefile* and add config files. Make sure to
+review the diff and don't freak out ;)
+
+## Updating
+
+Later on if you want to update to the latest devtools just run:
+
+```
+bundle update devtools
+devtools sync
 bundle install
 ```
 
-Create a `Rakefile` in the project root with the following contents:
+## RSpec support
 
-```ruby
-require 'devtools'
-Devtools.init_rake_tasks
-```
-
-To copy `Gemfile.devtools` to your project, run the following commands:
-
-```
-bundle update
-bundle exec rake devtools:sync
-```
-
-To allow bundler to pick up the dependencies, append the following
-line to your Gemfile's development section:
-
-```ruby
-eval_gemfile 'Gemfile.devtools'
-```
-
-To make the devtools dependencies available to your project, run:
-
-```
-bundle install
-```
-
-Finally, adjust `spec/spec_helper.rb` to include
+If you're using RSpec and want to have access to our common setup just adjust
+`spec/spec_helper.rb` to include
 
 ```ruby
 require 'devtools/spec_helper'
 ```
 
-Now you have access to the [ROM](https://github.com/rom-rb) rake tasks, metrics
-and spec helpers.
-
-Credits
--------
+## Credits
 
 The whole [ROM](https://github.com/rom-rb) team that created and maintained all
 these tasks before they were centralized here.
 
-Contributing
--------------
+## Contributing
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -88,7 +66,6 @@ Contributing
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-License
--------
+## License
 
 See `LICENSE` file.
