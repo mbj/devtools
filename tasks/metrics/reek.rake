@@ -9,9 +9,9 @@ namespace :metrics do
 
     if config.enabled?
       Reek::Rake::Task.new do |reek|
-        reek.reek_opts    = '--quiet'
-        reek.config_files = config.config_file.to_s
-        reek.source_files = '{app,lib}/**/*.rb'
+        reek.fail_on_error = Devtools.master?
+        reek.config_files  = config.config_file.to_s
+        reek.source_files  = '{app,lib}/**/*.rb'
       end
     else
       task :reek do

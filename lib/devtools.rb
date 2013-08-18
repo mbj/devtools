@@ -41,6 +41,19 @@ module Devtools
     branch == 'master'
   end
 
+  # Notify or abort depanding on the branch
+  #
+  # @param [String] msg
+  #
+  # @return [undefined]
+  def self.notify(msg)
+    if master?
+      abort msg
+    else
+      puts msg
+    end
+  end
+
   # Return the project root directory
   #
   # Delegates to `Dir.pwd`

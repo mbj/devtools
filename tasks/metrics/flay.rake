@@ -33,12 +33,12 @@ namespace :metrics do
 
         max = (masses.max || 0).to_i
         unless max >= threshold
-          abort "Adjust flay threshold down to #{max}"
+          Devtools.notify "Adjust flay threshold down to #{max}"
         end
 
         total = masses.sum.to_i
         unless total == total_score
-          abort "Flay total is now #{total}, but expected #{total_score}"
+          Devtools.notify "Flay total is now #{total}, but expected #{total_score}"
         end
 
         # run flay a second time with the threshold set
@@ -50,7 +50,7 @@ namespace :metrics do
 
         if mass_size.nonzero?
           flay.report
-          abort "#{mass_size} chunks have a duplicate mass > #{threshold}"
+          Devtools.notify "#{mass_size} chunks have a duplicate mass > #{threshold}"
         end
       end
     else

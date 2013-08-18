@@ -9,7 +9,7 @@ namespace :metrics do
       begin
         Rubocop::CLI.new.run(%W[--config #{config.config_file.to_s}])
       rescue Encoding::CompatibilityError => exception
-        $stderr.puts exception.message
+        Devtools.notify exception.message
       end
     rescue LoadError
       $stderr.puts 'In order to run rubocop, you must: gem install rubocop'
