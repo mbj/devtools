@@ -23,6 +23,24 @@ module Devtools
     @root ||= Pathname('../../').expand_path(__FILE__).freeze
   end
 
+  # Return git branch
+  #
+  # @return [String]
+  #
+  # @api private
+  def self.branch
+    ENV['TRAVIS_BRANCH']
+  end
+
+  # Return if current git branch is master
+  #
+  # @return [Boolean]
+  #
+  # @api private
+  def self.master?
+    branch == 'master'
+  end
+
   # Return the project root directory
   #
   # Delegates to `Dir.pwd`
