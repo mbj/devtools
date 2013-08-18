@@ -46,6 +46,8 @@ module Devtools
   # @param [String] msg
   #
   # @return [undefined]
+  #
+  # @api private
   def self.notify(msg)
     if master?
       abort msg
