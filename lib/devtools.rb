@@ -29,7 +29,7 @@ module Devtools
   #
   # @api private
   def self.branch
-    ENV['TRAVIS_BRANCH']
+    `git rev-parse --abbrev-ref HEAD`.strip == 'master'
   end
 
   # Return if current git branch is master
