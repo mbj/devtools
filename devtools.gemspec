@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.description = 'A metagem for dm-2 style development'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/rom-rb/devtools'
+  gem.license     = 'MIT'
 
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split($/)
