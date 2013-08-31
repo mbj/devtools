@@ -114,9 +114,24 @@ module Devtools
     # Yardstick configuration
     class Yardstick < self
       FILE              = 'yardstick.yml'.freeze
-      DEFAULT_THRESHOLD = 100
 
-      attribute :threshold, DEFAULT_THRESHOLD
+      # Options hash that Yardstick understands
+      #
+      # @return [Hash]
+      #
+      # @api private
+      def options
+        options = {}
+
+        %w[threshold rules verbose path
+        require_exact_threshold].each do |attribute|
+          if raw.has_key?(attribute)
+            options[attribute] = raw[attribute]
+          end
+        end
+
+        options
+      end
     end
 
     # Flog configuration

@@ -19,14 +19,13 @@ namespace :metrics do
           YARD::Parser::SourceParser.parser_type = :ruby18
         end
 
+        options = Devtools.project.yardstick.options
+
         # yardstick_measure task
-        Yardstick::Rake::Measurement.new(:measure)
+        Yardstick::Rake::Measurement.new(:measure, options)
 
         # verify_measurements task
-        Yardstick::Rake::Verify.new(:verify) do |verify|
-          config = Devtools.project.yardstick
-          verify.threshold = config.threshold
-        end
+        Yardstick::Rake::Verify.new(:verify, options)
       else
         %w[ measure verify ].each do |name|
           task name.to_s do
