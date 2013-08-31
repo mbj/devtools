@@ -113,7 +113,14 @@ module Devtools
 
     # Yardstick configuration
     class Yardstick < self
-      FILE              = 'yardstick.yml'.freeze
+      FILE    = 'yardstick.yml'.freeze
+      OPTIONS = %w[
+        threshold
+        rules
+        verbose
+        path
+        require_exact_threshold
+      ].freeze
 
       # Options hash that Yardstick understands
       #
@@ -121,16 +128,9 @@ module Devtools
       #
       # @api private
       def options
-        options = {}
-
-        %w[threshold rules verbose path
-        require_exact_threshold].each do |attribute|
-          if raw.has_key?(attribute)
-            options[attribute] = raw[attribute]
-          end
-        end
-
-        options
+        OPTIONS.each_with_object({}) { |name, hash|
+          hash[name] = raw[name] if raw.key?(name)
+        }
       end
     end
 
