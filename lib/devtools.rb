@@ -27,17 +27,19 @@ module Devtools
   # Path to default config directory
   DEFAULT_CONFIG_PATH ||= ROOT.join('default/config').freeze
 
-  LIB_DIRECTORY_NAME   = 'lib'.freeze
-  SPEC_DIRECTORY_NAME  = 'spec'.freeze
-  RB_FILE_PATTERN      = '**/*.rb'.freeze
-  RAKE_FILES_GLOB      = ROOT.join('tasks/**/*.rake').to_s.freeze
-  RAKE_FILE_NAME       = 'Rakefile'.freeze
-  DEFAULT_GEMFILE_NAME = 'Gemfile'.freeze
-  GEMFILE_NAME         = 'Gemfile.devtools'.freeze
-  DEFAULT_RVM_NAME     = 'mri'.freeze
-  EVAL_GEMFILE         = "eval_gemfile '#{DEFAULT_GEMFILE_NAME}'".freeze
-  REQUIRE              = "require 'devtools'".freeze
-  INIT_RAKE_TASKS      = 'Devtools.init_rake_tasks'.freeze
+  LIB_DIRECTORY_NAME    = 'lib'.freeze
+  SPEC_DIRECTORY_NAME   = 'spec'.freeze
+  RB_FILE_PATTERN       = '**/*.rb'.freeze
+  RAKE_FILES_GLOB       = ROOT.join('tasks/**/*.rake').to_s.freeze
+  RAKE_FILE_NAME        = 'Rakefile'.freeze
+  DEFAULT_GEMFILE_NAME  = 'Gemfile'.freeze
+  GEMFILE_NAME          = 'Gemfile.devtools'.freeze
+  EVAL_GEMFILE          = "eval_gemfile '#{DEFAULT_GEMFILE_NAME}'".freeze
+  REQUIRE               = "require 'devtools'".freeze
+  INIT_RAKE_TASKS       = 'Devtools.init_rake_tasks'.freeze
+  SHARED_SPEC_PATTERN   = '{shared,support}/**/*.rb'.freeze
+  UNIT_TEST_TIMEOUT     = 0.1  # 100ms
+  UNIT_TEST_PATH_REGEXP = %r{\bspec/unit/}.freeze
 
   DEFAULT_CONFIG_DIRECTORY_NAME = 'config'.freeze
 

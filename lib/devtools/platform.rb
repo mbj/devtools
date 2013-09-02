@@ -3,6 +3,9 @@
 module Devtools
 
   module Platform
+
+    DEFAULT_RVM_NAME = 'mri'.freeze
+
     # Return ruby engine string
     #
     # @return [String]

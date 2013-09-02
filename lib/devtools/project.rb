@@ -5,10 +5,6 @@ module Devtools
   # The project devtools supports
   class Project
 
-    SHARED_SPEC_PATTERN   = '{shared,support}/**/*.rb'.freeze
-    UNIT_TEST_TIMEOUT     = 0.1  # 100ms
-    UNIT_TEST_PATH_REGEXP = %r{\bspec/unit/}.freeze
-
     # The reek configuration
     #
     # @return [Config::Reek]
