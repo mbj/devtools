@@ -106,6 +106,8 @@ module Devtools
   #
   # @api private
   def self.init_project(root)
+    raise 'ruby-1.8 is not supported by devtools' if ruby18?
+
     if defined?(@project)
       project_root = @project.root
       if project_root != root

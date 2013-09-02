@@ -30,7 +30,6 @@ module Devtools
       require 'rspec'
       require_shared_spec_files(Devtools.shared_path.join('spec'))
       require_shared_spec_files(spec_root)
-      prepare_18_specific_quirks
       timeout_unit_tests(timeout) unless Devtools.jit?
       self
     end
@@ -47,17 +46,6 @@ module Devtools
       Dir[spec_root.join(SHARED_SPEC_PATTERN)].each { |file| require file }
     end
     private_class_method :require_shared_spec_files
-
-    # Prepare spec quirks for 1.8
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def self.prepare_18_specific_quirks
-      require 'rspec/autorun' if Devtools.ruby18?
-    end
-    private_class_method :prepare_18_specific_quirks
 
     # Timeout unit tests that take longer than 1/10th of a second
     #
