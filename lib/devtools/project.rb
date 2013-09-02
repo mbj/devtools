@@ -167,8 +167,8 @@ module Devtools
       @default_config_path = @root.join(DEFAULT_CONFIG_DIRECTORY_NAME).freeze
       @lib_dir             = @root.join(LIB_DIRECTORY_NAME).freeze
       @spec_root           = @root.join(SPEC_DIRECTORY_NAME).freeze
-      @config_dir          = @root.join(DEFAULT_CONFIG_DIRECTORY_NAME).freeze
       @file_pattern        = @lib_dir.join(RB_FILE_PATTERN).freeze
+      @config_dir          = @default_config_path
 
       @reek      = Config::Reek.new(self)
       @rubocop   = Config::Rubocop.new(self)

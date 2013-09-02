@@ -60,3 +60,7 @@ ConstantName:
 # Not all trivial readers/writers can be defined with attr_* methods
 TrivialAccessors:
   Enabled: false
+
+# Do not prefer do/end over {} for multiline blocks
+Blocks:
+  Enabled: false

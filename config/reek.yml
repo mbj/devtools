@@ -105,5 +105,8 @@ UnusedParameters:
   exclude: []
 UtilityFunction:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Platform#ruby18?
+  - Devtools::Platform#ruby19?
+  - Devtools::Platform#ruby20?
   max_helper_calls: 0
