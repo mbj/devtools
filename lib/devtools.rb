@@ -25,7 +25,7 @@ module Devtools
   SHARED_GEMFILE_PATH = SHARED_PATH.join('Gemfile').freeze
 
   # Path to default config directory
-  DEFAULT_CONFIG_PATH ||= ROOT.join('default/config').freeze
+  DEFAULT_CONFIG_PATH = ROOT.join('default/config').freeze
 
   LIB_DIRECTORY_NAME    = 'lib'.freeze
   SPEC_DIRECTORY_NAME   = 'spec'.freeze
