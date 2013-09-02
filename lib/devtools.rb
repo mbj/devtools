@@ -12,19 +12,34 @@ module Devtools
   extend Rake::DSL
   extend Platform
 
-  DEFAULT_RVM_NAME = 'mri'.freeze
-  EVAL_GEMFILE     = "eval_gemfile 'Gemfile.devtools'".freeze
-  REQUIRE          = "require 'devtools'".freeze
-  INIT_RAKE_TASKS  = 'Devtools.init_rake_tasks'.freeze
+  # Library root directory
+  ROOT = Pathname('../../').expand_path(__FILE__).freeze
 
-  # Return library directory
-  #
-  # @return [Pathname]
-  #
-  # @api private
-  def self.root
-    @root ||= Pathname('../../').expand_path(__FILE__).freeze
-  end
+  # Path to shared files
+  SHARED_PATH = ROOT.join('shared').freeze
+
+  # Path to shared spec files
+  SHARED_SPEC_PATH = SHARED_PATH.join('spec').freeze
+
+  # Path to shared Gemfile
+  SHARED_GEMFILE_PATH = SHARED_PATH.join('Gemfile').freeze
+
+  # Path to default config directory
+  DEFAULT_CONFIG_PATH ||= ROOT.join('default/config').freeze
+
+  LIB_DIRECTORY_NAME   = 'lib'.freeze
+  SPEC_DIRECTORY_NAME  = 'spec'.freeze
+  RB_FILE_PATTERN      = '**/*.rb'.freeze
+  RAKE_FILES_GLOB      = ROOT.join('tasks/**/*.rake').to_s.freeze
+  RAKE_FILE_NAME       = 'Rakefile'.freeze
+  DEFAULT_GEMFILE_NAME = 'Gemfile'.freeze
+  GEMFILE_NAME         = 'Gemfile.devtools'.freeze
+  DEFAULT_RVM_NAME     = 'mri'.freeze
+  EVAL_GEMFILE         = "eval_gemfile '#{DEFAULT_GEMFILE_NAME}'".freeze
+  REQUIRE              = "require 'devtools'".freeze
+  INIT_RAKE_TASKS      = 'Devtools.init_rake_tasks'.freeze
+
+  DEFAULT_CONFIG_DIRECTORY_NAME = 'config'.freeze
 
   # Return git branch
   #
@@ -68,33 +83,6 @@ module Devtools
   # @api private
   def self.project_root
     @project_root ||= Pathname.pwd.freeze
-  end
-
-  # Return path to shared files
-  #
-  # @return [Pathname]
-  #
-  # @api private
-  def self.shared_path
-    @shared_path ||= root.join('shared').freeze
-  end
-
-  # Return shared gemfile path
-  #
-  # @return [Pathname]
-  #
-  # @api private
-  def self.shared_gemfile_path
-    @shared_gemfile_path ||= shared_path.join('Gemfile').freeze
-  end
-
-  # Return default config path
-  #
-  # @return [Pathname]
-  #
-  # @api private
-  def self.default_config_path
-    @default_config_path ||= root.join('default/config').freeze
   end
 
   # Initialize project
@@ -163,8 +151,8 @@ module Devtools
   #
   # @api public
   def self.init!
-    config_path = project_root.join('config').tap(&:mkpath)
-    cp_r default_config_path, config_path.parent
+    config_path = project_root.join(DEFAULT_CONFIG_DIRECTORY_NAME).tap(&:mkpath)
+    cp_r(DEFAULT_CONFIG_PATH, config_path.parent)
 
     sync!
     init_gemfile
@@ -179,7 +167,7 @@ module Devtools
   #
   # @api public
   def self.sync!
-    cp root.join('shared/Gemfile'), project_root.join('Gemfile.devtools')
+    cp(SHARED_GEMFILE_PATH, project_root.join(GEMFILE_NAME))
   end
 
   # Sync gemfiles and run bundle update
@@ -198,7 +186,7 @@ module Devtools
   #
   # @api private
   def self.import_tasks
-    FileList[root.join('tasks/**/*.rake').to_s].each { |task| import(task) }
+    FileList[RAKE_FILES_GLOB].each { |task| import(task) }
   end
   private_class_method :import_tasks
 
@@ -208,7 +196,7 @@ module Devtools
   #
   # @api private
   def self.init_gemfile
-    gemfile = project_root.join('Gemfile')
+    gemfile = project_root.join(DEFAULT_GEMFILE_NAME)
     unless gemfile.file? && gemfile.read.include?(EVAL_GEMFILE)
       gemfile.open('a') do |file|
         file << annotate(EVAL_GEMFILE)
@@ -223,7 +211,7 @@ module Devtools
   #
   # @api private
   def self.init_rakefile
-    rakefile = project_root.join('Rakefile')
+    rakefile = project_root.join(RAKE_FILE_NAME)
     unless rakefile.file? && rakefile.read.include?(INIT_RAKE_TASKS)
       rakefile.open('a') do |file|
         file << annotate([REQUIRE, INIT_RAKE_TASKS].join("\n"))

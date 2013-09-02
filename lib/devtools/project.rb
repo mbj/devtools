@@ -9,6 +9,55 @@ module Devtools
     UNIT_TEST_TIMEOUT     = 0.1  # 100ms
     UNIT_TEST_PATH_REGEXP = %r{\bspec/unit/}.freeze
 
+    # The reek configuration
+    #
+    # @return [Config::Reek]
+    #
+    # @api private
+    attr_reader :reek
+
+    # The rubocop configuration
+    #
+    # @return [Config::Rubocop]
+    #
+    # @api private
+    attr_reader :rubocop
+
+    # The flog configuration
+    #
+    # @return [Config::Flog]
+    #
+    # @api private
+    attr_reader :flog
+
+    # The yardstick configuration
+    #
+    # @return [Config::Yardstick]
+    #
+    # @api private
+    attr_reader :yardstick
+
+    # The flay configuration
+    #
+    # @return [Config::Flay]
+    #
+    # @api private
+    attr_reader :flay
+
+    # The mutant configuration
+    #
+    # @return [Config::Mutant]
+    #
+    # @api private
+    attr_reader :mutant
+
+    # The devtools configuration
+    #
+    # @return [Config::Devtools]
+    #
+    # @api private
+    attr_reader :devtools
+
     # Return project root
     #
     # @return [Pathname]
@@ -16,6 +65,48 @@ module Devtools
     # @api private
     #
     attr_reader :root
+
+    # The shared gemfile path
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    attr_reader :shared_gemfile_path
+
+    # The default config path
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    attr_reader :default_config_path
+
+    # The lib directory
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    attr_reader :lib_dir
+
+    # The rb file pattern
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    attr_reader :file_pattern
+
+    # The spec root
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    attr_reader :spec_root
+
+    # Return config directory
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    attr_reader :config_dir
 
     # Setup rspec
     #
@@ -28,7 +119,7 @@ module Devtools
     #
     def self.setup_rspec(spec_root, timeout)
       require 'rspec'
-      require_shared_spec_files(Devtools.shared_path.join('spec'))
+      require_shared_spec_files(Devtools::SHARED_SPEC_PATH)
       require_shared_spec_files(spec_root)
       timeout_unit_tests(timeout) unless Devtools.jit?
       self
@@ -75,56 +166,21 @@ module Devtools
     #
     def initialize(root)
       @root = root
-    end
 
-    # Return shared gemfile path
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    #
-    def shared_gemfile_path
-      @shared_gemfile_path ||= root.join('Gemfile.devtools').freeze
-    end
+      @shared_gemfile_path = @root.join(GEMFILE_NAME).freeze
+      @default_config_path = @root.join(DEFAULT_CONFIG_DIRECTORY_NAME).freeze
+      @lib_dir             = @root.join(LIB_DIRECTORY_NAME).freeze
+      @spec_root           = @root.join(SPEC_DIRECTORY_NAME).freeze
+      @config_dir          = @root.join(DEFAULT_CONFIG_DIRECTORY_NAME).freeze
+      @file_pattern        = @lib_dir.join(RB_FILE_PATTERN).freeze
 
-    # Return default config path
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    #
-    def default_config_path
-      @default_config_path ||= root.join('config').freeze
-    end
-
-    # Return lib directory
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    #
-    def lib_dir
-      @lib_dir ||= root.join('lib').freeze
-    end
-
-    # Return file pattern
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    #
-    def file_pattern
-      @file_pattern ||= lib_dir.join('**/*.rb').freeze
-    end
-
-    # Return spec root
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    #
-    def spec_root
-      @spec_root ||= root.join('spec').freeze
+      @reek      = Config::Reek.new(self)
+      @rubocop   = Config::Rubocop.new(self)
+      @flog      = Config::Flog.new(self)
+      @yardstick = Config::Yardstick.new(self)
+      @flay      = Config::Flay.new(self)
+      @mutant    = Config::Mutant.new(self)
+      @devtools  = Config::Devtools.new(self)
     end
 
     # Setup rspec
@@ -136,85 +192,6 @@ module Devtools
     def setup_rspec
       self.class.setup_rspec(spec_root, devtools.unit_test_timeout)
       self
-    end
-
-    # Return config directory
-    #
-    # @return [String]
-    #
-    # @api private
-    #
-    def config_dir
-      @config_dir ||= root.join('config').freeze
-    end
-
-    # Return reek configuration
-    #
-    # @return [Config::Reek]
-    #
-    # @api private
-    #
-    def reek
-      @reek ||= Config::Reek.new(self)
-    end
-
-    # Return rubocop configuration
-    #
-    # @return [Config::Rubocop]
-    #
-    # @api private
-    #
-    def rubocop
-      @rubocop ||= Config::Rubocop.new(self)
-    end
-
-    # Return flog configuration
-    #
-    # @return [Config::Flog]
-    #
-    # @api private
-    #
-    def flog
-      @flog ||= Config::Flog.new(self)
-    end
-
-    # Return yardstick configuration
-    #
-    # @return [Config::Yardstick]
-    #
-    # @api private
-    #
-    def yardstick
-      @yardstick ||= Config::Yardstick.new(self)
-    end
-
-    # Return flay configuration
-    #
-    # @return [Config::Flay]
-    #
-    # @api private
-    #
-    def flay
-      @flay ||= Config::Flay.new(self)
-    end
-
-    # Return mutant configuration
-    #
-    # @return [Config::Mutant]
-    #
-    # @api private
-    #
-    def mutant
-      @mutant ||= Config::Mutant.new(self)
-    end
-
-    # Return devtools configuration
-    #
-    # @return [Config::Devtools]
-    #
-    # @api private
-    def devtools
-      @devtools ||= Config::Devtools.new(self)
     end
 
   end
