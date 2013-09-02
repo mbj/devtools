@@ -157,7 +157,7 @@ module Devtools
     class Devtools < self
       FILE = 'devtools.yml'.freeze
 
-      attribute :unit_test_timeout, ::Devtools::Project::UNIT_TEST_TIMEOUT
+      attribute :unit_test_timeout, UNIT_TEST_TIMEOUT
     end
   end
 end
