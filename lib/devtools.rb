@@ -145,21 +145,6 @@ module Devtools
     self
   end
 
-  # Initialize project and load tasks
-  #
-  # Should *only* be called from your $application_root/Rakefile
-  #
-  # @deprecated Use Devtools.init_rake_tasks
-  #
-  # @return [self]
-  #
-  # @api private
-  def self.init
-    $stderr.puts('Devtools.init is deprecated, use Devtools.init_rake_tasks')
-    init_project(project_root)
-    import_tasks
-  end
-
   # Return ruby engine string
   #
   # @return [String]
