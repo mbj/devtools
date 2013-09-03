@@ -2,6 +2,7 @@
 
 module Devtools
 
+  # Provides methods to determine the ruby platform
   module Platform
 
     DEFAULT_RVM_NAME = 'mri'.freeze

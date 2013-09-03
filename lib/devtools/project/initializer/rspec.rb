@@ -1,8 +1,16 @@
+# encoding: utf-8
+
 module Devtools
   class Project
     class Initializer
 
+      # Requires all shared specs in a project's spec_helper
+      # Also installs a configurable unit test timeout
       class Rspec < self
+
+        def self.require_files(directory)
+          Devtools.require_files(directory, SHARED_SPEC_PATTERN)
+        end
 
         # Initialize rspec for +project+
         #
@@ -14,22 +22,6 @@ module Devtools
         # @api private
         def self.call(project)
           new(project).call
-        end
-
-        # Require shared examples
-        #
-        # @param [Pathname] dir
-        #   the directory containing the files to require
-        #
-        # @param [String] pattern
-        #   the file pattern to match inside directory
-        #
-        # @return [self]
-        #
-        # @api private
-        def self.require_files(dir, pattern)
-          Dir[dir.join(pattern)].each { |file| require file }
-          self
         end
 
         # The spec root
@@ -103,7 +95,7 @@ module Devtools
         end
 
         def require_files(directory)
-          self.class.require_files(directory, SHARED_SPEC_PATTERN)
+          self.class.require_files(directory)
         end
 
       end # class Rspec

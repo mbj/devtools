@@ -1,9 +1,7 @@
 ---
 Attribute:
-  enabled: true
-  exclude:
-  - Devtools::Config
-  - Devtools::Project
+  enabled: false
+  exclude: []
 BooleanParameter:
   enabled: true
   exclude: []
@@ -20,23 +18,21 @@ DataClump:
   min_clump_size: 1
 DuplicateMethodCall:
   enabled: true
-  exclude:
-  - Devtools::Project#self.timeout_unit_tests
+  exclude: []
   max_calls: 1
   allow_calls: []
 FeatureEnvy:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Site::Initializer#init_gemfile
+  - Devtools::Site::Initializer#init_rakefile
 IrresponsibleModule:
   enabled: true
   exclude: []
 LongParameterList:
   enabled: true
-  exclude:
-  - Devtools::Config#self.attribute
-  - Devtools::Project#self.assert_within_timeout
-  - Devtools::Project#self.setup_rspec
-  max_params: 1
+  exclude: []
+  max_params: 2
   overrides: {}
 LongYieldList:
   enabled: true
@@ -44,8 +40,7 @@ LongYieldList:
   max_params: 0
 NestedIterators:
   enabled: true
-  exclude:
-  - Devtools::Project#self.timeout_unit_tests
+  exclude: []
   max_allowed_nesting: 1
   ignore_iterators: []
 NilCheck:
@@ -57,7 +52,8 @@ RepeatedConditional:
   max_ifs: 1
 TooManyInstanceVariables:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Project
   max_instance_variables: 14 # no adamantium ;)
 TooManyMethods:
   enabled: true
@@ -65,9 +61,7 @@ TooManyMethods:
   max_methods: 15
 TooManyStatements:
   enabled: true
-  exclude:
-  - Devtools#self.init!
-  - Devtools::Project#self.setup_rspec
+  exclude: []
   max_statements: 5
 UncommunicativeMethodName:
   enabled: true

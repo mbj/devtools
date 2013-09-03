@@ -123,7 +123,7 @@ module Devtools
       @root = root
 
       @shared_gemfile_path = @root.join(GEMFILE_NAME).freeze
-      @default_config_path = @root.join(DEFAULT_CONFIG_DIRECTORY_NAME).freeze
+      @default_config_path = @root.join(DEFAULT_CONFIG_DIR_NAME).freeze
       @lib_dir             = @root.join(LIB_DIRECTORY_NAME).freeze
       @spec_root           = @root.join(SPEC_DIRECTORY_NAME).freeze
       @file_pattern        = @lib_dir.join(RB_FILE_PATTERN).freeze

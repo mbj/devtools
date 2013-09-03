@@ -10,9 +10,9 @@ require 'devtools'
 command = ARGV.first
 
 case command
-when 'init'   then Devtools.init!
-when 'sync'   then Devtools.sync!
-when 'update' then Devtools.update!
+when 'init'   then Devtools.init
+when 'sync'   then Devtools.sync
+when 'update' then Devtools.update
 else
   puts 'command not supported'
 end

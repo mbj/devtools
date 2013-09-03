@@ -156,8 +156,9 @@ module Devtools
     # Devtools configuration
     class Devtools < self
       FILE = 'devtools.yml'.freeze
+      DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
 
-      attribute :unit_test_timeout, UNIT_TEST_TIMEOUT
+      attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT
     end
   end
 end
