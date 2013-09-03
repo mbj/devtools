@@ -41,6 +41,7 @@ module Devtools
   UNIT_TEST_PATH_REGEXP   = %r{\bspec/unit/}.freeze
   MASTER_BRANCH           = 'master'.freeze
   DEFAULT_CONFIG_DIR_NAME = 'config'.freeze
+  ANNOTATION_WRAPPER      = "\n# Added by devtools\n%s".freeze
 
   # Provides devtools for a project
   SITE = Site.new(Project.new(PROJECT_ROOT))
@@ -120,15 +121,6 @@ module Devtools
   def self.require_files(dir, pattern)
     Dir[dir.join(pattern)].each { |file| require file }
     self
-  end
-
-  # Annotate
-  #
-  # @return [Boolean]
-  #
-  # @api private
-  def self.annotate(string)
-    "\n# Added by devtools\n#{string}"
   end
 
   # Notify or abort depanding on the branch
