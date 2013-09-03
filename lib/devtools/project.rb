@@ -104,53 +104,12 @@ module Devtools
     # @api private
     attr_reader :config_dir
 
-    # Setup rspec
+    # The unit test timeout
     #
-    # @param [Pathname] spec_root
-    # @param [Numeric] timeout
-    #
-    # @return [Class<Devtools::Project>]
+    # @return [Numeric]
     #
     # @api private
-    #
-    def self.setup_rspec(spec_root, timeout)
-      require 'rspec'
-      require_shared_spec_files(Devtools::SHARED_SPEC_PATH)
-      require_shared_spec_files(spec_root)
-      timeout_unit_tests(timeout) unless Devtools.jit?
-      self
-    end
-
-    # Require shared examples
-    #
-    # @param [Pathname] spec_root
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def self.require_shared_spec_files(spec_root)
-      Dir[spec_root.join(SHARED_SPEC_PATTERN)].each { |file| require file }
-    end
-    private_class_method :require_shared_spec_files
-
-    # Timeout unit tests that take longer than 1/10th of a second
-    #
-    # @param [Numeric] timeout
-    #
-    # @return [undefined]
-    #
-    # @raise [Timeout::Error]
-    #   raised when the times are outside the timeout
-    #
-    # @api private
-    #
-    def self.timeout_unit_tests(timeout)
-      RSpec.configuration.around file_path: UNIT_TEST_PATH_REGEXP do |example|
-        Timeout.timeout(timeout, &example)
-      end
-    end
-    private_class_method :timeout_unit_tests
+    attr_reader :unit_test_timeout
 
     # Initialize object
     #
@@ -177,18 +136,9 @@ module Devtools
       @flay      = Config::Flay.new(self)
       @mutant    = Config::Mutant.new(self)
       @devtools  = Config::Devtools.new(self)
+
+      @unit_test_timeout = @devtools.unit_test_timeout
     end
 
-    # Setup rspec
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def setup_rspec
-      self.class.setup_rspec(spec_root, devtools.unit_test_timeout)
-      self
-    end
-
-  end
-end
+  end # class Project
+end # module Devtools

@@ -9,7 +9,6 @@ require 'devtools/platform'
 
 # Namespace for library
 module Devtools
-  extend Rake::DSL
   extend Platform
 
   # Library root directory
@@ -121,7 +120,7 @@ module Devtools
   # @api private
   def self.init_spec_helper
     init_project(project_root)
-    project.setup_rspec
+    Project::Initializer::Rspec.call(project)
     self
   end
 
@@ -134,7 +133,7 @@ module Devtools
   # @api private
   def self.init_rake_tasks
     init_project(project_root)
-    import_tasks
+    Project::Initializer::Rake.call
     self
   end
 
@@ -182,16 +181,6 @@ module Devtools
     sh 'bundle update'
   end
 
-  # Import the rake tasks
-  #
-  # @return [undefined]
-  #
-  # @api private
-  def self.import_tasks
-    FileList[RAKE_FILES_GLOB].each { |task| import(task) }
-  end
-  private_class_method :import_tasks
-
   # Initialize the Gemfile
   #
   # @return [undefined]
@@ -236,3 +225,6 @@ end
 
 require 'devtools/project'
 require 'devtools/config'
+require 'devtools/project/initializer'
+require 'devtools/project/initializer/rake'
+require 'devtools/project/initializer/rspec'
