@@ -106,35 +106,6 @@ module Devtools
     SITE.project
   end
 
-  # Notify or abort depanding on the branch
-  #
-  # @param [String] msg
-  #
-  # @return [undefined]
-  #
-  # @api private
-  def self.notify(msg)
-    master? ? abort(msg) : puts(msg)
-  end
-
-  # Return git branch
-  #
-  # @return [String]
-  #
-  # @api private
-  def self.branch
-    `git rev-parse --abbrev-ref HEAD`.rstrip
-  end
-
-  # Return if current git branch is master
-  #
-  # @return [Boolean]
-  #
-  # @api private
-  def self.master?
-    branch == MASTER_BRANCH
-  end
-
   # Require shared examples
   #
   # @param [Pathname] dir
@@ -159,5 +130,36 @@ module Devtools
   def self.annotate(string)
     "\n# Added by devtools\n#{string}"
   end
+
+  # Notify or abort depanding on the branch
+  #
+  # @param [String] msg
+  #
+  # @return [undefined]
+  #
+  # @api private
+  def self.notify(msg)
+    master? ? abort(msg) : puts(msg)
+  end
+
+  # Return if current git branch is master
+  #
+  # @return [Boolean]
+  #
+  # @api private
+  def self.master?
+    branch == MASTER_BRANCH
+  end
+  private_class_method :master?
+
+  # Return git branch
+  #
+  # @return [String]
+  #
+  # @api private
+  def self.branch
+    `git rev-parse --abbrev-ref HEAD`.rstrip
+  end
+  private_class_method :branch
 
 end # module Devtools
