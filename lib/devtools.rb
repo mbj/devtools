@@ -150,7 +150,6 @@ module Devtools
   def self.master?
     branch == MASTER_BRANCH
   end
-  private_class_method :master?
 
   # Return git branch
   #
