@@ -49,7 +49,7 @@ module Devtools
   #
   # @api private
   def self.branch
-    `git rev-parse --abbrev-ref HEAD`.strip == 'master'
+    `git rev-parse --abbrev-ref HEAD`.rstrip
   end
 
   # Return if current git branch is master
