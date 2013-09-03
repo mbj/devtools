@@ -20,7 +20,7 @@ module Devtools
 
   extend Platform
 
-  ROOT                    = Pathname.new('../../').expand_path(__FILE__).freeze
+  ROOT                    = Pathname.new(__FILE__).parent.parent.freeze
   PROJECT_ROOT            = Pathname.pwd.freeze
   SHARED_PATH             = ROOT.join('shared').freeze
   SHARED_SPEC_PATH        = SHARED_PATH.join('spec').freeze
