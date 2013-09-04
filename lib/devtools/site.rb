@@ -33,7 +33,7 @@ module Devtools
     # @api private
     def init
       Initializer.call(self)
-      puts 'Run bundle install to complete devtools the installation'
+      puts 'Run bundle install to complete the devtools installation'
       self
     end
 
