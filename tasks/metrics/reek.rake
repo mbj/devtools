@@ -9,6 +9,7 @@ namespace :metrics do
 
     if config.enabled?
       Reek::Rake::Task.new do |reek|
+        reek.reek_opts     = '--quiet'
         reek.fail_on_error = Devtools.master?
         reek.config_files  = config.config_file.to_s
         reek.source_files  = '{app,lib}/**/*.rb'
