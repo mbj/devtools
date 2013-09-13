@@ -1,12 +1,11 @@
 # encoding: utf-8
 
-desc 'Run metrics with Mutant'
-task ci: %w[ ci:metrics metrics:mutant ]
+desc 'Run all metrics and integration specs'
+task ci: %w[ ci:metrics metrics:mutant spec:integration ]
 
 namespace :ci do
   tasks = %w[
     metrics:coverage
-    spec:integration
     metrics:yardstick:verify
     metrics:rubocop
     metrics:flog
@@ -14,6 +13,6 @@ namespace :ci do
     metrics:reek
   ]
 
-  desc 'Run metrics (except mutant) and spec'
+  desc 'Run metrics (except mutant)'
   task metrics: tasks
 end
