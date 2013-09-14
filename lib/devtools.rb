@@ -140,7 +140,16 @@ module Devtools
   #
   # @api private
   def self.fail_on_current_branch?
-    current_branch == MASTER_BRANCH
+    branches_to_fail_on.include?(current_branch)
+  end
+
+  # Return the branches the build should fail on because of metrics
+  #
+  # @return [Array[String]]
+  #
+  # @api private
+  def self.branches_to_fail_on
+    project.devtools.fetch("fail_on_branch", [ MASTER_BRANCH ])
   end
 
   # Return current git branch
