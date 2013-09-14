@@ -83,7 +83,7 @@ module Devtools
     # @api private
     attr_reader :lib_dir
 
-    # The rb file pattern
+    # The Ruby file pattern
     #
     # @return [Pathname]
     #

@@ -16,9 +16,9 @@ namespace :metrics do
         $stderr.puts "Flog is disabled under #{Devtools.rvm}"
       end
     elsif config.enabled?
-      # original code by Marty Andrews:
+      # Original code by Marty Andrews:
       # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
-      desc 'Analyze for code complexity'
+      desc 'Measure code complexity'
       task :flog do
         threshold = config.threshold.to_f.round(1)
         flog      = Flog.new

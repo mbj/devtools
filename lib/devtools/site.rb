@@ -26,7 +26,7 @@ module Devtools
       self
     end
 
-    # Init devtools using default config
+    # Initialize devtools using default config
     #
     # @return [undefined]
     #

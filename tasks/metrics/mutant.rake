@@ -18,7 +18,7 @@ namespace :metrics do
   ).include?(config.name)
 
   if enabled && !ENV['DEVTOOLS_SELF']
-    desc 'Run mutant'
+    desc 'Measure mutation coverage'
     task mutant: :coverage do
       namespace =
         if zombify
@@ -36,7 +36,7 @@ namespace :metrics do
       end
     end
   else
-    desc 'Run Mutant'
+    desc 'Measure mutation coverage'
     task mutant: :coverage do
       $stderr.puts 'Mutant is disabled'
     end

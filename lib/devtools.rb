@@ -70,7 +70,7 @@ module Devtools
     self
   end
 
-  # Init devtools using default config
+  # Initialize devtools using default config
   #
   # @return [undefined]
   #
@@ -123,7 +123,7 @@ module Devtools
     self
   end
 
-  # Notify or abort depanding on the branch
+  # Notify or abort depending on the branch
   #
   # @param [String] msg
   #
@@ -134,7 +134,7 @@ module Devtools
     master? ? abort(msg) : puts(msg)
   end
 
-  # Return if current git branch is master
+  # Return if current git branch is the `master` branch
   #
   # @return [Boolean]
   #

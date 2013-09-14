@@ -7,7 +7,7 @@ module Devtools
 
     DEFAULT_RVM_NAME = 'mri'.freeze
 
-    # Return ruby engine string
+    # Return Ruby engine string
     #
     # @return [String]
     #
@@ -16,7 +16,7 @@ module Devtools
       @ruby_engine ||= (defined?(RUBY_ENGINE) && RUBY_ENGINE || 'ruby').freeze
     end
 
-    # Return rvm name
+    # Return RVM name
     #
     # @return [String]
     #
@@ -28,7 +28,7 @@ module Devtools
       end
     end
 
-    # Return rvm string
+    # Return RVM string
     #
     # @return [String]
     #
@@ -37,10 +37,10 @@ module Devtools
       @rvm ||= "#{rvm_name}-#{RUBY_VERSION}".freeze
     end
 
-    # Test for being executed under jruby
+    # Test for being executed under JRuby
     #
     # @return [true]
-    #   if running under jruby
+    #   if running under JRuby
     #
     # @return [false]
     #   otherwise
@@ -66,7 +66,7 @@ module Devtools
     # Test for being executed under rubies with a JIT
     #
     # @return [true]
-    #   if running under jruby or rbx
+    #   if running under JRuby or rbx
     #
     # @return [false]
     #   otherwise
@@ -114,5 +114,5 @@ module Devtools
     def ruby20?
       RUBY_VERSION.start_with?('2.0.')
     end
-  end # moule Platform
+  end # module Platform
 end # module Devtools

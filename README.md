@@ -5,12 +5,12 @@
 [![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
 <!-- [![Code Climate](https://codeclimate.com/github/rom-rb/devtools.png)](https://codeclimate.com/github/rom-rb/devtools) -->
 
-Metagem to assist [ROM](https://github.com/rom-rb) style development.
+Metagem to assist [ROM](https://github.com/rom-rb)-style development.
 Used to centralize metric setup and development gem dependencies.
 
 ## Installation
 
-The installation looks stupid because Gemfiles are not nestable (Gemfile cannot
+The installation looks stupid because Gemfiles are not nestable (A Gemfile cannot
 include another Gemfile from a remote repository). Because of this we use an
 updatable local copy of the shared parts.
 
@@ -26,11 +26,11 @@ To initialize devtools in a project run the following command:
 
 ```ruby
 bundle install
-devtools init
+bundle exec devtools init
 ```
 
 This will *change your Gemfile and Rakefile* and add config files. Make sure to
-review the diff and don't freak out ;)
+review the diff and don't freak out :wink:
 
 ## Updating
 
@@ -38,7 +38,7 @@ Later on if you want to update to the latest devtools just run:
 
 ```
 bundle update devtools
-devtools sync
+bundle exec devtools sync
 bundle install
 ```
 

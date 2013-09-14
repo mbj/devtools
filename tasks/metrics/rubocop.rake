@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 namespace :metrics do
-  desc 'Run rubocop'
+  desc 'Check with code style guide'
   task :rubocop do
     begin
       require 'rubocop'

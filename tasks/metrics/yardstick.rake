@@ -21,10 +21,8 @@ namespace :metrics do
 
         options = Devtools.project.yardstick.options
 
-        # yardstick_measure task
         Yardstick::Rake::Measurement.new(:measure, options)
 
-        # verify_measurements task
         Yardstick::Rake::Verify.new(:verify, options)
       else
         %w[ measure verify ].each do |name|

@@ -12,7 +12,7 @@ module Devtools
           Devtools.require_files(directory, SHARED_SPEC_PATTERN)
         end
 
-        # Initialize rspec for +project+
+        # Initialize RSpec for +project+
         #
         # @param [Project] project
         #   the project to initialize
@@ -57,7 +57,7 @@ module Devtools
           @unit_test_timeout = project.unit_test_timeout
         end
 
-        # Setup rspec for {#project}
+        # Setup RSpec for {#project}
         #
         # @return [self]
         #

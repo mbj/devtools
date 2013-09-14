@@ -14,15 +14,15 @@ namespace :metrics do
         $stderr.puts "Flay is disabled under #{Devtools.rvm}"
       end
     elsif config.enabled?
-       # original code by Marty Andrews:
+      # Original code by Marty Andrews:
       # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
-      desc 'Analyze for code duplication'
+      desc 'Measure code duplication'
       task :flay do
         threshold   = config.threshold
         total_score = config.total_score
         files       = Flay.expand_dirs_to_files(project.lib_dir).sort
 
-        # run flay first to ensure the max mass matches the threshold
+        # Run flay first to ensure the max mass matches the threshold
         flay = Flay.new(fuzzy: false, verbose: false, mass: 0)
         flay.process(*files)
         flay.analyze
@@ -41,7 +41,7 @@ namespace :metrics do
           Devtools.notify "Flay total is now #{total}, but expected #{total_score}"
         end
 
-        # run flay a second time with the threshold set
+        # Run flay a second time with the threshold set
         flay = Flay.new(fuzzy: false, verbose: false, mass: threshold.succ)
         flay.process(*files)
         flay.analyze
