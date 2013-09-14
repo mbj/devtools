@@ -1,9 +1,12 @@
 # encoding: utf-8
+require 'yaml'
+require 'forwardable'
 
 module Devtools
 
   # Abstract base class of tool configuration
   class Config
+    extend Forwardable
 
     # Represent no configuration
     DEFAULT_CONFIG = {}.freeze
@@ -53,6 +56,24 @@ module Devtools
     def config_file
       @config_file ||= project.config_dir.join(self.class::FILE).freeze
     end
+
+    # Return the parsed config file
+    #
+    # @return [Hash]
+    #
+    # @api private
+    #
+    def attributes
+      @attributes ||= YAML.load_file(config_file)
+    end
+
+    # Fetch the value of an attribute in the config file
+    #
+    # @return [Object] The value of the object
+    #
+    # @api private
+    #
+    def_delegator :attributes, :fetch
 
     # Test if the task is enabled
     #
