@@ -134,7 +134,7 @@ module Devtools
     fail_on_current_branch? ? abort(msg) : puts(msg)
   end
 
-  # Return if the build should fail because of metrics on this branch
+  # Test if the build should fail because of metrics on this branch
   #
   # @return [Boolean]
   #
