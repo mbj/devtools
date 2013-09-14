@@ -140,17 +140,17 @@ module Devtools
   #
   # @api private
   def self.fail_on_current_branch?
-    branch == MASTER_BRANCH
+    current_branch == MASTER_BRANCH
   end
 
-  # Return git branch
+  # Return current git branch
   #
   # @return [String]
   #
   # @api private
-  def self.branch
+  def self.current_branch
     `git rev-parse --abbrev-ref HEAD`.rstrip
   end
-  private_class_method :branch
+  private_class_method :current_branch
 
 end # module Devtools
