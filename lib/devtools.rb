@@ -131,15 +131,15 @@ module Devtools
   #
   # @api private
   def self.notify(msg)
-    master? ? abort(msg) : puts(msg)
+    fail_on_current_branch? ? abort(msg) : puts(msg)
   end
 
-  # Return if current git branch is the `master` branch
+  # Test if the build should fail because of metrics on this branch
   #
   # @return [Boolean]
   #
   # @api private
-  def self.master?
+  def self.fail_on_current_branch?
     branch == MASTER_BRANCH
   end
 
