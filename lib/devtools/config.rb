@@ -1,13 +1,11 @@
 # encoding: utf-8
 require 'yaml'
-require 'forwardable'
 
 module Devtools
+  MASTER_BRANCH           = 'master'.freeze
 
   # Abstract base class of tool configuration
   class Config
-    extend Forwardable
-
     # Represent no configuration
     DEFAULT_CONFIG = {}.freeze
 
@@ -56,24 +54,6 @@ module Devtools
     def config_file
       @config_file ||= project.config_dir.join(self.class::FILE).freeze
     end
-
-    # Return the parsed config file
-    #
-    # @return [Hash]
-    #
-    # @api private
-    #
-    def attributes
-      @attributes ||= YAML.load_file(config_file)
-    end
-
-    # Fetch the value of an attribute in the config file
-    #
-    # @return [Object] The value of the object
-    #
-    # @api private
-    #
-    def_delegator :attributes, :fetch
 
     # Test if the task is enabled
     #
@@ -178,8 +158,10 @@ module Devtools
     class Devtools < self
       FILE = 'devtools.yml'.freeze
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
+      DEFAULT_BRANCHES_TO_FAIL_ON = [ MASTER_BRANCH ]
 
       attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT
+      attribute :fail_on_branch, DEFAULT_BRANCHES_TO_FAIL_ON
     end
   end
 end
