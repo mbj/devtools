@@ -1,5 +1,4 @@
 # encoding: utf-8
-require 'yaml'
 
 module Devtools
   MASTER_BRANCH           = 'master'.freeze
