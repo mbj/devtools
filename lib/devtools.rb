@@ -39,7 +39,6 @@ module Devtools
   INIT_RAKE_TASKS         = 'Devtools.init_rake_tasks'.freeze
   SHARED_SPEC_PATTERN     = '{shared,support}/**/*.rb'.freeze
   UNIT_TEST_PATH_REGEXP   = %r{\bspec/unit/}.freeze
-  MASTER_BRANCH           = 'master'.freeze
   DEFAULT_CONFIG_DIR_NAME = 'config'.freeze
   ANNOTATION_WRAPPER      = "\n# Added by devtools\n%s".freeze
 
@@ -140,7 +139,16 @@ module Devtools
   #
   # @api private
   def self.fail_on_current_branch?
-    current_branch == MASTER_BRANCH
+    fail_on_branch.include?(current_branch)
+  end
+
+  # Return the branches the build should fail on because of metrics
+  #
+  # @return [Array[String]]
+  #
+  # @api private
+  def self.fail_on_branch
+    project.devtools.fail_on_branch
   end
 
   # Return current git branch
