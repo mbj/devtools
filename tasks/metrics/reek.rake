@@ -10,7 +10,7 @@ namespace :metrics do
     if config.enabled?
       Reek::Rake::Task.new do |reek|
         reek.reek_opts     = '--quiet'
-        reek.fail_on_error = Develry.master?
+        reek.fail_on_error = Develry.fail_on_current_branch?
         reek.config_files  = config.config_file.to_s
         reek.source_files  = '{app,lib}/**/*.rb'
       end

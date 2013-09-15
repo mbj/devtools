@@ -39,7 +39,6 @@ module Develry
   INIT_RAKE_TASKS         = 'Develry.init_rake_tasks'.freeze
   SHARED_SPEC_PATTERN     = '{shared,support}/**/*.rb'.freeze
   UNIT_TEST_PATH_REGEXP   = %r{\bspec/unit/}.freeze
-  MASTER_BRANCH           = 'master'.freeze
   DEFAULT_CONFIG_DIR_NAME = 'config'.freeze
   ANNOTATION_WRAPPER      = "\n# Added by develry\n%s".freeze
 
@@ -131,26 +130,35 @@ module Develry
   #
   # @api private
   def self.notify(msg)
-    master? ? abort(msg) : puts(msg)
+    fail_on_current_branch? ? abort(msg) : puts(msg)
   end
 
-  # Return if current git branch is the `master` branch
+  # Test if the build should fail because of metrics on this branch
   #
   # @return [Boolean]
   #
   # @api private
-  def self.master?
-    branch == MASTER_BRANCH
+  def self.fail_on_current_branch?
+    fail_on_branch.include?(current_branch)
   end
 
-  # Return git branch
+  # Return the branches the build should fail on because of metrics
+  #
+  # @return [Array[String]]
+  #
+  # @api private
+  def self.fail_on_branch
+    project.devtools.fail_on_branch
+  end
+
+  # Return current git branch
   #
   # @return [String]
   #
   # @api private
-  def self.branch
+  def self.current_branch
     `git rev-parse --abbrev-ref HEAD`.rstrip
   end
-  private_class_method :branch
+  private_class_method :current_branch
 
 end # module Develry
