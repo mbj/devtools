@@ -157,7 +157,7 @@ module Devtools
     class Devtools < self
       FILE = 'devtools.yml'.freeze
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
-      DEFAULT_BRANCHES_TO_FAIL_ON = [ MASTER_BRANCH ]
+      DEFAULT_BRANCHES_TO_FAIL_ON = [MASTER_BRANCH]
 
       attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT
       attribute :fail_on_branch, DEFAULT_BRANCHES_TO_FAIL_ON
