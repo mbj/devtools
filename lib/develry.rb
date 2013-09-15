@@ -148,7 +148,7 @@ module Develry
   #
   # @api private
   def self.fail_on_branch
-    project.devtools.fail_on_branch
+    project.develry.fail_on_branch
   end
 
   # Return current git branch
