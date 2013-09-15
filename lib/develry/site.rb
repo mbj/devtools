@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
 
-  # Encapsulates a specific {Project} devtools is used for
+  # Encapsulates a specific {Project} develry is used for
   class Site
 
     attr_reader :root
@@ -26,14 +26,14 @@ module Devtools
       self
     end
 
-    # Initialize devtools using default config
+    # Initialize develry using default config
     #
     # @return [undefined]
     #
     # @api private
     def init
       Initializer.call(self)
-      puts 'Run bundle install to complete the devtools installation'
+      puts 'Run bundle install to complete the develry installation'
       self
     end
 
@@ -61,4 +61,4 @@ module Devtools
     end
 
   end # class Site
-end # module Devtools
+end # module Develry

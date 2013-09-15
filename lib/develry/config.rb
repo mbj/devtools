@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
 
   # Abstract base class of tool configuration
   class Config
@@ -153,9 +153,9 @@ module Devtools
       attribute :strategy, DEFAULT_STRATEGY
     end
 
-    # Devtools configuration
-    class Devtools < self
-      FILE = 'devtools.yml'.freeze
+    # Develry configuration
+    class Develry < self
+      FILE = 'develry.yml'.freeze
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
 
       attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT

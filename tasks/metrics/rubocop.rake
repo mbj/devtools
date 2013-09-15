@@ -5,11 +5,11 @@ namespace :metrics do
   task :rubocop do
     begin
       require 'rubocop'
-      config = Devtools.project.rubocop
+      config = Develry.project.rubocop
       begin
         Rubocop::CLI.new.run(%W[--config #{config.config_file.to_s}])
       rescue Encoding::CompatibilityError => exception
-        Devtools.notify exception.message
+        Develry.notify exception.message
       end
     rescue LoadError
       $stderr.puts 'In order to run rubocop, you must: gem install rubocop'

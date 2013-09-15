@@ -6,9 +6,9 @@ namespace :metrics do
       require 'yardstick/rake/measurement'
       require 'yardstick/rake/verify'
 
-      if Devtools.project.yardstick.enabled?
+      if Develry.project.yardstick.enabled?
         # Enable the legacy parser for JRuby until ripper is fully supported
-        if Devtools.jruby?
+        if Develry.jruby?
           # Remove when https://github.com/lsegal/yard/issues/681 is resolved
           # This code first requires ripper, then removes the constant so
           # that it does not trigger a bug in YARD where if it checks if Ripper
@@ -19,7 +19,7 @@ namespace :metrics do
           YARD::Parser::SourceParser.parser_type = :ruby18
         end
 
-        options = Devtools.project.yardstick.options
+        options = Develry.project.yardstick.options
 
         Yardstick::Rake::Measurement.new(:measure, options)
 

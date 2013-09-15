@@ -9,8 +9,8 @@ namespace :metrics do
     false
   end
 
-  config    = Devtools.project.mutant
-  enabled &&= config.enabled? && allowed_versions.include?(Devtools.rvm)
+  config    = Develry.project.mutant
+  enabled &&= config.enabled? && allowed_versions.include?(Develry.rvm)
 
   zombify = %w(
     adamantium equalizer ice_nine infecto anima concord abstract_type
@@ -32,7 +32,7 @@ namespace :metrics do
       status     = namespace::CLI.run(['--include', 'lib', '--require', config.name, *namespaces, config.strategy])
 
       if status.nonzero?
-        Devtools.notify 'Mutant task is not successful'
+        Develry.notify 'Mutant task is not successful'
       end
     end
   else

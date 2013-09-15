@@ -1,9 +1,9 @@
-# devtools
+# develry
 
-[![Build Status](https://secure.travis-ci.org/rom-rb/devtools.png?branch=master)](http://travis-ci.org/rom-rb/devtools)
-[![Dependency Status](https://gemnasium.com/rom-rb/devtools.png)](https://gemnasium.com/rom-rb/devtools)
-[![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
-<!-- [![Code Climate](https://codeclimate.com/github/rom-rb/devtools.png)](https://codeclimate.com/github/rom-rb/devtools) -->
+[![Build Status](https://secure.travis-ci.org/rom-rb/develry.png?branch=master)](http://travis-ci.org/rom-rb/develry)
+[![Dependency Status](https://gemnasium.com/rom-rb/develry.png)](https://gemnasium.com/rom-rb/develry)
+[![Code Climate](https://codeclimate.com/github/datamapper/develry.png)](https://codeclimate.com/github/datamapper/develry)
+<!-- [![Code Climate](https://codeclimate.com/github/rom-rb/develry.png)](https://codeclimate.com/github/rom-rb/develry) -->
 
 Metagem to assist [ROM](https://github.com/rom-rb)-style development.
 Used to centralize metric setup and development gem dependencies.
@@ -18,15 +18,15 @@ Add the git source to your Gemfile's development section:
 
 ```ruby
 group :development, :test do
-  gem 'devtools', git: 'https://github.com/rom-rb/devtools.git'
+  gem 'develry', git: 'https://github.com/rom-rb/develry.git'
 end
 ```
 
-To initialize devtools in a project run the following command:
+To initialize develry in a project run the following command:
 
 ```ruby
 bundle install
-bundle exec devtools init
+bundle exec develry init
 ```
 
 This will *change your Gemfile and Rakefile* and add config files. Make sure to
@@ -34,11 +34,11 @@ review the diff and don't freak out :wink:
 
 ## Updating
 
-Later on if you want to update to the latest devtools just run:
+Later on if you want to update to the latest develry just run:
 
 ```
-bundle update devtools
-bundle exec devtools sync
+bundle update develry
+bundle exec develry sync
 bundle install
 ```
 
@@ -48,7 +48,7 @@ If you're using RSpec and want to have access to our common setup just adjust
 `spec/spec_helper.rb` to include
 
 ```ruby
-require 'devtools/spec_helper'
+require 'develry/spec_helper'
 ```
 
 ## Credits

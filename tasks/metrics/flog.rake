@@ -6,14 +6,14 @@ namespace :metrics do
     require 'flog'
     require 'flog_cli'
 
-    project = Devtools.project
+    project = Develry.project
     config  = project.flog
 
     compatible_scores = %w(mri-1.9.3)
 
-    if ! compatible_scores.include?(Devtools.rvm)
+    if ! compatible_scores.include?(Develry.rvm)
       task :flog do
-        $stderr.puts "Flog is disabled under #{Devtools.rvm}"
+        $stderr.puts "Flog is disabled under #{Develry.rvm}"
       end
     elsif config.enabled?
       # Original code by Marty Andrews:
@@ -31,7 +31,7 @@ namespace :metrics do
         if totals.any?
           max = totals.last[1]
           unless max >= threshold
-            Devtools.notify "Adjust flog score down to #{max}"
+            Develry.notify "Adjust flog score down to #{max}"
           end
         end
 
@@ -41,7 +41,7 @@ namespace :metrics do
             printf "%8.1f: %s\n", score, name
           end
 
-          Devtools.notify(
+          Develry.notify(
             "#{bad_methods.size} methods have a flog complexity > #{threshold}"
           )
         end

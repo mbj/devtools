@@ -24,8 +24,8 @@ DuplicateMethodCall:
 FeatureEnvy:
   enabled: true
   exclude:
-  - Devtools::Site::Initializer#init_gemfile
-  - Devtools::Site::Initializer#init_rakefile
+  - Develry::Site::Initializer#init_gemfile
+  - Develry::Site::Initializer#init_rakefile
 IrresponsibleModule:
   enabled: true
   exclude: []
@@ -53,7 +53,7 @@ RepeatedConditional:
 TooManyInstanceVariables:
   enabled: true
   exclude:
-  - Devtools::Project
+  - Develry::Project
   max_instance_variables: 14 # no adamantium ;)
 TooManyMethods:
   enabled: true
@@ -100,7 +100,7 @@ UnusedParameters:
 UtilityFunction:
   enabled: true
   exclude:
-  - Devtools::Platform#ruby18?
-  - Devtools::Platform#ruby19?
-  - Devtools::Platform#ruby20?
+  - Develry::Platform#ruby18?
+  - Develry::Platform#ruby19?
+  - Develry::Platform#ruby20?
   max_helper_calls: 0

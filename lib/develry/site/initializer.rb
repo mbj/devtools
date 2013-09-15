@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
   class Site
 
     # Supports initializing new projects with a Gemfile and Rakefile
@@ -23,7 +23,7 @@ module Devtools
         @config_dir = config_dir.parent
       end
 
-      # Init devtools using default config
+      # Init develry using default config
       #
       # @return [undefined]
       #
@@ -70,4 +70,4 @@ module Devtools
 
     end # class Initializer
   end # class Site
-end # module Devtools
+end # module Develry
