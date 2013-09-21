@@ -122,7 +122,7 @@ module Devtools
     self
   end
 
-  # Notify or abort depending on the branch
+  # Notify or abort depending on the git HEAD revision
   #
   # @param [String] msg
   #
@@ -130,35 +130,35 @@ module Devtools
   #
   # @api private
   def self.notify(msg)
-    fail_on_current_branch? ? abort(msg) : puts(msg)
+    fail_on_current_head? ? abort(msg) : puts(msg)
   end
 
-  # Test if the build should fail because of metrics on this branch
+  # Test if the build should fail because of metrics on this HEAD revision
   #
   # @return [Boolean]
   #
   # @api private
-  def self.fail_on_current_branch?
-    fail_on_branch.include?(current_branch)
+  def self.fail_on_current_head?
+    fail_on_heads.include?(current_head)
   end
 
-  # Return the branches the build should fail on because of metrics
+  # Return the HEADs the build should fail on because of metrics
   #
   # @return [Array[String]]
   #
   # @api private
-  def self.fail_on_branch
-    project.devtools.fail_on_branch
+  def self.fail_on_heads
+    project.devtools.fail_on_heads
   end
 
-  # Return current git branch
+  # Return current git HEAD revision
   #
   # @return [String]
   #
   # @api private
-  def self.current_branch
-    `git rev-parse --abbrev-ref HEAD`.rstrip
+  def self.current_head
+    `git rev-parse HEAD`.rstrip
   end
-  private_class_method :current_branch
+  private_class_method :current_head
 
 end # module Devtools
