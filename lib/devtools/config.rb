@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Devtools
-  MASTER_BRANCH           = 'master'.freeze
+  MASTER_HEAD = `git rev-parse master`.rstrip.freeze
 
   # Abstract base class of tool configuration
   class Config
@@ -157,10 +157,10 @@ module Devtools
     class Devtools < self
       FILE = 'devtools.yml'.freeze
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
-      DEFAULT_BRANCHES_TO_FAIL_ON = [MASTER_BRANCH]
+      DEFAULT_HEADS_TO_FAIL_ON = [MASTER_HEAD]
 
       attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT
-      attribute :fail_on_branch, DEFAULT_BRANCHES_TO_FAIL_ON
+      attribute :fail_on_heads, DEFAULT_HEADS_TO_FAIL_ON
     end
   end
 end
