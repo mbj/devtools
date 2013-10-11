@@ -5,7 +5,7 @@ namespace :metrics do
 
   enabled = begin
     require 'mutant'
-  rescue LoadError
+  rescue LoadError, NotImplementedError
     false
   end
 
