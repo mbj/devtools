@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
   class Project
     class Initializer
 
-      # Imports all devtools rake tasks into a project
+      # Imports all develry rake tasks into a project
       class Rake
 
         extend ::Rake::DSL
@@ -16,4 +16,4 @@ module Devtools
       end # class Rake
     end # class Initializer
   end # class Project
-end # module Devtools
+end # module Develry

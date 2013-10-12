@@ -5,14 +5,14 @@ require 'bundler'
 
 Bundler.setup
 
-require 'devtools'
+require 'develry'
 
 command = ARGV.first
 
 case command
-when 'init'   then Devtools.init
-when 'sync'   then Devtools.sync
-when 'update' then Devtools.update
+when 'init'   then Develry.init
+when 'sync'   then Develry.sync
+when 'update' then Develry.update
 else
   puts 'command not supported'
 end

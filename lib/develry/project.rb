@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
 
-  # The project devtools supports
+  # The project develry supports
   class Project
 
     # The reek configuration
@@ -47,12 +47,12 @@ module Devtools
     # @api private
     attr_reader :mutant
 
-    # The devtools configuration
+    # The develry configuration
     #
-    # @return [Config::Devtools]
+    # @return [Config::Develry]
     #
     # @api private
-    attr_reader :devtools
+    attr_reader :develry
 
     # Return project root
     #
@@ -135,10 +135,10 @@ module Devtools
       @yardstick = Config::Yardstick.new(self)
       @flay      = Config::Flay.new(self)
       @mutant    = Config::Mutant.new(self)
-      @devtools  = Config::Devtools.new(self)
+      @develry  = Config::Develry.new(self)
 
-      @unit_test_timeout = @devtools.unit_test_timeout
+      @unit_test_timeout = @develry.unit_test_timeout
     end
 
   end # class Project
-end # module Devtools
+end # module Develry

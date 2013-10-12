@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
   class Project
 
     # Base class for project initializers
@@ -18,4 +18,4 @@ module Devtools
       end
     end # class Initializer
   end # class Project
-end # module Devtools
+end # module Develry

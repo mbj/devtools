@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
 
   # Provides methods to determine the ruby platform
   module Platform
@@ -115,4 +115,4 @@ module Devtools
       RUBY_VERSION.start_with?('2.0.')
     end
   end # module Platform
-end # module Devtools
+end # module Develry

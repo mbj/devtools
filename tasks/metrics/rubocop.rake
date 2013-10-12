@@ -11,11 +11,11 @@ namespace :metrics do
 
     if enabled
       require 'rubocop'
-      config = Devtools.project.rubocop
+      config = Develry.project.rubocop
       begin
         Rubocop::CLI.new.run(%W[--config #{config.config_file.to_s}])
       rescue Encoding::CompatibilityError => exception
-        Devtools.notify exception.message
+        Develry.notify exception.message
       end
     else
       $stderr.puts 'Rubocop is disabled'

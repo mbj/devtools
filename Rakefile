@@ -1,5 +1,5 @@
-require 'devtools'
+require 'develry'
 
-ENV['DEVTOOLS_SELF'] = '1'
+ENV['DEVELRY_SELF'] = '1'
 
-Devtools.init_rake_tasks
+Develry.init_rake_tasks

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Devtools
+module Develry
   class Project
     class Initializer
 
@@ -9,7 +9,7 @@ module Devtools
       class Rspec < self
 
         def self.require_files(directory)
-          Devtools.require_files(directory, SHARED_SPEC_PATTERN)
+          Develry.require_files(directory, SHARED_SPEC_PATTERN)
         end
 
         # Initialize RSpec for +project+
@@ -65,7 +65,7 @@ module Devtools
         def call
           require 'rspec'
           require_shared_spec_files
-          enable_unit_test_timeout unless Devtools.jit?
+          enable_unit_test_timeout unless Develry.jit?
           self
         end
 
@@ -101,4 +101,4 @@ module Devtools
       end # class Rspec
     end # class Initializer
   end # class Project
-end # module Devtools
+end # module Develry

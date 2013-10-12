@@ -4,14 +4,14 @@ namespace :metrics do
   begin
     require 'flay'
 
-    project = Devtools.project
+    project = Develry.project
     config  = project.flay
 
     compatible_scores = %w(mri-1.9.3 mri-2.0.0)
 
-    if ! compatible_scores.include?(Devtools.rvm)
+    if ! compatible_scores.include?(Develry.rvm)
       task :flay do
-        $stderr.puts "Flay is disabled under #{Devtools.rvm}"
+        $stderr.puts "Flay is disabled under #{Develry.rvm}"
       end
     elsif config.enabled?
       # Original code by Marty Andrews:
@@ -33,12 +33,12 @@ namespace :metrics do
 
         max = (masses.max || 0).to_i
         unless max >= threshold
-          Devtools.notify "Adjust flay threshold down to #{max}"
+          Develry.notify "Adjust flay threshold down to #{max}"
         end
 
         total = masses.inject(:+).to_i
         unless total == total_score
-          Devtools.notify "Flay total is now #{total}, but expected #{total_score}"
+          Develry.notify "Flay total is now #{total}, but expected #{total_score}"
         end
 
         # Run flay a second time with the threshold set
@@ -50,7 +50,7 @@ namespace :metrics do
 
         if mass_size.nonzero?
           flay.report
-          Devtools.notify "#{mass_size} chunks have a duplicate mass > #{threshold}"
+          Develry.notify "#{mass_size} chunks have a duplicate mass > #{threshold}"
         end
       end
     else

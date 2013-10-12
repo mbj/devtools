@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'devtools/spec_helper'
+require 'develry/spec_helper'
 
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
@@ -19,7 +19,7 @@ if ENV['COVERAGE'] == 'true'
   end
 end
 
-require 'devtools'
+require 'develry'
 
 # Require spec support files and shared behavior
 Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|

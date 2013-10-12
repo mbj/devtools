@@ -1,7 +1,8 @@
 # encoding: utf-8
 
-module Devtools
-  MASTER_BRANCH           = 'master'.freeze
+module Develry
+
+  MASTER_BRANCH = 'master'.freeze
 
   # Abstract base class of tool configuration
   class Config
@@ -153,9 +154,9 @@ module Devtools
       attribute :strategy, DEFAULT_STRATEGY
     end
 
-    # Devtools configuration
-    class Devtools < self
-      FILE = 'devtools.yml'.freeze
+    # Develry configuration
+    class Develry < self
+      FILE = 'develry.yml'.freeze
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
       DEFAULT_BRANCHES_TO_FAIL_ON = [MASTER_BRANCH]
 
