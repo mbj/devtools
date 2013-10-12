@@ -157,7 +157,7 @@ module Develry
   #
   # @api private
   def self.current_branch
-    `git rev-parse --abbrev-ref HEAD`.rstrip
+    ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.rstrip
   end
   private_class_method :current_branch
 

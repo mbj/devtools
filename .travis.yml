@@ -14,8 +14,7 @@ matrix:
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
   allow_failures:
-    # broken on travis
-    - rvm: ruby-head
+    - rvm: jruby-head  # travis broken
 notifications:
   irc:
     channels:

@@ -3,7 +3,13 @@
 namespace :metrics do
   desc 'Check with code style guide'
   task :rubocop do
-    begin
+    enabled = begin
+      require 'rubocop'
+    rescue LoadError, NotImplementedError
+      false
+    end
+
+    if enabled
       require 'rubocop'
       config = Develry.project.rubocop
       begin
@@ -11,8 +17,8 @@ namespace :metrics do
       rescue Encoding::CompatibilityError => exception
         Develry.notify exception.message
       end
-    rescue LoadError
-      $stderr.puts 'In order to run rubocop, you must: gem install rubocop'
+    else
+      $stderr.puts 'Rubocop is disabled'
     end
   end
 end

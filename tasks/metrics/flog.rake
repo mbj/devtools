@@ -2,7 +2,6 @@
 
 namespace :metrics do
   begin
-    require 'backports'
     require 'flog'
     require 'flog_cli'
 
