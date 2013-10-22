@@ -11,9 +11,7 @@ module Devtools
         files       = ::Flay.expand_dirs_to_files(project.lib_dir).sort
 
         # Run flay first to ensure the max mass matches the threshold
-        flay = ::Flay.new(fuzzy: false, verbose: false, mass: 0)
-        flay.process(*files)
-        flay.analyze
+        flay = run_flay(files)
 
         masses = flay.masses.map do |hash, mass|
           Rational(mass, flay.hashes[hash].size)
@@ -40,6 +38,13 @@ module Devtools
           flay.report
           Devtools.notify "#{mass_size} chunks have a duplicate mass > #{threshold}"
         end
+      end
+
+      def self.run_flay(files, mass = 0)
+        flay = ::Flay.new(fuzzy: false, verbose: false, mass: mass)
+        flay.process(*files)
+        flay.analyze
+        return flay
       end
 
     end # class Flay
