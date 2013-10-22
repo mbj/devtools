@@ -1,7 +1,7 @@
 require 'flay'
 
 module Devtools
-  module Task
+  module Tasks
 
     class Flay
 
@@ -28,9 +28,7 @@ module Devtools
         end
 
         # Run flay a second time with the threshold set
-        flay = ::Flay.new(fuzzy: false, verbose: false, mass: threshold.succ)
-        flay.process(*files)
-        flay.analyze
+        flay = run_flay(files, threshold.succ)
 
         mass_size = flay.masses.size
 

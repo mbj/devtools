@@ -14,7 +14,7 @@ require 'devtools/config'
 require 'devtools/project/initializer'
 require 'devtools/project/initializer/rake'
 require 'devtools/project/initializer/rspec'
-require 'devtools/task/flay'
+require 'devtools/tasks/flay'
 
 # Provides access to metric tools
 module Devtools
