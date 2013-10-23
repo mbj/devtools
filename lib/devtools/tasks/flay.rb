@@ -28,12 +28,12 @@ module Devtools
         flay = run_flay
 
         max = (masses(flay).max || 0).to_i
-        unless max >= threshold
+        if max < threshold
           Devtools.notify "Adjust flay threshold down to #{max}"
         end
 
         total = masses(flay).reduce(:+).to_i
-        unless total == total_score
+        if total != total_score
           Devtools.notify "Flay total is now #{total}, but expected #{total_score}"
         end
 
@@ -59,7 +59,7 @@ module Devtools
         flay = ::Flay.new(fuzzy: false, verbose: false, mass: mass)
         flay.process(*files)
         flay.analyze
-        return flay
+        flay
       end
 
     end # class Flay
