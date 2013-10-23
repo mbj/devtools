@@ -4,12 +4,23 @@ module Devtools
   module Tasks
 
     class Flay
+      attr_reader :total_score
+      private :total_score
 
-      attr_reader :config, :project, :files
+      attr_reader :threshold
+      private :threshold
+
+      attr_reader :files
+      private :files
+
+      def self.call(config, project)
+        new(config, ::Flay.expand_dirs_to_files(project.lib_dir).sort).call
+      end
+
       def initialize(config, project)
-        @config = config
-        @project = project
-        @files = ::Flay.expand_dirs_to_files(project.lib_dir).sort
+        @total_score = config.total_score
+        @threshold   = config.threshold
+        @files = files
       end
 
       def call
@@ -42,14 +53,6 @@ module Devtools
         @masses ||= flay.masses.map do |hash, mass|
           Rational(mass, flay.hashes[hash].size)
         end
-      end
-
-      def total_score
-        config.total_score
-      end
-
-      def threshold
-        config.threshold
       end
 
       def run_flay(mass = 0)
