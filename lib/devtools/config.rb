@@ -64,7 +64,7 @@ module Devtools
     # @api private
     #
     def enabled?
-      ! raw.equal?(DEFAULT_CONFIG)
+      !raw.equal?(DEFAULT_CONFIG)
     end
 
     private

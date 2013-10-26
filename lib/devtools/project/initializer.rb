@@ -14,7 +14,7 @@ module Devtools
       end
 
       def call
-        raise NotImplementedError, "#{self.class}##{__method__} must be implemented"
+        fail NotImplementedError, "#{self.class}##{__method__} must be implemented"
       end
     end # class Initializer
   end # class Project
