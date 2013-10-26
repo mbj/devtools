@@ -61,7 +61,8 @@ TooManyMethods:
   max_methods: 15
 TooManyStatements:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Project#initialize  # needs refactoring, it is way too large
   max_statements: 5
 UncommunicativeMethodName:
   enabled: true
