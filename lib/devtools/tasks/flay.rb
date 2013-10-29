@@ -25,7 +25,7 @@ module Devtools
 
       def call
         # Run flay first to ensure the max mass matches the threshold
-        flay = run_flay
+        flay_task = run_flay(flay)
 
         max = (masses(flay).max || 0).to_i
         if max < threshold
@@ -38,7 +38,7 @@ module Devtools
         end
 
         # Run flay a second time with the threshold set
-        flay = run_flay(threshold.succ)
+        flay_task = run_flay(flay(threshold.succ))
 
         mass_size = flay.masses.size
 
@@ -55,14 +55,16 @@ module Devtools
         end
       end
 
-      def run_flay(mass = 0)
-        flay = ::Flay.new(fuzzy: false, verbose: false, mass: mass)
+      def flay(mass = 0)
+        @flay = ::Flay.new(fuzzy: false, verbose: false, mass: mass)
+      end
+
+      def run_flay(flay)
         flay.process(*files)
         flay.analyze
-        flay
+        self
       end
 
     end # class Flay
   end # module Task
 end # module Devtools 
-
