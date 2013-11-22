@@ -49,9 +49,11 @@ group :metrics do
   end
 
   platform :rbx do
-    gem 'racc',            '~> 1.4.10'
-    gem 'rubysl-logger',   '~> 2.0.0'
-    gem 'rubysl-open-uri', '~> 2.0.0'
+    gem 'json',               '~> 1.8.1'
+    gem 'racc',               '~> 1.4.10'
+    gem 'rubysl-logger',      '~> 2.0.0'
+    gem 'rubysl-open-uri',    '~> 2.0.0'
+    gem 'rubysl-prettyprint', '~> 2.0.2'
   end
 end
 
