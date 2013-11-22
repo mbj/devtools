@@ -4,6 +4,10 @@ group :development do
   gem 'rake',  '~> 10.1.0'
   gem 'rspec', '~> 2.14.1'
   gem 'yard',  '~> 0.8.7'
+
+  platform :rbx do
+    gem 'rubysl-singleton', '~> 2.0.0'
+  end
 end
 
 group :yard do
@@ -42,6 +46,12 @@ group :metrics do
     gem 'mutant',          '~> 0.3.0.rc3', git: 'https://github.com/mbj/mutant.git'
     gem 'unparser',        '~> 0.1.5',     git: 'https://github.com/mbj/unparser.git'
     gem 'yard-spellcheck', '~> 0.1.5'
+  end
+
+  platform :rbx do
+    gem 'racc',            '~> 1.4.10'
+    gem 'rubysl-logger',   '~> 2.0.0'
+    gem 'rubysl-open-uri', '~> 2.0.0'
   end
 end
 
