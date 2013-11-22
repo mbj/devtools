@@ -10,8 +10,4 @@ shared_examples_for 'a hash method' do
   it 'is a fixnum' do
     instance_eval(&specification)
   end
-
-  it 'memoizes the hash code' do
-    expect(subject).to eql(object.memoized(:hash))
-  end
 end
