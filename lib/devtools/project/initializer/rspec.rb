@@ -84,7 +84,7 @@ module Devtools
         #
         def enable_unit_test_timeout
           timeout = unit_test_timeout # support the closure
-          RSpec.configuration.around file_path: UNIT_TEST_PATH_REGEXP do |example|
+          RSpec.configuration.around :file_path => UNIT_TEST_PATH_REGEXP do |example|
             Timeout.timeout(timeout, &example)
           end
         end

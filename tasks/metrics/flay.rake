@@ -23,7 +23,7 @@ namespace :metrics do
         files       = Flay.expand_dirs_to_files(project.lib_dir).sort
 
         # Run flay first to ensure the max mass matches the threshold
-        flay = Flay.new(fuzzy: false, verbose: false, mass: 0)
+        flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
         flay.process(*files)
         flay.analyze
 
@@ -42,7 +42,7 @@ namespace :metrics do
         end
 
         # Run flay a second time with the threshold set
-        flay = Flay.new(fuzzy: false, verbose: false, mass: threshold.succ)
+        flay = Flay.new(:fuzzy => false, :verbose => false, :mass => threshold.succ)
         flay.process(*files)
         flay.analyze
 

@@ -4,7 +4,7 @@ begin
   require 'rspec/core/rake_task'
 
   desc 'Run all specs'
-  task spec: %w[ spec:unit spec:integration ]
+  task :spec => %w[ spec:unit spec:integration ]
 
   namespace :spec do
     desc 'Run unit specs'
@@ -25,4 +25,4 @@ rescue LoadError
   end
 end
 
-task test: :spec
+task :test => :spec
