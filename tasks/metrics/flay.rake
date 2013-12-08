@@ -36,7 +36,7 @@ namespace :metrics do
           Devtools.notify "Adjust flay threshold down to #{max}"
         end
 
-        total = masses.inject(:+).to_i
+        total = masses.reduce(:+).to_i
         unless total == total_score
           Devtools.notify "Flay total is now #{total}, but expected #{total_score}"
         end
