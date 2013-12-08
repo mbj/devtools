@@ -23,9 +23,9 @@ namespace :metrics do
         flog      = Flog.new
         flog.flog(*FlogCLI.expand_dirs_to_files(project.lib_dir))
 
-        totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }
-                            .map     { |name, score| [name, score.round(1)] }
-                            .sort_by { |name, score| score }
+        totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }.
+                             map     { |name, score| [name, score.round(1)] }.
+                             sort_by { |name, score| score }
 
         if totals.any?
           max = totals.last[1]

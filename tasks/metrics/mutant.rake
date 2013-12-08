@@ -19,7 +19,7 @@ namespace :metrics do
 
   if enabled && !ENV['DEVTOOLS_SELF']
     desc 'Measure mutation coverage'
-    task mutant: :coverage do
+    task :mutant => :coverage do
       namespace =
         if zombify
           Mutant::Zombifier.zombify
@@ -29,7 +29,7 @@ namespace :metrics do
         end
 
       namespaces = Array(config.namespace).map { |n| "::#{n}*" }
-      status     = namespace::CLI.run(['--include', 'lib', '--require', config.name, *namespaces, config.strategy])
+      status     = namespace::CLI.run(['--include', 'lib', '--require', config.name, namespaces, config.strategy].flatten)
 
       if status.nonzero?
         Devtools.notify 'Mutant task is not successful'
@@ -37,7 +37,7 @@ namespace :metrics do
     end
   else
     desc 'Measure mutation coverage'
-    task mutant: :coverage do
+    task :mutant => :coverage do
       $stderr.puts 'Mutant is disabled'
     end
   end

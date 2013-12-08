@@ -128,8 +128,9 @@ module Devtools
       #
       # @api private
       def options
-        OPTIONS.each_with_object({}) { |name, hash|
+        OPTIONS.reduce({}) { |hash, name|
           hash[name] = raw.fetch(name, nil)
+          hash
         }
       end
     end
