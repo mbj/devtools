@@ -137,9 +137,11 @@ module Devtools
     # Flog configuration
     class Flog < self
       FILE = 'flog.yml'.freeze
+      DEFAULT_ENABLED_PLATFORMS = ['mri-1.9.3'].freeze
 
       attribute :total_score
       attribute :threshold
+      attribute :enabled_platforms, DEFAULT_ENABLED_PLATFORMS
     end
 
     # Mutant configuration
