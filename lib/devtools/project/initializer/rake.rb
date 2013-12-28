@@ -10,7 +10,7 @@ module Devtools
         extend ::Rake::DSL
 
         def self.call
-          FileList[RAKE_FILES_GLOB].each { |task| import(task) }
+          FileList[RAKE_FILES_GLOB].each(&method(:import))
         end
 
       end # class Rake
