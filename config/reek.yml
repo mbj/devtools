@@ -15,7 +15,7 @@ DataClump:
   enabled: true
   exclude: []
   max_copies: 0
-  min_clump_size: 1
+  min_clump_size: 2
 DuplicateMethodCall:
   enabled: true
   exclude: []
