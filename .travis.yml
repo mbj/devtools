@@ -17,6 +17,10 @@ matrix:
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
+  allow_failures:
+    - rvm: jruby-20mode  # bouncy-castle-java install error
+    - rvm: jruby-21mode  # bouncy-castle-java install error
+    - rvm: jruby-head    # bouncy-castle-java install error
   fast_finish: true
 notifications:
   irc:
