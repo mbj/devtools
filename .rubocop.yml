@@ -1,0 +1,6 @@
+AllCops:
+  Includes:
+    - 'Gemfile'
+  Excludes:
+    - 'shared/Gemfile'
+    - 'vendor/**'
