@@ -40,7 +40,7 @@ module Devtools
   SHARED_SPEC_PATTERN     = '{shared,support}/**/*.rb'.freeze
   UNIT_TEST_PATH_REGEXP   = %r{\bspec/unit/}.freeze
   DEFAULT_CONFIG_DIR_NAME = 'config'.freeze
-  ANNOTATION_WRAPPER      = "\n# Added by devtools\n%s".freeze
+  ANNOTATION_WRAPPER      = "\n# Added by devtools\n%s\n".freeze
 
   # Provides devtools for a project
   SITE = Site.new(Project.new(PROJECT_ROOT))
