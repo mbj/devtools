@@ -41,8 +41,10 @@ group :metrics do
   gem 'simplecov', '~> 0.8.2'
   gem 'yardstick', '~> 0.9.7', git: 'https://github.com/dkubb/yardstick.git'
 
-  platforms :ruby_19, :ruby_20, :ruby_21 do
+  platforms :mri do
     gem 'mutant',          '~> 0.3.4'
+
+  platforms :ruby_19, :ruby_20 do
     gem 'yard-spellcheck', '~> 0.1.5'
   end
 
