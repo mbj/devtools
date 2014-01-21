@@ -21,6 +21,7 @@ matrix:
     - rvm: jruby-20mode  # bouncy-castle-java install error
     - rvm: jruby-21mode  # bouncy-castle-java install error
     - rvm: jruby-head    # bouncy-castle-java install error
+    - rvm: 2.1.0         # buggy runtime
   fast_finish: true
 notifications:
   irc:
