@@ -29,8 +29,13 @@ namespace :metrics do
         end
 
       namespaces = Array(config.namespace).map { |n| "::#{n}*" }
-      status     = namespace::CLI.run(['--include', 'lib', '--require', config.name, *namespaces, config.strategy])
+      arguments  = %W[
+        --include lib
+        --require #{config.name}
+        --use #{config.strategy}
+      ].concat(namespaces)
 
+      status = namespace::CLI.run(arguments)
       if status.nonzero?
         Devtools.notify 'Mutant task is not successful'
       end
