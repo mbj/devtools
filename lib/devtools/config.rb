@@ -148,7 +148,7 @@ module Devtools
     class Mutant < self
       FILE             = 'mutant.yml'.freeze
       DEFAULT_NAME     = ''.freeze
-      DEFAULT_STRATEGY = '--rspec'.freeze
+      DEFAULT_STRATEGY = 'rspec'.freeze
 
       attribute :name, DEFAULT_NAME
       attribute :namespace
