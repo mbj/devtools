@@ -15,7 +15,7 @@ namespace :metrics do
       begin
         Rubocop::CLI.new.run(%W[--config #{config.config_file.to_s}])
       rescue Encoding::CompatibilityError => exception
-        Devtools.notify exception.message
+        Devtools.notify_metric_violation exception.message
       end
     else
       $stderr.puts 'Rubocop is disabled'

@@ -45,6 +45,27 @@ module Devtools
   # Provides devtools for a project
   SITE = Site.new(Project.new(PROJECT_ROOT))
 
+  # Test if build should fail on metric error
+  #
+  # @return [Boolean]
+  #
+  # @api private
+  #
+  def self.fail_on_metric_violation?
+    project.devtools.fail_on_metric_violation
+  end
+
+  # React to metric violation
+  #
+  # @param [String] msg
+  #
+  # @return [undefined]
+  #
+  # @api private
+  def self.notify(msg)
+    fail_on_metric_violation? ? abort(msg) : $stderr.puts(msg)
+  end
+
   # Initialize project and load tasks
   #
   # Should *only* be called from your $application_root/Rakefile
@@ -121,44 +142,5 @@ module Devtools
     Dir[dir.join(pattern)].each { |file| require file }
     self
   end
-
-  # Notify or abort depending on the branch
-  #
-  # @param [String] msg
-  #
-  # @return [undefined]
-  #
-  # @api private
-  def self.notify(msg)
-    fail_on_current_branch? ? abort(msg) : puts(msg)
-  end
-
-  # Test if the build should fail because of metrics on this branch
-  #
-  # @return [Boolean]
-  #
-  # @api private
-  def self.fail_on_current_branch?
-    fail_on_branch.include?(current_branch)
-  end
-
-  # Return the branches the build should fail on because of metrics
-  #
-  # @return [Array[String]]
-  #
-  # @api private
-  def self.fail_on_branch
-    project.devtools.fail_on_branch
-  end
-
-  # Return current git branch
-  #
-  # @return [String]
-  #
-  # @api private
-  def self.current_branch
-    ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.rstrip
-  end
-  private_class_method :current_branch
 
 end # module Devtools
