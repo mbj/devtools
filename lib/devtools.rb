@@ -62,7 +62,7 @@ module Devtools
   # @return [undefined]
   #
   # @api private
-  def self.notify(msg)
+  def self.notify_metric_violation(msg)
     fail_on_metric_violation? ? abort(msg) : $stderr.puts(msg)
   end
 
