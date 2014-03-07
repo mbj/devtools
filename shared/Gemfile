@@ -1,9 +1,10 @@
 # encoding: utf-8
 
 group :development do
-  gem 'rake',  '~> 10.1.0'
-  gem 'rspec', '~> 2.14.1'
-  gem 'yard',  '~> 0.8.7'
+  gem 'rake',       '~> 10.1.0'
+  gem 'rspec',      '~> 2.14.1'
+  gem 'rspec-core', '~> 2.14.8'
+  gem 'yard',       '~> 0.8.7'
 
   platform :rbx do
     gem 'rubysl-singleton', '~> 2.0.0'
