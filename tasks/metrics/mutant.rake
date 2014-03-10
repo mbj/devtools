@@ -37,7 +37,7 @@ namespace :metrics do
 
       status = namespace::CLI.run(arguments)
       if status.nonzero?
-        Devtools.notify 'Mutant task is not successful'
+        Devtools.notify_metric_violation 'Mutant task is not successful'
       end
     end
   else
