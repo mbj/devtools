@@ -61,3 +61,20 @@ Blocks:
 # Allow empty lines around body
 EmptyLinesAroundBody:
   Enabled: false
+
+# Prefer String#% over Kernel#sprintf
+FormatString:
+  Enabled: false
+
+# Use square brackets for literal Array objects
+PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  ()
+    '%i': '[]'
+    '%q': ()
+    '%Q': ()
+    '%r': '{}'
+    '%s': ()
+    '%w': '[]'
+    '%W': '[]'
+    '%x': ()
