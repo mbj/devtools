@@ -149,9 +149,10 @@ module Devtools
       DEFAULT_NAME     = ''.freeze
       DEFAULT_STRATEGY = 'rspec'.freeze
 
-      attribute :name, DEFAULT_NAME
-      attribute :namespace
+      attribute :name,     DEFAULT_NAME
       attribute :strategy, DEFAULT_STRATEGY
+      attribute :zombify,  false
+      attribute :namespace
     end
 
     # Devtools configuration

@@ -12,17 +12,12 @@ namespace :metrics do
   config    = Devtools.project.mutant
   enabled &&= config.enabled? && allowed_versions.include?(Devtools.rvm)
 
-  zombify = %w(
-    adamantium equalizer ice_nine infecto anima concord abstract_type
-    descendants_tracker parser rspec unparser mutant
-  ).include?(config.name)
-
   if enabled && !ENV['DEVTOOLS_SELF']
     desc 'Measure mutation coverage'
     task mutant: :coverage do
       namespace =
-        if zombify
-          Mutant::Zombifier.zombify
+        if config.zombify
+          Mutant.zombify
           Zombie::Mutant
         else
           Mutant
