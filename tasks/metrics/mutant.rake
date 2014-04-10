@@ -24,11 +24,16 @@ namespace :metrics do
         end
 
       namespaces = Array(config.namespace).map { |n| "::#{n}*" }
+
+      ignore_subjects = config.ignore_subjects.flat_map do |matcher|
+        %W(--ignore #{matcher})
+      end
+
       arguments  = %W[
         --include lib
         --require #{config.name}
         --use #{config.strategy}
-      ].concat(namespaces)
+      ].concat(ignore_subjects).concat(namespaces)
 
       status = namespace::CLI.run(arguments)
       if status.nonzero?
