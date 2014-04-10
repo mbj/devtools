@@ -153,6 +153,7 @@ module Devtools
       attribute :strategy,        DEFAULT_STRATEGY
       attribute :zombify,         false
       attribute :ignore_subjects, []
+      attribute :expect_coverage, 100.0
       attribute :namespace
     end
 

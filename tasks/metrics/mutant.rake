@@ -26,12 +26,13 @@ namespace :metrics do
       namespaces = Array(config.namespace).map { |n| "::#{n}*" }
 
       ignore_subjects = config.ignore_subjects.flat_map do |matcher|
-        %W(--ignore #{matcher})
+        %W[--ignore #{matcher}]
       end
 
       arguments  = %W[
         --include lib
         --require #{config.name}
+        --expect_coverage #{config.expect_coverage}
         --use #{config.strategy}
       ].concat(ignore_subjects).concat(namespaces)
 
