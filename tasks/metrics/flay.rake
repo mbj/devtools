@@ -7,7 +7,7 @@ namespace :metrics do
     project = Devtools.project
     config  = project.flay
 
-    compatible_scores = %w(mri-1.9.3 mri-2.0.0 mri-2.1.0)
+    compatible_scores = %w(mri-1.9.3 mri-2.0.0 mri-2.1.0 mri-2.1.1)
 
     if ! compatible_scores.include?(Devtools.rvm)
       task :flay do
