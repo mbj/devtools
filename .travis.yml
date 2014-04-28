@@ -5,7 +5,7 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.0
-  - ruby-head
+  - 2.1.1
   - rbx
 matrix:
   include:
@@ -17,6 +17,7 @@ matrix:
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
   allow_failures:
     - rvm: 2.1.0  # buggy runtime
+    - rvm: ruby-head # parser cannot handle it jet per default
     - rvm: jruby-21mode
   fast_finish: true
 notifications:
