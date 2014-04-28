@@ -8,7 +8,7 @@ namespace :metrics do
     project = Devtools.project
     config  = project.flog
 
-    if ! config.enabled_platforms.include?(Devtools.rvm)
+    if !config.enabled_platforms.include?(Devtools.rvm)
       task :flog do
         $stderr.puts "Flog is disabled under #{Devtools.rvm}"
       end
