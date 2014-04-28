@@ -136,7 +136,7 @@ module Devtools
     # Flog configuration
     class Flog < self
       FILE = 'flog.yml'.freeze
-      DEFAULT_ENABLED_PLATFORMS = ['mri-2.1.0'].freeze
+      DEFAULT_ENABLED_PLATFORMS = ['mri-2.1.1'].freeze
 
       attribute :total_score
       attribute :threshold
