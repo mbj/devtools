@@ -6,15 +6,11 @@ rvm:
   - 2.0.0
   - 2.1.1
   - 2.1.2
+  - jruby-19mode
+  - jruby-20mode
+  - jruby-21mode
   - rbx
 matrix:
-  include:
-    - rvm: jruby-19mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
-    - rvm: jruby-20mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
-    - rvm: jruby-21mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
   allow_failures:
     - rvm: ruby-head # parser cannot handle it jet per default
     - rvm: rbx # buggy travis
