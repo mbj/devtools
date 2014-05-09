@@ -4,7 +4,6 @@ script: "bundle exec rake ci"
 rvm:
   - 1.9.3
   - 2.0.0
-  - 2.1.0
   - 2.1.1
   - rbx
 matrix:
@@ -16,7 +15,6 @@ matrix:
     - rvm: jruby-21mode
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
   allow_failures:
-    - rvm: 2.1.0  # buggy runtime
     - rvm: ruby-head # parser cannot handle it jet per default
     - rvm: rbx # buggy travis
     - rvm: jruby-21mode
