@@ -18,6 +18,7 @@ matrix:
   allow_failures:
     - rvm: 2.1.0  # buggy runtime
     - rvm: ruby-head # parser cannot handle it jet per default
+    - rvm: rbx # buggy travis
     - rvm: jruby-21mode
   fast_finish: true
 notifications:
