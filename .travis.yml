@@ -7,14 +7,11 @@ rvm:
   - 2.1.1
   - 2.1.2
   - jruby-19mode
-  - jruby-20mode
-  - jruby-21mode
   - rbx
 matrix:
   allow_failures:
     - rvm: ruby-head # parser cannot handle it jet per default
     - rvm: rbx # buggy travis
-    - rvm: jruby-21mode
   fast_finish: true
 notifications:
   irc:
