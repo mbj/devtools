@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 namespace :metrics do
-  allowed_versions = %w(mri-1.9.3 mri-2.0.0 mri-2.1.0 mri-2.1.1 rbx-1.9.3)
+  allowed_versions = %w(mri-1.9.3 mri-2.0.0 mri-2.1.0 mri-2.1.1 mri-2.1.2 rbx-1.9.3)
 
   enabled = begin
     require 'mutant'
