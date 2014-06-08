@@ -12,6 +12,7 @@ ParameterLists:
   Max: 3
   CountKeywordArgs: true
 
+# Limit method length
 MethodLength:
   CountComments: false
   Max: 10
