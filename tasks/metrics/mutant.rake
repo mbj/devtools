@@ -23,7 +23,7 @@ namespace :metrics do
           Mutant
         end
 
-      namespaces = Array(config.namespace).map { |n| "::#{n}*" }
+      namespaces = Array(config.namespace).map { |n| "#{n}*" }
 
       ignore_subjects = config.ignore_subjects.flat_map do |matcher|
         %W[--ignore #{matcher}]
