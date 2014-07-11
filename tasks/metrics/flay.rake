@@ -20,7 +20,7 @@ namespace :metrics do
       task :flay do
         threshold   = config.threshold
         total_score = config.total_score
-        files       = Flay.expand_dirs_to_files(project.lib_dir).sort
+        files       = Flay.expand_dirs_to_files(config.lib_dirs).sort
 
         # Run flay first to ensure the max mass matches the threshold
         flay = Flay.new(fuzzy: false, verbose: false, mass: 0)

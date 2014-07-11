@@ -106,6 +106,9 @@ module Devtools
     class Flay < self
       FILE = 'flay.yml'.freeze
 
+      DEFAULT_LIB_DIRS = %w(lib)
+
+      attribute :lib_dirs, DEFAULT_LIB_DIRS
       attribute :total_score
       attribute :threshold
     end
