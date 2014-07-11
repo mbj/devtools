@@ -19,7 +19,7 @@ namespace :metrics do
       task :flog do
         threshold = config.threshold.to_f.round(1)
         flog      = Flog.new
-        flog.flog(*FlogCLI.expand_dirs_to_files(project.lib_dir))
+        flog.flog(*FlogCLI.expand_dirs_to_files(config.lib_dirs))
 
         totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }
                             .map     { |name, score| [name, score.round(1)] }
