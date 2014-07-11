@@ -47,10 +47,9 @@ module Devtools
       # @api private
       def init_gemfile
         gemfile = root.join(DEFAULT_GEMFILE_NAME)
-        unless gemfile.file? && gemfile.read.include?(EVAL_GEMFILE)
-          gemfile.open('a') do |file|
-            file << ANNOTATION_WRAPPER % EVAL_GEMFILE
-          end
+        return if gemfile.file? && gemfile.read.include?(EVAL_GEMFILE)
+        gemfile.open('a') do |file|
+          file << ANNOTATION_WRAPPER % EVAL_GEMFILE
         end
       end
 
@@ -61,10 +60,9 @@ module Devtools
       # @api private
       def init_rakefile
         rakefile = root.join(RAKE_FILE_NAME)
-        unless rakefile.file? && rakefile.read.include?(INIT_RAKE_TASKS)
-          rakefile.open('a') do |file|
-            file << ANNOTATION_WRAPPER % [REQUIRE, INIT_RAKE_TASKS].join("\n")
-          end
+        return if rakefile.file? && rakefile.read.include?(INIT_RAKE_TASKS)
+        rakefile.open('a') do |file|
+          file << ANNOTATION_WRAPPER % [REQUIRE, INIT_RAKE_TASKS].join("\n")
         end
       end
 

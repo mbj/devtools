@@ -7,7 +7,7 @@ module Devtools
     class Initializer
 
       attr_reader :project
-      protected   :project
+      protected :project
 
       def initialize(project)
         @project = project

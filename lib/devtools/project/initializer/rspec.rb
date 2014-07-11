@@ -30,7 +30,7 @@ module Devtools
         #
         # @api private
         attr_reader :spec_root
-        private     :spec_root
+        private :spec_root
 
         # The unit test timeout
         #
@@ -38,7 +38,7 @@ module Devtools
         #
         # @api private
         attr_reader :unit_test_timeout
-        private     :unit_test_timeout
+        private :unit_test_timeout
 
         # Initialize a new instance
         #

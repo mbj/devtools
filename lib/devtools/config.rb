@@ -105,7 +105,7 @@ module Devtools
     # Flay configuration
     class Flay < self
       FILE             = 'flay.yml'.freeze
-      DEFAULT_LIB_DIRS = %w(lib).freeze
+      DEFAULT_LIB_DIRS = %w[lib].freeze
 
       attribute :total_score
       attribute :threshold
@@ -139,7 +139,7 @@ module Devtools
     class Flog < self
       FILE                      = 'flog.yml'.freeze
       DEFAULT_ENABLED_PLATFORMS = ['mri-2.1.2'].freeze
-      DEFAULT_LIB_DIRS          = %w(lib).freeze
+      DEFAULT_LIB_DIRS          = %w[lib].freeze
 
       attribute :total_score
       attribute :threshold
