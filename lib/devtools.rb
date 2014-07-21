@@ -33,7 +33,8 @@ module Devtools
   RAKE_FILE_NAME          = 'Rakefile'.freeze
   DEFAULT_GEMFILE_NAME    = 'Gemfile'.freeze
   GEMFILE_NAME            = 'Gemfile.devtools'.freeze
-  EVAL_GEMFILE            = "eval_gemfile '#{GEMFILE_NAME}'".freeze
+  EVAL_GEMFILE            = 'eval_gemfile File.expand_path(' +
+                            "'../#{GEMFILE_NAME}', __FILE__)".freeze
   BUNDLE_UPDATE           = 'bundle update'.freeze
   REQUIRE                 = "require 'devtools'".freeze
   INIT_RAKE_TASKS         = 'Devtools.init_rake_tasks'.freeze
