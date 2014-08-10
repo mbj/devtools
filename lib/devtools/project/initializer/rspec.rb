@@ -64,6 +64,7 @@ module Devtools
         # @api private
         def call
           require 'rspec'
+          require 'rspec/its'
           require_shared_spec_files
           enable_unit_test_timeout unless Devtools.jit?
           self
