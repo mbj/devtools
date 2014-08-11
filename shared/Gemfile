@@ -43,8 +43,8 @@ group :metrics do
   gem 'yardstick', '~> 0.9.9'
 
   platforms :mri do
-    gem 'mutant',       '~> 0.5.23'
-    gem 'mutant-rspec', '~> 0.5.21'
+    gem 'mutant',       '~> 0.6.0'
+    gem 'mutant-rspec', '~> 0.6.0'
   end
 
   platforms :ruby_19, :ruby_20 do
