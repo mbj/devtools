@@ -130,7 +130,7 @@ module Devtools
       # @api private
       def options
         OPTIONS.each_with_object({}) { |name, hash|
-          hash[name] = raw.fetch(name, nil)
+          hash[name] = raw[name] if raw.key?(name)
         }
       end
     end
