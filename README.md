@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
 <!-- [![Code Climate](https://codeclimate.com/github/rom-rb/devtools.png)](https://codeclimate.com/github/rom-rb/devtools) -->
 
-Metagem to assist [ROM](https://github.com/rom-rb)-style development.
+Metagem to assist development.
 Used to centralize metric setup and development gem dependencies.
 
 ## Installation
