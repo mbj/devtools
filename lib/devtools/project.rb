@@ -122,13 +122,36 @@ module Devtools
     def initialize(root)
       @root = root
 
+      initialize_environment
+      initialize_configs
+
+      @unit_test_timeout = @devtools.unit_test_timeout
+    end
+
+  private
+
+    # Initialize environment
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
+    def initialize_environment
       @shared_gemfile_path = @root.join(GEMFILE_NAME).freeze
       @default_config_path = @root.join(DEFAULT_CONFIG_DIR_NAME).freeze
       @lib_dir             = @root.join(LIB_DIRECTORY_NAME).freeze
       @spec_root           = @root.join(SPEC_DIRECTORY_NAME).freeze
       @file_pattern        = @lib_dir.join(RB_FILE_PATTERN).freeze
       @config_dir          = @default_config_path
+    end
 
+    # Initialize configs
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
+    def initialize_configs
       @reek      = Config::Reek.new(self)
       @rubocop   = Config::Rubocop.new(self)
       @flog      = Config::Flog.new(self)
@@ -136,8 +159,6 @@ module Devtools
       @flay      = Config::Flay.new(self)
       @mutant    = Config::Mutant.new(self)
       @devtools  = Config::Devtools.new(self)
-
-      @unit_test_timeout = @devtools.unit_test_timeout
     end
 
   end # class Project
