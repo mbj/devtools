@@ -23,10 +23,6 @@ group :guard do
 end
 
 group :metrics do
-  platforms :ruby_19, :ruby_20 do
-    gem 'yard-spellcheck', '~> 0.1.5'
-  end
-
   platform :rbx do
     gem 'json',               '~> 1.8.1'
     gem 'racc',               '~> 1.4.12'
@@ -34,10 +30,6 @@ group :metrics do
     gem 'rubysl-open-uri',    '~> 2.0.0'
     gem 'rubysl-prettyprint', '~> 2.0.3'
   end
-end
-
-group :benchmarks do
-  gem 'rbench', '~> 0.2.3'
 end
 
 platform :jruby do
