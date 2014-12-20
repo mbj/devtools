@@ -10,9 +10,11 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'https://github.com/rom-rb/devtools'
   gem.license     = 'MIT'
 
-  gem.require_paths    = %w[lib]
-  gem.files            = `git ls-files`.split($/)
-  gem.executables      = %w[devtools]
-  gem.test_files       = `git ls-files -- spec`.split($/)
-  gem.extra_rdoc_files = %w[README.md TODO]
+  gem.require_paths         = %w[lib]
+  gem.files                 = `git ls-files`.split($/)
+  gem.executables           = %w[devtools]
+  gem.test_files            = `git ls-files -- spec`.split($/)
+  gem.extra_rdoc_files      = %w[README.md TODO]
+  gem.required_ruby_version = '>= 2.0.0'
+
 end
