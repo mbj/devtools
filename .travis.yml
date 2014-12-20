@@ -2,12 +2,11 @@ language: ruby
 bundler_args: --without yard guard benchmarks
 script: "bundle exec rake ci"
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.1
-  - 2.1.2
+  - '1.9'
+  - '2.0'
+  - '2.1'
   - jruby-19mode
-  - rbx
+  - rbx2
 matrix:
   allow_failures:
     - rvm: ruby-head # parser cannot handle it jet per default
