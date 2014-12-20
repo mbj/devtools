@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 namespace :metrics do
-  allowed_versions = %w(mri-2.0.0 mri-2.1.0 mri-2.1.1 mri-2.1.2 mri-2.1.3 mri-2.1.4 mri-2.1.5)
+  allowed_versions = %w[mri-2.0.0 mri-2.1.0 mri-2.1.1 mri-2.1.2 mri-2.1.3 mri-2.1.4 mri-2.1.5]
 
   config  = Devtools.project.mutant
   enabled = config.enabled? && allowed_versions.include?(Devtools.rvm)

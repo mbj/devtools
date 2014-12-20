@@ -24,7 +24,7 @@ namespace :metrics do
 
       Yardstick::Rake::Verify.new(:verify, options)
     else
-      %w[ measure verify ].each do |name|
+      %w[measure verify].each do |name|
         task name.to_s do
           $stderr.puts 'Yardstick is disabled'
         end
