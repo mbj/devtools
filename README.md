@@ -1,9 +1,9 @@
 # devtools
 
-[![Build Status](https://secure.travis-ci.org/rom-rb/devtools.png?branch=master)](http://travis-ci.org/rom-rb/devtools)
-[![Dependency Status](https://gemnasium.com/rom-rb/devtools.png)](https://gemnasium.com/rom-rb/devtools)
+[![Build Status](https://secure.travis-ci.org/mbj/devtools.png?branch=master)](http://travis-ci.org/mbj/devtools)
+[![Dependency Status](https://gemnasium.com/mbj/devtools.png)](https://gemnasium.com/mbj/devtools)
 [![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
-<!-- [![Code Climate](https://codeclimate.com/github/rom-rb/devtools.png)](https://codeclimate.com/github/rom-rb/devtools) -->
+<!-- [![Code Climate](https://codeclimate.com/github/mbj/devtools.png)](https://codeclimate.com/github/mbj/devtools) -->
 
 Metagem to assist development.
 Used to centralize metric setup and development gem dependencies.
@@ -18,7 +18,7 @@ Add the git source to your Gemfile's development section:
 
 ```ruby
 group :development, :test do
-  gem 'devtools', git: 'https://github.com/rom-rb/devtools.git'
+  gem 'devtools', git: 'https://github.com/mbj/devtools.git'
 end
 ```
 

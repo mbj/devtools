@@ -12,9 +12,3 @@ matrix:
   allow_failures:
     - rvm: ruby-head # parser cannot handle it jet per default
   fast_finish: true
-notifications:
-  irc:
-    channels:
-      - irc.freenode.org#rom-rb
-    on_success: never
-    on_failure: change
