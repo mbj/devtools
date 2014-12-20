@@ -9,6 +9,8 @@ namespace :metrics do
   if enabled && !ENV['DEVTOOLS_SELF']
     desc 'Measure mutation coverage'
     task mutant: :coverage do
+      require 'mutant'
+
       namespace =
         if config.zombify
           Mutant.zombify
