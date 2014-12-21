@@ -5,9 +5,8 @@ script: "bundle exec rake ci"
 rvm:
   - '2.0'
   - '2.1'
-  - jruby-19mode
   - rbx
 matrix:
-  allow_failures:
-    - rvm: ruby-head # parser cannot handle it jet per default
-  fast_finish: true
+  include:
+    - rvm: jruby
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.0"
