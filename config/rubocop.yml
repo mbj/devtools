@@ -16,9 +16,6 @@ CollectionMethods:
     inject:   'reduce'
     find:     'detect'
     find_all: 'select'
-  Exclude:
-    # The Pathname#find method is mistakenly identified as Enumberable#find
-    - lib/tasks/assets_precompile_nodigest.rake
 
 # Do not force public/protected/private keyword to be indented at the same
 # level as the def keyword. My personal preference is to outdent these keywords
@@ -90,21 +87,9 @@ PercentLiteralDelimiters:
     '%W': '[]'
     '%x': ()
 
-# Indent hashes
-IndentHash:
-  Exclude:
-    # Disable when formatting is better than recommendation
-    - app/models/mrh/product/profile.rb
-
 # Align if/else blocks with the variable assignment
 EndAlignment:
   AlignWith: variable
-
-# Use a single space before the first argument
-SingleSpaceBeforeFirstArg:
-  Exclude:
-    # Alignment of similar methods is more important
-    - app/models/mrh/spree_ext/variant.rb
 
 # Do not always align parameters when it is easier to read
 AlignParameters:
