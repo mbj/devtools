@@ -17,5 +17,5 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files      = %w[README.md TODO]
   gem.required_ruby_version = '>= 2.0.0'
 
-  gem.add_dependency 'bundler', '~> 1.7.6'
+  gem.add_dependency 'bundler', '~> 1.5'
 end
