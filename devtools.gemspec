@@ -29,6 +29,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rubocop',      '~> 0.28.0'
   gem.add_dependency 'simplecov',    '~> 0.9.1'
   gem.add_dependency 'yardstick',    '~> 0.9.9'
-  gem.add_dependency 'mutant',       '~> 0.7.4'
+  gem.add_dependency 'mutant',       '~> 0.7.5'
   gem.add_dependency 'mutant-rspec', '~> 0.7.4'
 end
