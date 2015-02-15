@@ -17,8 +17,8 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files      = %w[README.md TODO]
   gem.required_ruby_version = '>= 2.0.0'
 
-  gem.add_dependency 'rspec',        '~> 3.1.0'
-  gem.add_dependency 'rspec-core',   '~> 3.1.7'
+  gem.add_dependency 'rspec',        '>= 3.1.0', '<= 3.2'
+  gem.add_dependency 'rspec-core',   '>= 3.1.0', '<= 3.2'
   gem.add_dependency 'rspec-its',    '~> 1.1.0'
   gem.add_dependency 'rake',         '~> 10.4.0'
   gem.add_dependency 'yard',         '~> 0.8.7.6'
