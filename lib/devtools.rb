@@ -24,17 +24,12 @@ module Devtools
   PROJECT_ROOT            = Pathname.pwd.freeze
   SHARED_PATH             = ROOT.join('shared').freeze
   SHARED_SPEC_PATH        = SHARED_PATH.join('spec').freeze
-  SHARED_GEMFILE_PATH     = SHARED_PATH.join('Gemfile').freeze
   DEFAULT_CONFIG_PATH     = ROOT.join('default/config').freeze
   RAKE_FILES_GLOB         = ROOT.join('tasks/**/*.rake').to_s.freeze
   LIB_DIRECTORY_NAME      = 'lib'.freeze
   SPEC_DIRECTORY_NAME     = 'spec'.freeze
   RB_FILE_PATTERN         = '**/*.rb'.freeze
   RAKE_FILE_NAME          = 'Rakefile'.freeze
-  DEFAULT_GEMFILE_NAME    = 'Gemfile'.freeze
-  GEMFILE_NAME            = 'Gemfile.devtools'.freeze
-  EVAL_GEMFILE            = "eval_gemfile '#{GEMFILE_NAME}'".freeze
-  BUNDLE_UPDATE           = 'bundle update'.freeze
   REQUIRE                 = "require 'devtools'".freeze
   INIT_RAKE_TASKS         = 'Devtools.init_rake_tasks'.freeze
   SHARED_SPEC_PATTERN     = '{shared,support}/**/*.rb'.freeze
@@ -98,24 +93,6 @@ module Devtools
   def self.init
     SITE.init
     self
-  end
-
-  # Sync Gemfile.devtools
-  #
-  # @return [undefined]
-  #
-  # @api public
-  def self.sync
-    SITE.sync
-  end
-
-  # Sync Gemfile.devtools and run bundle update
-  #
-  # @return [undefined]
-  #
-  # @api public
-  def self.update
-    SITE.update
   end
 
   # Return project
