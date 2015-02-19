@@ -37,28 +37,5 @@ module Devtools
       self
     end
 
-    # Sync gemfiles
-    #
-    # @return [undefined]
-    #
-    # @api private
-    def sync
-      target = root.join(GEMFILE_NAME)
-      FileUtils.cp(SHARED_GEMFILE_PATH, target)
-      puts "Successfully synced #{target}"
-      self
-    end
-
-    # Sync gemfiles and run bundle update
-    #
-    # @return [undefined]
-    #
-    # @api private
-    def update
-      sync
-      system(BUNDLE_UPDATE)
-      self
-    end
-
   end # class Site
 end # module Devtools

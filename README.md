@@ -10,11 +10,7 @@ Used to centralize metric setup and development gem dependencies.
 
 ## Installation
 
-The installation looks stupid because Gemfiles are not nestable (A Gemfile cannot
-include another Gemfile from a remote repository). Because of this we use an
-updatable local copy of the shared parts.
-
-Add the git source to your Gemfile's development section:
+Add the git source to your Gemfile's development section, there is currently no gem release.
 
 ```ruby
 group :development, :test do
@@ -29,7 +25,7 @@ bundle install
 bundle exec devtools init
 ```
 
-This will *change your Gemfile and Rakefile* and add config files. Make sure to
+This will *change your Rakefile* and add config files. Make sure to
 review the diff and don't freak out :wink:
 
 ## Updating

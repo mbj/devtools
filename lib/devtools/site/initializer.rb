@@ -3,7 +3,7 @@
 module Devtools
   class Site
 
-    # Supports initializing new projects with a Gemfile and Rakefile
+    # Supports initializing new projects with a Rakefile
     class Initializer
 
       def self.call(root)
@@ -32,26 +32,12 @@ module Devtools
         FileUtils.cp_r(DEFAULT_CONFIG_PATH, config_dir)
 
         site.sync
-        init_gemfile
         init_rakefile
 
         self
       end
 
       private
-
-      # Initialize the Gemfile
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def init_gemfile
-        gemfile = root.join(DEFAULT_GEMFILE_NAME)
-        return if gemfile.file? && gemfile.read.include?(EVAL_GEMFILE)
-        gemfile.open('a') do |file|
-          file << ANNOTATION_WRAPPER % EVAL_GEMFILE
-        end
-      end
 
       # Initialize the Rakefile
       #

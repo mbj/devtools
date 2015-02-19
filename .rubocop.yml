@@ -2,5 +2,4 @@ AllCops:
   Include:
     - 'Gemfile'
   Exclude:
-    - 'shared/Gemfile'
     - 'vendor/**'
