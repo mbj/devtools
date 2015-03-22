@@ -10,7 +10,8 @@ namespace :metrics do
     mri-2.1.4
     mri-2.1.5
     mri-2.2.0
-  ]
+    mri-2.2.1
+  ].freeze
 
   config  = Devtools.project.mutant
   enabled = config.enabled? && allowed_versions.include?(Devtools.rvm)
