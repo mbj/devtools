@@ -11,7 +11,7 @@ namespace :metrics do
     task :flog do
       $stderr.puts "Flog is disabled under #{Devtools.rvm}"
     end
-  elsif config.enabled?
+  else
     # Original code by Marty Andrews:
     # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
     desc 'Measure code complexity'
@@ -41,10 +41,6 @@ namespace :metrics do
           "#{bad_methods.size} methods have a flog complexity > #{threshold}"
         )
       end
-    end
-  else
-    task :flog do
-      $stderr.puts 'Flog is disabled'
     end
   end
 end

@@ -53,20 +53,7 @@ module Devtools
       @config_file ||= project.config_dir.join(self.class::FILE).freeze
     end
 
-    # Test if the task is enabled
-    #
-    # If there is no config file, and no sensible defaults, then the rake task
-    # should become disabled.
-    #
-    # @return [Boolean]
-    #
-    # @api private
-    #
-    def enabled?
-      !raw.equal?(DEFAULT_CONFIG)
-    end
-
-    private
+  private
 
     # Return raw data
     #
@@ -176,8 +163,7 @@ module Devtools
       FILE = 'devtools.yml'.freeze
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
 
-      attribute :unit_test_timeout,        DEFAULT_UNIT_TEST_TIMEOUT
-      attribute :fail_on_metric_violation, true
+      attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT
     end
   end
 end
