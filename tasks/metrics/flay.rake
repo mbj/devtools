@@ -22,7 +22,7 @@ namespace :metrics do
     task :flay do
       $stderr.puts "Flay is disabled under #{Devtools.rvm}"
     end
-  elsif config.enabled?
+  else
     # Original code by Marty Andrews:
     # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
     desc 'Measure code duplication'
@@ -61,10 +61,6 @@ namespace :metrics do
         flay.report
         Devtools.notify_metric_violation "#{mass_size} chunks have a duplicate mass > #{threshold}"
       end
-    end
-  else
-    task :flay do
-      $stderr.puts 'Flay is disabled'
     end
   end
 end

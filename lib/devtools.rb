@@ -40,16 +40,6 @@ module Devtools
   # Provides devtools for a project
   SITE = Site.new(Project.new(PROJECT_ROOT))
 
-  # Test if build should fail on metric error
-  #
-  # @return [Boolean]
-  #
-  # @api private
-  #
-  def self.fail_on_metric_violation?
-    project.devtools.fail_on_metric_violation
-  end
-
   # React to metric violation
   #
   # @param [String] msg
@@ -58,7 +48,7 @@ module Devtools
   #
   # @api private
   def self.notify_metric_violation(msg)
-    fail_on_metric_violation? ? abort(msg) : $stderr.puts(msg)
+    abort(msg)
   end
 
   # Initialize project and load tasks

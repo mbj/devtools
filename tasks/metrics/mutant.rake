@@ -14,9 +14,8 @@ namespace :metrics do
   ].freeze
 
   config  = Devtools.project.mutant
-  enabled = config.enabled? && allowed_versions.include?(Devtools.rvm)
 
-  if enabled && !ENV['DEVTOOLS_SELF']
+  if allowed_versions.include?(Devtools.rvm) && !ENV['DEVTOOLS_SELF']
     desc 'Measure mutation coverage'
     task mutant: :coverage do
       require 'mutant'
