@@ -18,26 +18,6 @@ group :development, :test do
 end
 ```
 
-To initialize devtools in a project run the following command:
-
-```ruby
-bundle install
-bundle exec devtools init
-```
-
-This will *change your Rakefile* and add config files. Make sure to
-review the diff and don't freak out :wink:
-
-## Updating
-
-Later on if you want to update to the latest devtools just run:
-
-```
-bundle update devtools
-bundle exec devtools sync
-bundle install
-```
-
 ## RSpec support
 
 If you're using RSpec and want to have access to our common setup just adjust
