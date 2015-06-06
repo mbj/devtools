@@ -136,6 +136,7 @@ module Devtools
         mri-2.1.5
         mri-2.2.0
         mri-2.2.1
+        mri-2.2.2
       ].freeze
 
       attribute :total_score
