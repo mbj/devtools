@@ -10,3 +10,5 @@ matrix:
   include:
     - rvm: jruby
       env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.0"
+  allow_failures:
+    - rvm: jruby
