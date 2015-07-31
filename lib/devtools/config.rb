@@ -154,6 +154,7 @@ module Devtools
       attribute :name,            DEFAULT_NAME
       attribute :strategy,        DEFAULT_STRATEGY
       attribute :zombify,         false
+      attribute :since,           nil
       attribute :ignore_subjects, []
       attribute :expect_coverage, 1
       attribute :namespace

@@ -34,12 +34,19 @@ namespace :metrics do
         %W[--ignore #{matcher}]
       end
 
+      since =
+        if config.since
+          %W[--since #{config.since}]
+        else
+          []
+        end
+
       arguments  = %W[
         --include lib
         --require #{config.name}
         --expect-coverage #{config.expect_coverage}
         --use #{config.strategy}
-      ].concat(ignore_subjects).concat(namespaces)
+      ].concat(ignore_subjects).concat(namespaces).concat(since)
 
       status = namespace::CLI.run(arguments)
       if status.nonzero?
