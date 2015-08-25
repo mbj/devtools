@@ -11,6 +11,8 @@ namespace :metrics do
     mri-2.1.5
     mri-2.2.0
     mri-2.2.1
+    mri-2.2.2
+    mri-2.2.3
   ].freeze
 
   config  = Devtools.project.mutant
