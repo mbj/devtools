@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.executables           = %w[devtools]
   gem.test_files            = `git ls-files -- spec`.split($/)
   gem.extra_rdoc_files      = %w[README.md TODO]
-  gem.required_ruby_version = '>= 2.0.0'
+  gem.required_ruby_version = '>= 2.1'
 
   gem.add_dependency 'rspec',        '~> 3.3.0'
   gem.add_dependency 'rspec-core',   '~> 3.3.0'
