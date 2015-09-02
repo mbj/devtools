@@ -111,3 +111,7 @@ Metrics/AbcSize:
 # Do not prefer lambda.call(...) over lambda.(...)
 LambdaCall:
   Enabled: false
+
+# Allow additional spaces
+ExtraSpacing:
+  Enabled: false
