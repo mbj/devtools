@@ -10,11 +10,11 @@ Used to centralize metric setup and development gem dependencies.
 
 ## Installation
 
-Add the git source to your Gemfile's development section, there is currently no gem release.
+Add the gem to your Gemfile's development section.
 
 ```ruby
 group :development, :test do
-  gem 'devtools', git: 'https://github.com/mbj/devtools.git'
+  gem 'devtools', '~> 0.1.1'
 end
 ```
 
