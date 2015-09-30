@@ -1,7 +1,10 @@
 # encoding: utf-8
 
 namespace :metrics do
-  task :reek do
-    $stderr.puts 'Reek is disabled due defunct AST processing'
+  require 'reek/rake/task'
+
+  Reek::Rake::Task.new do |reek|
+    reek.source_files = '{app,lib}/**/*.rb'
+    reek.config_file  = 'config/reek.yml'
   end
 end
