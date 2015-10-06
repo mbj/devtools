@@ -15,13 +15,7 @@ module Devtools
       # disable :reek:DuplicateMethodCall :reek:TooManyStatements
       def verify
         # Run flay first to ensure the max mass matches the threshold
-        flay = ::Flay.new(mass: 0)
-        flay.process(*files)
-        flay.analyze
-
-        masses = flay.masses.map do |hash, mass|
-          Rational(mass, flay.hashes.fetch(hash).size)
-        end
+        masses = Devtools::Flay::Scale.call(minimum_mass: 0, files: files)
 
         max = masses.max.to_i
         unless max >= threshold
@@ -34,14 +28,11 @@ module Devtools
         end
 
         # Run flay a second time with the threshold set
-        flay = ::Flay.new(mass: threshold.succ)
-        flay.process(*files)
-        flay.analyze
-
-        mass_size = flay.masses.size
+        scale = Devtools::Flay::Scale.new(minimum_mass: threshold.succ, files: files)
+        mass_size = scale.measure.size
 
         if mass_size.nonzero?
-          flay.report
+          scale.flay_report
           Devtools.notify_metric_violation "#{mass_size} chunks have a duplicate mass > #{threshold}"
         end
       end

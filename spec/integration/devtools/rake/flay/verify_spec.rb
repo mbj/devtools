@@ -40,11 +40,11 @@ describe Devtools::Rake::Flay, '#verify' do
     let(:instance) { described_class.new(options) }
 
     it 'measures total mass' do
-      allow(Flay).to receive(:new).and_call_original
+      allow(::Flay).to receive(:new).and_call_original
 
       instance.verify
 
-      expect(Flay).to have_received(:new).with(hash_including(mass: 0))
+      expect(::Flay).to have_received(:new).with(hash_including(mass: 0))
     end
 
     it 'does not report the files it is processing' do
