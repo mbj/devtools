@@ -7,6 +7,7 @@ require 'yaml'
 require 'fileutils'
 
 require 'procto'
+require 'anima'
 
 require 'devtools/platform'
 require 'devtools/site'

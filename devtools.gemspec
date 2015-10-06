@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.1'
 
   gem.add_runtime_dependency 'procto', '~> 0.0.x'
+  gem.add_runtime_dependency 'anima',  '~> 0.3.x'
 
   gem.add_dependency 'rspec',        '~> 3.3.0'
   gem.add_dependency 'rspec-core',   '~> 3.3.0'
