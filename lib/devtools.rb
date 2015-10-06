@@ -6,6 +6,8 @@ require 'timeout'
 require 'yaml'
 require 'fileutils'
 
+require 'procto'
+
 require 'devtools/platform'
 require 'devtools/site'
 require 'devtools/site/initializer'

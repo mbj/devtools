@@ -17,6 +17,8 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files      = %w[README.md TODO]
   gem.required_ruby_version = '>= 2.1'
 
+  gem.add_runtime_dependency 'procto', '~> 0.0.x'
+
   gem.add_dependency 'rspec',        '~> 3.3.0'
   gem.add_dependency 'rspec-core',   '~> 3.3.0'
   gem.add_dependency 'rspec-its',    '~> 1.2.0'
