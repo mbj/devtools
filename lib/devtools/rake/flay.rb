@@ -4,6 +4,13 @@ module Devtools
     class Flay
       include Anima.new(:threshold, :total_score, :files), Procto.call(:verify)
 
+      # disable :reek:UtilityFunction
+      def initialize(options)
+        config = options.dup
+        directories = config.delete(:directories)
+        super(config.merge(files: ::Flay.expand_dirs_to_files(directories)))
+      end
+
       # rubocop:disable AbcSize, MethodLength, GuardClause
       # disable :reek:DuplicateMethodCall :reek:TooManyStatements
       def verify

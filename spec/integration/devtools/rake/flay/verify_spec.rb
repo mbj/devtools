@@ -4,8 +4,10 @@ require 'tmpdir'
 require 'flay'
 
 describe Devtools::Rake::Flay, '#verify' do
-  let(:tempfile) { Tempfile.new('file.rb', Dir.mktmpdir) }
-  let(:file)     { Pathname(tempfile.path)               }
+  let(:tempfile)    { Tempfile.new(%w[file .rb], Dir.mktmpdir) }
+  let(:file)        { Pathname(tempfile.path)                  }
+  let(:directories) { [file.dirname.to_s]                      }
+
   let(:ruby) do
     <<-ERUBY
     def foo; end
@@ -31,9 +33,11 @@ describe Devtools::Rake::Flay, '#verify' do
   end
 
   context 'reporting' do
-    let(:instance) do
-      described_class.new(threshold: 3, total_score: 3, files: [file])
+    let(:options) do
+      { threshold: 3, total_score: 3, directories: directories }.freeze
     end
+
+    let(:instance) { described_class.new(options) }
 
     it 'measures total mass' do
       allow(Flay).to receive(:new).and_call_original
@@ -50,7 +54,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when theshold is too low' do
     let(:instance) do
-      described_class.new(threshold: 0, total_score: 0, files: [file])
+      described_class.new(threshold: 0, total_score: 0, directories: directories)
     end
 
     specify do
@@ -62,7 +66,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when threshold is too high' do
     let(:instance) do
-      described_class.new(threshold: 1000, total_score: 0, files: [file])
+      described_class.new(threshold: 1000, total_score: 0, directories: directories)
     end
 
     specify do
@@ -74,7 +78,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when total is too high' do
     let(:instance) do
-      described_class.new(threshold: 3, total_score: 50, files: [file])
+      described_class.new(threshold: 3, total_score: 50, directories: directories)
     end
 
     specify do
@@ -108,7 +112,7 @@ REPORT
     end
 
     let(:instance) do
-      described_class.new(threshold: 3, total_score: 5, files: [file])
+      described_class.new(threshold: 3, total_score: 5, directories: directories)
     end
 
     specify do
@@ -144,7 +148,7 @@ REPORT
     end
 
     let(:instance) do
-      described_class.new(threshold: 5, total_score: 8, files: [file])
+      described_class.new(threshold: 5, total_score: 8, directories: directories)
     end
 
     it 'sums masses for total' do
@@ -155,7 +159,7 @@ REPORT
   context 'when no duplication masses' do
     let(:ruby) { '' }
     let(:instance) do
-      described_class.new(threshold: 0, total_score: 0, files: [file])
+      described_class.new(threshold: 0, total_score: 0, directories: directories)
     end
 
     specify do

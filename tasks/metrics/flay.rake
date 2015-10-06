@@ -17,7 +17,7 @@ namespace :metrics do
     Devtools::Rake::Flay.call(
       threshold:   threshold,
       total_score: total_score,
-      files:       files
+      directories: config.lib_dirs
     )
   end
 end
