@@ -8,6 +8,7 @@ require 'fileutils'
 
 require 'procto'
 require 'anima'
+require 'concord'
 require 'adamantium'
 
 require 'devtools/platform'

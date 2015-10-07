@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'procto',     '~> 0.0.x'
   gem.add_runtime_dependency 'anima',      '~> 0.3.x'
+  gem.add_runtime_dependency 'concord',    '~> 0.1.x'
   gem.add_runtime_dependency 'adamantium', '~> 0.2.x'
 
   gem.add_dependency 'rspec',        '~> 3.3.0'
