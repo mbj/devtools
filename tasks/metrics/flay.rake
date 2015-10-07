@@ -12,12 +12,12 @@ namespace :metrics do
   task :flay do
     threshold   = config.threshold
     total_score = config.total_score
-    files       = Flay.expand_dirs_to_files(config.lib_dirs).sort
 
     Devtools::Rake::Flay.call(
       threshold:   threshold,
       total_score: total_score,
-      directories: config.lib_dirs
+      lib_dirs:    config.lib_dirs,
+      excludes:    config.excludes
     )
   end
 end

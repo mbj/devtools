@@ -2,29 +2,13 @@ module Devtools
   module Rake
     # Flay metric runner
     class Flay
-      include Anima.new(:threshold, :total_score, :files), Procto.call(:verify), Adamantium
+      include Anima.new(:threshold, :total_score, :lib_dirs, :excludes),
+              Procto.call(:verify),
+              Adamantium
 
       BELOW_THRESHOLD = 'Adjust flay threshold down to %d'.freeze
       TOTAL_MISMATCH  = 'Flay total is now %d, but expected %d'.freeze
       ABOVE_THRESHOLD = '%d chunks have a duplicate mass > %d'.freeze
-
-      # Initialize flay task settings
-      #
-      # disable :reek:UtilityFunction
-      #
-      # @param options [Hash] flay options
-      # @option threshold [Integer] :threshold maximum flay threshold
-      # @option total_score [Integer] :total_score maximum allowed mass
-      # @option directories [Array<String>] :directories directories for flay
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def initialize(options)
-        config = options.dup
-        directories = config.delete(:directories)
-        super(config.merge(files: ::Flay.expand_dirs_to_files(directories)))
-      end
 
       # Verify code specified by `files` does not violate flay expectations
       #
@@ -54,6 +38,15 @@ module Devtools
       end
 
     private
+
+      # List of files flay will analyze
+      #
+      # @return [Set<Pathname>]
+      #
+      # @api private
+      def files
+        Devtools::Flay::FileList.call(lib_dirs, excludes)
+      end
 
       # Is there mass duplication which exceeds specified `threshold`
       #

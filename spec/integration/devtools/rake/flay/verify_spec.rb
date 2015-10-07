@@ -34,7 +34,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'reporting' do
     let(:options) do
-      { threshold: 3, total_score: 3, directories: directories }.freeze
+      { threshold: 3, total_score: 3, lib_dirs: directories, excludes: [] }.freeze
     end
 
     let(:instance) { described_class.new(options) }
@@ -54,7 +54,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when theshold is too low' do
     let(:instance) do
-      described_class.new(threshold: 0, total_score: 0, directories: directories)
+      described_class.new(threshold: 0, total_score: 0, lib_dirs: directories, excludes: [])
     end
 
     specify do
@@ -66,7 +66,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when threshold is too high' do
     let(:instance) do
-      described_class.new(threshold: 1000, total_score: 0, directories: directories)
+      described_class.new(threshold: 1000, total_score: 0, lib_dirs: directories, excludes: [])
     end
 
     specify do
@@ -78,7 +78,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when total is too high' do
     let(:instance) do
-      described_class.new(threshold: 3, total_score: 50, directories: directories)
+      described_class.new(threshold: 3, total_score: 50, lib_dirs: directories, excludes: [])
     end
 
     specify do
@@ -112,7 +112,7 @@ REPORT
     end
 
     let(:instance) do
-      described_class.new(threshold: 3, total_score: 5, directories: directories)
+      described_class.new(threshold: 3, total_score: 5, lib_dirs: directories, excludes: [])
     end
 
     specify do
@@ -148,7 +148,7 @@ REPORT
     end
 
     let(:instance) do
-      described_class.new(threshold: 5, total_score: 8, directories: directories)
+      described_class.new(threshold: 5, total_score: 8, lib_dirs: directories, excludes: [])
     end
 
     it 'sums masses for total' do
@@ -159,7 +159,7 @@ REPORT
   context 'when no duplication masses' do
     let(:ruby) { '' }
     let(:instance) do
-      described_class.new(threshold: 0, total_score: 0, directories: directories)
+      described_class.new(threshold: 0, total_score: 0, lib_dirs: directories, excludes: [])
     end
 
     specify do
