@@ -15,7 +15,7 @@ module Devtools
       # disable :reek:DuplicateMethodCall :reek:TooManyStatements
       def verify
         # Run flay first to ensure the max mass matches the threshold
-        unless largest_mass >= threshold
+        if threshold > largest_mass
           Devtools.notify_metric_violation "Adjust flay threshold down to #{largest_mass}"
         end
 
