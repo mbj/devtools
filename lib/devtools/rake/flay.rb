@@ -4,6 +4,10 @@ module Devtools
     class Flay
       include Anima.new(:threshold, :total_score, :files), Procto.call(:verify), Adamantium
 
+      BELOW_THRESHOLD = 'Adjust flay threshold down to %d'.freeze
+      TOTAL_MISMATCH  = 'Flay total is now %d, but expected %d'.freeze
+      ABOVE_THRESHOLD = '%d chunks have a duplicate mass > %d'.freeze
+
       # disable :reek:UtilityFunction
       def initialize(options)
         config = options.dup
@@ -11,28 +15,43 @@ module Devtools
         super(config.merge(files: ::Flay.expand_dirs_to_files(directories)))
       end
 
-      # rubocop:disable MethodLength, GuardClause
-      # disable :reek:DuplicateMethodCall :reek:TooManyStatements
+      # rubocop:disable MethodLength
       def verify
         # Run flay first to ensure the max mass matches the threshold
-        if threshold > largest_mass
-          Devtools.notify_metric_violation "Adjust flay threshold down to #{largest_mass}"
-        end
+        Devtools.notify_metric_violation(
+          BELOW_THRESHOLD % largest_mass
+        ) if below_threshold?
 
-        unless total_mass.equal?(total_score)
-          Devtools.notify_metric_violation "Flay total is now #{total_mass}, but expected #{total_score}"
-        end
+        Devtools.notify_metric_violation(
+          TOTAL_MISMATCH % [total_mass, total_score]
+        ) if total_mismatch?
 
         # Run flay a second time with the threshold set
-        mass_size = restricted_flay_scale.measure.size
+        return unless above_threshold?
 
-        if mass_size.nonzero?
-          restricted_flay_scale.flay_report
-          Devtools.notify_metric_violation "#{mass_size} chunks have a duplicate mass > #{threshold}"
-        end
+        restricted_flay_scale.flay_report
+        Devtools.notify_metric_violation(
+          ABOVE_THRESHOLD % [restricted_mass_size, threshold]
+        )
       end
 
     private
+
+      def above_threshold?
+        restricted_mass_size.nonzero?
+      end
+
+      def below_threshold?
+        threshold > largest_mass
+      end
+
+      def total_mismatch?
+        !total_mass.equal?(total_score)
+      end
+
+      def restricted_mass_size
+        restricted_flay_scale.measure.size
+      end
 
       def total_mass
         flay_masses.reduce(:+).to_i
