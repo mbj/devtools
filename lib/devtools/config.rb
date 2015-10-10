@@ -93,10 +93,12 @@ module Devtools
     class Flay < self
       FILE             = 'flay.yml'.freeze
       DEFAULT_LIB_DIRS = %w[lib].freeze
+      DEFAULT_EXCLUDES = %w[].freeze
 
       attribute :total_score
       attribute :threshold
       attribute :lib_dirs, DEFAULT_LIB_DIRS
+      attribute :excludes, DEFAULT_EXCLUDES
     end
 
     # Yardstick configuration

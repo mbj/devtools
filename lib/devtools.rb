@@ -6,6 +6,11 @@ require 'timeout'
 require 'yaml'
 require 'fileutils'
 
+require 'procto'
+require 'anima'
+require 'concord'
+require 'adamantium'
+
 require 'devtools/platform'
 require 'devtools/site'
 require 'devtools/site/initializer'
@@ -14,6 +19,8 @@ require 'devtools/config'
 require 'devtools/project/initializer'
 require 'devtools/project/initializer/rake'
 require 'devtools/project/initializer/rspec'
+require 'devtools/flay'
+require 'devtools/rake/flay'
 
 # Provides access to metric tools
 module Devtools
