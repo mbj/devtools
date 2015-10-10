@@ -32,6 +32,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rubocop',      '~> 0.34.0'
   gem.add_runtime_dependency 'simplecov',    '~> 0.10.0'
   gem.add_runtime_dependency 'yardstick',    '~> 0.9.9'
-  gem.add_runtime_dependency 'mutant',       '~> 0.8.3'
+  gem.add_runtime_dependency 'mutant',       '~> 0.8.5'
   gem.add_runtime_dependency 'mutant-rspec', '~> 0.8.2'
 end
