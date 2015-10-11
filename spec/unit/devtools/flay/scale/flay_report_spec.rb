@@ -8,10 +8,4 @@ describe Devtools::Flay::Scale, '#flay_report' do
   before do
     allow(::Flay).to receive(:new).with(mass: 0).and_return(flay)
   end
-
-  specify do
-    allow(flay).to receive(:report)
-    instance.flay_report
-    expect(flay).to have_received(:report)
-  end
 end
