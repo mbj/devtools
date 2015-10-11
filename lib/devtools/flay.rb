@@ -2,9 +2,39 @@
 
 module Devtools
   module Flay
+    # Wrap results from running flay
+    class Result
+      include Concord::Public.new(:units, :report), Adamantium
+
+      # Relative masses from flay results
+      #
+      # (see Unit#relative_mass)
+      #
+      # @return [Array<Rational>]
+      #
+      # @api private
+      def relative_masses
+        units.map(&:relative_mass)
+      end
+
+      # Result information for one unit of duplication from flay results
+      class Unit
+        include Anima.new(:mass, :nodes), Adamantium
+
+        # Duplication mass relative to the number of duplicate nodes
+        #
+        # @return [Rational]
+        #
+        # @api private
+        def relative_mass
+          Rational(mass, nodes.size)
+        end
+      end
+    end
+
     # Measure flay mass relative to size of duplicated sexps
     class Scale
-      include Adamantium
+      include Adamantium::Flat
       include Anima.new(:minimum_mass, :files)
       include Procto.call(:measure)
 
@@ -14,21 +44,32 @@ module Devtools
       #
       # @api private
       def measure
-        flay.masses.map do |hash, mass|
-          Rational(mass, flay.hashes.fetch(hash).size)
+        units = flay.masses.map do |structural_hash, mass|
+          Result::Unit.new(
+            mass: mass,
+            nodes: flay.hashes.fetch(structural_hash)
+          )
         end
-      end
 
-      # Report flay output
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def flay_report
-        flay.report
+        Result.new(units, report)
       end
 
     private
+
+      # Flay report summary
+      #
+      # flay instance is duplicated because `Flay#report`
+      # mutates the instance
+      #
+      # @return [String]
+      #
+      # @api private
+      def report
+        StringIO.new.tap do |io|
+          flay.dup.report(io)
+          io.rewind
+        end.read
+      end
 
       # Memoized flay instance
       #
@@ -41,7 +82,7 @@ module Devtools
           flay.analyze
         end
       end
-      memoize :flay, freezer: :noop
+      memoize :flay
     end
 
     # Expand include and exclude file settings for flay

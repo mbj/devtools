@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Devtools
   module Rake
     # Flay metric runner
@@ -10,9 +8,9 @@ module Devtools
               Procto.call(:verify),
               Adamantium
 
-      BELOW_THRESHOLD = 'Adjust flay threshold down to %<mass>d'
-      TOTAL_MISMATCH  = 'Flay total is now %<mass>d, but expected %<expected>d'
-      ABOVE_THRESHOLD = '%<mass>d chunks have a duplicate mass > %<threshold>d'
+      BELOW_THRESHOLD = 'Adjust flay threshold down to %d'.freeze
+      TOTAL_MISMATCH  = 'Flay total is now %d, but expected %d'.freeze
+      ABOVE_THRESHOLD = '%d chunks have a duplicate mass > %d'.freeze
 
       def_delegators :config, :threshold, :total_score, :lib_dirs, :excludes
 
@@ -21,19 +19,27 @@ module Devtools
       # @raise [SystemExit] if a violation is found
       # @return [undefined] otherwise
       #
+      # rubocop:disable MethodLength
       #
       # @api private
       def verify
         # Run flay first to ensure the max mass matches the threshold
-        below_threshold_message if below_threshold?
+        Devtools.notify_metric_violation(
+          BELOW_THRESHOLD % largest_mass
+        ) if below_threshold?
 
-        total_mismatch_message if total_mismatch?
+        Devtools.notify_metric_violation(
+          TOTAL_MISMATCH % [total_mass, total_score]
+        ) if total_mismatch?
 
         # Run flay a second time with the threshold set
         return unless above_threshold?
 
-        restricted_flay_scale.flay_report
-        above_threshold_message
+        puts threshold_result.report
+
+        Devtools.notify_metric_violation(
+          ABOVE_THRESHOLD % [restricted_mass_size, threshold]
+        )
       end
 
     private
@@ -74,47 +80,13 @@ module Devtools
         !total_mass.equal?(total_score)
       end
 
-      # Above threshold message
-      #
-      # @return [String]
-      #
-      # @api private
-      def above_threshold_message
-        format_values = { mass: restricted_mass_size, threshold: threshold }
-        Devtools.notify_metric_violation(
-          format(ABOVE_THRESHOLD, format_values)
-        )
-      end
-
-      # Below threshold message
-      #
-      # @return [String]
-      #
-      # @api private
-      def below_threshold_message
-        Devtools.notify_metric_violation(
-          format(BELOW_THRESHOLD, mass: largest_mass)
-        )
-      end
-
-      # Total mismatch message
-      #
-      # @return [String]
-      #
-      # @api private
-      def total_mismatch_message
-        Devtools.notify_metric_violation(
-          format(TOTAL_MISMATCH, mass: total_mass, expected: total_score)
-        )
-      end
-
       # Size of mass measured by `Flay::Scale` and filtered by `threshold`
       #
       # @return [Integer]
       #
       # @api private
       def restricted_mass_size
-        restricted_flay_scale.measure.size
+        threshold_result.relative_masses.size
       end
 
       # Sum of all flay mass
@@ -123,7 +95,7 @@ module Devtools
       #
       # @api private
       def total_mass
-        flay_masses.reduce(:+).to_i
+        no_minimum_result.relative_masses.reduce(:+).to_i
       end
 
       # Largest flay mass found
@@ -132,7 +104,7 @@ module Devtools
       #
       # @api private
       def largest_mass
-        flay_masses.max.to_i
+        no_minimum_result.relative_masses.max.to_i
       end
 
       # Flay scale which only measures mass above `threshold`
@@ -140,20 +112,20 @@ module Devtools
       # @return [Flay::Scale]
       #
       # @api private
-      def restricted_flay_scale
-        Devtools::Flay::Scale.new(minimum_mass: threshold.succ, files: files)
+      def threshold_result
+        Devtools::Flay::Scale.call(minimum_mass: threshold.succ, files: files)
       end
-      memoize :restricted_flay_scale
+      memoize :threshold_result
 
       # All flay masses found in `files`
       #
       # @return [Array<Rational>]
       #
       # @api private
-      def flay_masses
+      def no_minimum_result
         Devtools::Flay::Scale.call(minimum_mass: 0, files: files)
       end
-      memoize :flay_masses
+      memoize :no_minimum_result
     end
   end
 end
