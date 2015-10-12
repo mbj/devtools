@@ -14,7 +14,7 @@ Add the gem to your Gemfile's development section.
 
 ```ruby
 group :development, :test do
-  gem 'devtools', '~> 0.1.1'
+  gem 'devtools', '~> 0.1.x'
 end
 ```
 
