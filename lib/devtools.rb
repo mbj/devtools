@@ -85,16 +85,6 @@ module Devtools
     self
   end
 
-  # Initialize devtools using default config
-  #
-  # @return [undefined]
-  #
-  # @api public
-  def self.init
-    SITE.init
-    self
-  end
-
   # Return project
   #
   # @return [Project]
