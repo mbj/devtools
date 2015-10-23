@@ -3,17 +3,9 @@ module Devtools
 
     # Base class for project initializers
     class Initializer
+      include AbstractType
 
-      attr_reader :project
-      protected :project
-
-      def initialize(project)
-        @project = project
-      end
-
-      def call
-        fail NotImplementedError, "#{self.class}##{__method__} must be implemented"
-      end
+      abstract_singleton_method :call
     end # class Initializer
   end # class Project
 end # module Devtools

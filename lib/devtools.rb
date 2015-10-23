@@ -13,6 +13,8 @@ require 'adamantium'
 
 # Wrapped tools
 require 'flay'
+require 'rspec'
+require 'rspec/its'
 
 # Devtools implementation
 require 'devtools/platform'

@@ -2,6 +2,8 @@ module Devtools
 
   # Abstract base class of tool configuration
   class Config
+    include Concord.new(:project)
+
     # Represent no configuration
     DEFAULT_CONFIG = {}.freeze
 
@@ -22,24 +24,6 @@ module Devtools
       end
     end
     private_class_method :attribute
-
-    # Return project
-    #
-    # @return [Project]
-    #
-    # @api private
-    #
-    attr_reader :project
-
-    # Initialize object
-    #
-    # @return [Project]
-    #
-    # @api private
-    #
-    def initialize(project)
-      @project = project
-    end
 
     # Return config path
     #
