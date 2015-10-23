@@ -1,8 +1,3 @@
-require 'spec_helper'
-require 'tempfile'
-require 'tmpdir'
-require 'flay'
-
 describe Devtools::Rake::Flay, '#verify' do
   let(:tempfile)    { Tempfile.new(%w[file .rb], Dir.mktmpdir) }
   let(:file)        { Pathname(tempfile.path)                  }

@@ -1,4 +1,6 @@
 require 'devtools/spec_helper'
+require 'tempfile'
+require 'tmpdir'
 
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
@@ -17,8 +19,6 @@ if ENV['COVERAGE'] == 'true'
     minimum_coverage 100
   end
 end
-
-require 'devtools'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expect_with|

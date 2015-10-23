@@ -1,6 +1,3 @@
-require 'spec_helper'
-require 'flay'
-
 describe Devtools::Flay::Scale, '#flay_report' do
   subject(:instance) { described_class.new(minimum_mass: 0, files: []) }
 
