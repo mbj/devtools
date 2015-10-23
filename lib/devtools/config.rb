@@ -64,12 +64,12 @@ module Devtools
     # Rubocop configuration
     class Rubocop < self
       FILE = 'rubocop.yml'.freeze
-    end
+    end # Rubocop
 
     # Reek configuration
     class Reek < self
       FILE = 'reek.yml'.freeze
-    end
+    end # Reek
 
     # Flay configuration
     class Flay < self
@@ -81,7 +81,7 @@ module Devtools
       attribute :threshold
       attribute :lib_dirs, DEFAULT_LIB_DIRS
       attribute :excludes, DEFAULT_EXCLUDES
-    end
+    end # Flay
 
     # Yardstick configuration
     class Yardstick < self
@@ -104,17 +104,17 @@ module Devtools
           hash[name] = raw.fetch(name, nil)
         end
       end
-    end
+    end # Yardstick
 
     # Flog configuration
     class Flog < self
-      FILE                      = 'flog.yml'.freeze
-      DEFAULT_LIB_DIRS          = %w[lib].freeze
+      FILE             = 'flog.yml'.freeze
+      DEFAULT_LIB_DIRS = %w[lib].freeze
 
       attribute :total_score
       attribute :threshold
-      attribute :lib_dirs,          DEFAULT_LIB_DIRS
-    end
+      attribute :lib_dirs, DEFAULT_LIB_DIRS
+    end # Flog
 
     # Mutant configuration
     class Mutant < self
@@ -129,14 +129,14 @@ module Devtools
       attribute :ignore_subjects, []
       attribute :expect_coverage, 1
       attribute :namespace
-    end
+    end # Mutant
 
     # Devtools configuration
     class Devtools < self
-      FILE = 'devtools.yml'.freeze
+      FILE                      = 'devtools.yml'.freeze
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
 
       attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT
-    end
-  end
-end
+    end # Devtools
+  end # config
+end # Devtools
