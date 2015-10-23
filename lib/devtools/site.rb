@@ -24,16 +24,5 @@ module Devtools
       self
     end
 
-    # Initialize devtools using default config
-    #
-    # @return [undefined]
-    #
-    # @api private
-    def init
-      Initializer.call(self)
-      puts 'Run bundle install to complete the devtools installation'
-      self
-    end
-
   end # class Site
 end # module Devtools
