@@ -17,7 +17,6 @@ require 'flay'
 # Devtools implementation
 require 'devtools/platform'
 require 'devtools/site'
-require 'devtools/site/initializer'
 require 'devtools/project'
 require 'devtools/config'
 require 'devtools/project/initializer'
