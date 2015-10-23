@@ -2,15 +2,7 @@ module Devtools
 
   # Encapsulates a specific {Project} devtools is used for
   class Site
-
-    attr_reader :root
-
-    attr_reader :project
-
-    def initialize(project)
-      @project = project
-      @root    = project.root
-    end
+    include Concord::Public.new(:project)
 
     # Initialize project and load shared specs
     #

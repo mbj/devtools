@@ -1,14 +1,18 @@
 module Devtools
   class Project
     class Initializer
-
       # Imports all devtools rake tasks into a project
-      class Rake
+      class Rake < self
+        include AbstractType
 
-        extend ::Rake::DSL
-
+        # Initialize rake tasks
+        #
+        # @return [undefined]
+        #
+        # @api rpivate
         def self.call
-          FileList[RAKE_FILES_GLOB].each(&method(:import))
+          FileList.glob(RAKE_FILES_GLOB).each(&::Rake.application.method(:add_import))
+          self
         end
 
       end # class Rake
