@@ -1,9 +1,3 @@
-require 'spec_helper'
-require 'flay'
-require 'tmpdir'
-require 'fileutils'
-require 'pathname'
-
 describe Devtools::Flay::FileList, '.call' do
   subject(:output) { described_class.call([tmpdir.to_s], [exclude]) }
 

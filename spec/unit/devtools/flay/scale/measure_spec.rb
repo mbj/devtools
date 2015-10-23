@@ -1,6 +1,3 @@
-require 'spec_helper'
-require 'flay'
-
 describe Devtools::Flay::Scale, '#measure' do
   subject(:measure) { instance.measure }
 

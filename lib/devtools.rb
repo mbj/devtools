@@ -1,14 +1,20 @@
+# Stdlib infrastructure
 require 'pathname'
 require 'rake'
 require 'timeout'
 require 'yaml'
 require 'fileutils'
 
+# Non stdlib infrastructure
 require 'procto'
 require 'anima'
 require 'concord'
 require 'adamantium'
 
+# Wrapped tools
+require 'flay'
+
+# Devtools implementation
 require 'devtools/platform'
 require 'devtools/site'
 require 'devtools/site/initializer'
