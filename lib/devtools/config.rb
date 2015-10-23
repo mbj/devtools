@@ -2,7 +2,7 @@ module Devtools
 
   # Abstract base class of tool configuration
   class Config
-    include Concord.new(:project)
+    include AbstractType, Concord.new(:project)
 
     # Represent no configuration
     DEFAULT_CONFIG = {}.freeze
@@ -138,5 +138,5 @@ module Devtools
 
       attribute :unit_test_timeout, DEFAULT_UNIT_TEST_TIMEOUT
     end # Devtools
-  end # config
+  end # Config
 end # Devtools
