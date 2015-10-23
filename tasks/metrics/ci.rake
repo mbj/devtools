@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 desc 'Run all specs, metrics and mutant'
 task ci: %w[spec ci:metrics metrics:mutant]
 

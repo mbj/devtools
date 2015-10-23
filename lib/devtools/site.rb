@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module Devtools
 
   # Encapsulates a specific {Project} devtools is used for

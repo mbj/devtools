@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 namespace :metrics do
   require 'flog'
   require 'flog_cli'

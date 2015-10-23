@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 shared_examples_for 'an abstract type' do
   context 'called on a subclass' do
     let(:object) { Class.new(described_class) }

@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 namespace :metrics do
   config  = Devtools.project.mutant
 
