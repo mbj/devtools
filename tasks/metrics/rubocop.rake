@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 namespace :metrics do
   desc 'Check with code style guide'
   task :rubocop do

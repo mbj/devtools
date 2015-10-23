@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module Devtools
   class Project
 

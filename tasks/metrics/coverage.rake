@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 namespace :metrics do
   desc 'Measure code coverage'
   task :coverage do

@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module Devtools
 
   # Provides methods to determine the ruby platform
