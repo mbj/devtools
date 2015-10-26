@@ -31,7 +31,8 @@ IrresponsibleModule:
   exclude: []
 LongParameterList:
   enabled: true
-  exclude: []
+  exclude:
+  - Devtools::Config#self.attribute
   max_params: 2
   overrides: {}
 LongYieldList:
