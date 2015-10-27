@@ -2,7 +2,7 @@ module Devtools
 
   # Abstract base class of tool configuration
   class Config
-    include Adamantium::Flat, AbstractType, Concord.new(:project)
+    include Adamantium::Flat, AbstractType, Concord.new(:config_dir)
 
     # Represent no configuration
     DEFAULT_CONFIG = {}.freeze
@@ -67,7 +67,7 @@ module Devtools
     # @api private
     #
     def config_file
-      project.config_dir.join(self.class::FILE)
+      config_dir.join(self.class::FILE)
     end
     memoize :config_file
 

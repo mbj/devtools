@@ -16,17 +16,10 @@ require 'flay'
 require 'rspec'
 require 'rspec/its'
 
-# Devtools implementation
+# Main namespace dependency, To be fixed.
 require 'devtools/platform'
-require 'devtools/project'
-require 'devtools/config'
-require 'devtools/project/initializer'
-require 'devtools/project/initializer/rake'
-require 'devtools/project/initializer/rspec'
-require 'devtools/flay'
-require 'devtools/rake/flay'
 
-# Provides access to metric tools
+# Main devtools namespace population
 module Devtools
 
   extend Platform
@@ -39,17 +32,12 @@ module Devtools
   RAKE_FILES_GLOB         = ROOT.join('tasks/**/*.rake').to_s.freeze
   LIB_DIRECTORY_NAME      = 'lib'.freeze
   SPEC_DIRECTORY_NAME     = 'spec'.freeze
-  RB_FILE_PATTERN         = '**/*.rb'.freeze
   RAKE_FILE_NAME          = 'Rakefile'.freeze
-  REQUIRE                 = "require 'devtools'".freeze
-  INIT_RAKE_TASKS         = 'Devtools.init_rake_tasks'.freeze
   SHARED_SPEC_PATTERN     = '{shared,support}/**/*.rb'.freeze
   UNIT_TEST_PATH_REGEXP   = %r{\bspec/unit/}.freeze
   DEFAULT_CONFIG_DIR_NAME = 'config'.freeze
-  ANNOTATION_WRAPPER      = "\n# Added by devtools\n%s\n".freeze
 
-  # The project devtools is active for
-  PROJECT = Project.new(PROJECT_ROOT)
+  private_constant(*constants(false))
 
   # React to metric violation
   #
@@ -72,6 +60,15 @@ module Devtools
   def self.init_rake_tasks
     Project::Initializer::Rake.call
     self
+  end
+
+  # Return devtools root path
+  #
+  # @return [Pathname]
+  #
+  # @api private
+  def self.root
+    ROOT
   end
 
   # Return project
@@ -130,3 +127,18 @@ module Devtools
   end
 
 end # module Devtools
+
+# Devtools implementation
+require 'devtools/config'
+require 'devtools/project'
+require 'devtools/project/initializer'
+require 'devtools/project/initializer/rake'
+require 'devtools/project/initializer/rspec'
+require 'devtools/flay'
+require 'devtools/rake/flay'
+
+# Devtools self initialization
+module Devtools
+  # The project devtools is active for
+  PROJECT = Project.new(PROJECT_ROOT)
+end

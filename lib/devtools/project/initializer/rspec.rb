@@ -43,7 +43,7 @@ module Devtools
         # @api private
         #
         def enable_unit_test_timeout
-          timeout = project.unit_test_timeout
+          timeout = project.devtools.unit_test_timeout
           RSpec.configuration.around(file_path: UNIT_TEST_PATH_REGEXP) do |example|
             Timeout.timeout(timeout, &example)
           end

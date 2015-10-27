@@ -53,9 +53,8 @@ RepeatedConditional:
   max_ifs: 1
 TooManyInstanceVariables:
   enabled: true
-  exclude:
-  - Devtools::Project
-  max_instance_variables: 14 # no adamantium ;)
+  exclude: []
+  max_instance_variables: 2
 TooManyMethods:
   enabled: true
   exclude: []

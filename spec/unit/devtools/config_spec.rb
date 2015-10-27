@@ -12,13 +12,13 @@ RSpec.describe Devtools::Config do
     let(:config_path) { instance_double(Pathname) }
 
     let(:class_under_test) do
-      expect(config_path).to receive(:file?).and_return(file?)
-
-      expect(project.config_dir).to receive(:join)
+      expect(config_path).to receive(:file?)
+        .and_return(file?)
+      expect(config_path).to receive(:frozen?)
+        .and_return(true)
+      expect(config_path).to receive(:join)
         .with('bar.yml')
         .and_return(config_path)
-
-      expect(config_path).to receive(:frozen?).and_return(true)
 
       Class.new(described_class) do
         attribute :a, [String]
@@ -29,15 +29,8 @@ RSpec.describe Devtools::Config do
       end
     end
 
-    let(:project) do
-      instance_double(
-        Devtools::Project,
-        config_dir: Pathname.new('project-config')
-      )
-    end
-
     subject do
-      class_under_test.new(project)
+      class_under_test.new(config_path)
     end
 
     context 'on present config' do

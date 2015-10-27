@@ -9,7 +9,7 @@ describe Devtools::Project::Initializer::Rake do
       path_b = instance_double(Pathname)
 
       expect(FileList).to receive(:glob)
-        .with(Devtools::ROOT.join('tasks/**/*.rake').to_s)
+        .with(Devtools.root.join('tasks/**/*.rake').to_s)
         .and_return([path_a, path_b])
 
       expect(Rake.application).to receive(:add_import).with(path_a)
