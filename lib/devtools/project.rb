@@ -2,84 +2,21 @@ module Devtools
 
   # The project devtools supports
   class Project
+    include Concord.new(:root)
 
-    # The reek configuration
-    #
-    # @return [Config::Reek]
-    #
-    # @api private
-    attr_reader :reek
+    CONFIGS = {
+      devtools:  Config::Devtools,
+      flay:      Config::Flay,
+      flog:      Config::Flog,
+      reek:      Config::Reek,
+      mutant:    Config::Mutant,
+      rubocop:   Config::Rubocop,
+      yardstick: Config::Yardstick
+    }.freeze
 
-    # The rubocop configuration
-    #
-    # @return [Config::Rubocop]
-    #
-    # @api private
-    attr_reader :rubocop
+    private_constant(*constants(false))
 
-    # The flog configuration
-    #
-    # @return [Config::Flog]
-    #
-    # @api private
-    attr_reader :flog
-
-    # The yardstick configuration
-    #
-    # @return [Config::Yardstick]
-    #
-    # @api private
-    attr_reader :yardstick
-
-    # The flay configuration
-    #
-    # @return [Config::Flay]
-    #
-    # @api private
-    attr_reader :flay
-
-    # The mutant configuration
-    #
-    # @return [Config::Mutant]
-    #
-    # @api private
-    attr_reader :mutant
-
-    # The devtools configuration
-    #
-    # @return [Config::Devtools]
-    #
-    # @api private
-    attr_reader :devtools
-
-    # Return project root
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    #
-    attr_reader :root
-
-    # The default config path
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    attr_reader :default_config_path
-
-    # The lib directory
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    attr_reader :lib_dir
-
-    # The Ruby file pattern
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    attr_reader :file_pattern
+    attr_reader(*CONFIGS.keys)
 
     # The spec root
     #
@@ -87,20 +24,6 @@ module Devtools
     #
     # @api private
     attr_reader :spec_root
-
-    # Return config directory
-    #
-    # @return [Pathname]
-    #
-    # @api private
-    attr_reader :config_dir
-
-    # The unit test timeout
-    #
-    # @return [Numeric]
-    #
-    # @api private
-    attr_reader :unit_test_timeout
 
     # Initialize object
     #
@@ -111,12 +34,20 @@ module Devtools
     # @api private
     #
     def initialize(root)
-      @root = root
+      super(root)
 
       initialize_environment
       initialize_configs
+    end
 
-      @unit_test_timeout = @devtools.unit_test_timeout
+    # Init rspec
+    #
+    # @return [self]
+    #
+    # @api private
+    def init_rspec
+      Initializer::Rspec.call(self)
+      self
     end
 
   private
@@ -128,11 +59,7 @@ module Devtools
     # @api private
     #
     def initialize_environment
-      @default_config_path = @root.join(DEFAULT_CONFIG_DIR_NAME).freeze
-      @lib_dir             = @root.join(LIB_DIRECTORY_NAME).freeze
-      @spec_root           = @root.join(SPEC_DIRECTORY_NAME).freeze
-      @file_pattern        = @lib_dir.join(RB_FILE_PATTERN).freeze
-      @config_dir          = @default_config_path
+      @spec_root  = root.join(SPEC_DIRECTORY_NAME)
     end
 
     # Initialize configs
@@ -142,13 +69,11 @@ module Devtools
     # @api private
     #
     def initialize_configs
-      @reek      = Config::Reek.new(self)
-      @rubocop   = Config::Rubocop.new(self)
-      @flog      = Config::Flog.new(self)
-      @yardstick = Config::Yardstick.new(self)
-      @flay      = Config::Flay.new(self)
-      @mutant    = Config::Mutant.new(self)
-      @devtools  = Config::Devtools.new(self)
+      config_dir = root.join(DEFAULT_CONFIG_DIR_NAME)
+
+      CONFIGS.each do |name, klass|
+        instance_variable_set(:"@#{name}", klass.new(config_dir))
+      end
     end
 
   end # class Project

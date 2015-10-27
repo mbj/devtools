@@ -5,8 +5,11 @@ describe Devtools::Project::Initializer::Rspec do
   let(:project) do
     instance_double(
       Devtools::Project,
-      spec_root:         spec_root,
-      unit_test_timeout: unit_test_timeout
+      spec_root: spec_root,
+      devtools:  instance_double(
+        Devtools::Config::Devtools,
+        unit_test_timeout: unit_test_timeout
+      )
     )
   end
 
@@ -20,7 +23,7 @@ describe Devtools::Project::Initializer::Rspec do
       example = -> { called = true }
 
       expect(Devtools).to receive(:require_files)
-        .with(Devtools::ROOT.join('shared/spec'), '{shared,support}/**/*.rb')
+        .with(Devtools.root.join('shared/spec'), '{shared,support}/**/*.rb')
 
       expect(Devtools).to receive(:require_files)
         .with(spec_root, '{shared,support}/**/*.rb')
