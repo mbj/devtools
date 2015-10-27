@@ -75,22 +75,6 @@ module Devtools
     PROJECT
   end
 
-  # Require shared examples
-  #
-  # @param [Pathname] dir
-  #   the directory containing the files to require
-  #
-  # @param [String] pattern
-  #   the file pattern to match inside directory
-  #
-  # @return [self]
-  #
-  # @api private
-  def self.require_files(dir, pattern)
-    Dir[dir.join(pattern)].each { |file| require file }
-    self
-  end
-
 end # module Devtools
 
 # Devtools implementation

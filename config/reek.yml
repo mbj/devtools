@@ -23,9 +23,7 @@ DuplicateMethodCall:
   allow_calls: []
 FeatureEnvy:
   enabled: true
-  exclude:
-  - Devtools::Site::Initializer#init_gemfile
-  - Devtools::Site::Initializer#init_rakefile
+  exclude: []
 IrresponsibleModule:
   enabled: true
   exclude: []
@@ -61,8 +59,7 @@ TooManyMethods:
   max_methods: 15
 TooManyStatements:
   enabled: true
-  exclude:
-  - Devtools::Project#initialize  # needs refactoring, it is way too large
+  exclude: []
   max_statements: 5
 UncommunicativeMethodName:
   enabled: true
@@ -101,7 +98,5 @@ UnusedParameters:
 UtilityFunction:
   enabled: true
   exclude:
-  - Devtools::Platform#ruby18?
-  - Devtools::Platform#ruby19?
-  - Devtools::Platform#ruby20?
+  - Devtools::Project::Initializer::Rspec#require_files # intentional for deduplication
   max_helper_calls: 0
