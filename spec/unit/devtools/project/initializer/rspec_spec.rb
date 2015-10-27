@@ -1,6 +1,6 @@
 describe Devtools::Project::Initializer::Rspec do
-  let(:spec_root)         { instance_double(Pathname) }
-  let(:unit_test_timeout) { instance_double(Float)    }
+  let(:spec_root)         { Devtools.root.join('spec') }
+  let(:unit_test_timeout) { instance_double(Float)     }
 
   let(:project) do
     instance_double(
@@ -22,11 +22,19 @@ describe Devtools::Project::Initializer::Rspec do
       called = false
       example = -> { called = true }
 
-      expect(Devtools).to receive(:require_files)
-        .with(Devtools.root.join('shared/spec'), '{shared,support}/**/*.rb')
+      expect(Dir).to receive(:glob)
+        .with(Devtools.root.join('shared/spec/{shared,support}/**/*.rb'))
+        .and_return(%w[shared-a shared-b])
 
-      expect(Devtools).to receive(:require_files)
-        .with(spec_root, '{shared,support}/**/*.rb')
+      expect(Kernel).to receive(:require).with('shared-a')
+      expect(Kernel).to receive(:require).with('shared-b')
+
+      expect(Dir).to receive(:glob)
+        .with(Devtools.root.join('spec/{shared,support}/**/*.rb'))
+        .and_return(%w[support-a support-b])
+
+      expect(Kernel).to receive(:require).with('support-a')
+      expect(Kernel).to receive(:require).with('support-b')
 
       expect(Timeout).to receive(:timeout).with(unit_test_timeout) do |&block|
         block.call

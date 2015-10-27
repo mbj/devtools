@@ -1,5 +1,4 @@
 name: devtools
 namespace: Devtools
-since: HEAD~1
 ignore_subjects:
 - "Devtools::Flay::Scale#flay"

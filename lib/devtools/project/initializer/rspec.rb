@@ -56,8 +56,20 @@ module Devtools
         # @api private
         #
         def require_shared_spec_files
-          Devtools.require_files(SHARED_SPEC_PATH,  SHARED_SPEC_PATTERN)
-          Devtools.require_files(project.spec_root, SHARED_SPEC_PATTERN)
+          require_files(SHARED_SPEC_PATH)
+          require_files(project.spec_root)
+        end
+
+        # Require files with pattern
+        #
+        # @param [Pathname] dir
+        #   the directory containing the files to require
+        #
+        # @return [self]
+        #
+        # @api private
+        def require_files(dir)
+          Dir.glob(dir.join(SHARED_SPEC_PATTERN)).each(&Kernel.method(:require))
         end
 
       end # class Rspec
