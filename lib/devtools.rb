@@ -15,6 +15,7 @@ require 'adamantium'
 require 'flay'
 require 'rspec'
 require 'rspec/its'
+require 'simplecov'
 
 # Main devtools namespace population
 module Devtools

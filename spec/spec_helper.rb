@@ -3,8 +3,6 @@ require 'tempfile'
 require 'tmpdir'
 
 if ENV['COVERAGE'] == 'true'
-  require 'simplecov'
-
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
   ]
