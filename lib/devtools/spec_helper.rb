@@ -1,3 +1,3 @@
 require 'devtools'
 
-Devtools.init_spec_helper
+Devtools::PROJECT.init_rspec

@@ -119,6 +119,16 @@ module Devtools
       @unit_test_timeout = @devtools.unit_test_timeout
     end
 
+    # Init rspec
+    #
+    # @return [self]
+    #
+    # @api private
+    def init_rspec
+      Initializer::Rspec.call(self)
+      self
+    end
+
   private
 
     # Initialize environment

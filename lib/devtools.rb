@@ -18,7 +18,6 @@ require 'rspec/its'
 
 # Devtools implementation
 require 'devtools/platform'
-require 'devtools/site'
 require 'devtools/project'
 require 'devtools/config'
 require 'devtools/project/initializer'
@@ -49,8 +48,8 @@ module Devtools
   DEFAULT_CONFIG_DIR_NAME = 'config'.freeze
   ANNOTATION_WRAPPER      = "\n# Added by devtools\n%s\n".freeze
 
-  # Provides devtools for a project
-  SITE = Site.new(Project.new(PROJECT_ROOT))
+  # The project devtools is active for
+  PROJECT = Project.new(PROJECT_ROOT)
 
   # React to metric violation
   #
@@ -75,25 +74,13 @@ module Devtools
     self
   end
 
-  # Initialize project and load shared specs
-  #
-  # Expects to be called from $application_root/spec/spec_helper.rb
-  #
-  # @return [self]
-  #
-  # @api public
-  def self.init_spec_helper
-    SITE.init_spec_helper
-    self
-  end
-
   # Return project
   #
   # @return [Project]
   #
   # @api private
   def self.project
-    SITE.project
+    PROJECT
   end
 
   # Require shared examples
