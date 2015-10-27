@@ -16,13 +16,8 @@ require 'flay'
 require 'rspec'
 require 'rspec/its'
 
-# Main namespace dependency, To be fixed.
-require 'devtools/platform'
-
 # Main devtools namespace population
 module Devtools
-
-  extend Platform
 
   ROOT                    = Pathname.new(__FILE__).parent.parent.freeze
   PROJECT_ROOT            = Pathname.pwd.freeze
