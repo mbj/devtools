@@ -161,7 +161,7 @@ module Devtools
       attribute :name,            [String],                default: DEFAULT_NAME
       attribute :strategy,        [String],                default: DEFAULT_STRATEGY
       attribute :zombify,         [TrueClass, FalseClass], default: false
-      attribute :since,           [String],                default: nil
+      attribute :since,           [String, NilClass],      default: nil
       attribute :ignore_subjects, [Array],                 default: []
       attribute :expect_coverage, [Float],                 default: 1.0
       attribute :namespace,       [String]
