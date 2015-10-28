@@ -1,6 +1,6 @@
 # devtools
 
-[![Build Status](https://secure.travis-ci.org/mbj/devtools.png?branch=master)](http://travis-ci.org/mbj/devtools)
+[![Build Status](https://img.shields.io/circleci/project/mbj/devtools.svg)](https://circleci.com/gh/mbj/devtools/tree/master)
 [![Dependency Status](https://gemnasium.com/mbj/devtools.png)](https://gemnasium.com/mbj/devtools)
 [![Code Climate](https://codeclimate.com/github/datamapper/devtools.png)](https://codeclimate.com/github/datamapper/devtools)
 <!-- [![Code Climate](https://codeclimate.com/github/mbj/devtools.png)](https://codeclimate.com/github/mbj/devtools) -->
