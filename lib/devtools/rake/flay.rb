@@ -1,43 +1,37 @@
 module Devtools
   module Rake
     # Flay metric runner
-    class Flay
-      include Anima.new(:threshold, :total_score, :lib_dirs, :excludes),
-              Procto.call(:verify),
-              Adamantium
+    class Flay < Base
+      include Anima.new(:threshold, :total_score, :lib_dirs, :excludes)
 
       BELOW_THRESHOLD = 'Adjust flay threshold down to %d'.freeze
       TOTAL_MISMATCH  = 'Flay total is now %d, but expected %d'.freeze
       ABOVE_THRESHOLD = '%d chunks have a duplicate mass > %d'.freeze
 
-      # Verify code specified by `files` does not violate flay expectations
+      # Runs flay against the specified by `files`
       #
-      # @raise [SystemExit] if a violation is found
-      # @return [undefined] otherwise
+      # @return [undefined]
       #
-      # rubocop:disable MethodLength
+      # rubocop:disable Metrics/MethodLength
       #
       # @api private
-      def verify
-        # Run flay first to ensure the max mass matches the threshold
-        Devtools.notify_metric_violation(
-          BELOW_THRESHOLD % largest_mass
-        ) if below_threshold?
+      def run
+        auto_notify do
+          next notify_failure(
+            format(BELOW_THRESHOLD, largest_mass)
+          ) if below_threshold?
 
-        Devtools.notify_metric_violation(
-          TOTAL_MISMATCH % [total_mass, total_score]
-        ) if total_mismatch?
+          next notify_failure(
+            format(TOTAL_MISMATCH, total_mass, total_score)
+          ) if total_mismatch?
 
-        # Run flay a second time with the threshold set
-        return unless above_threshold?
-
-        restricted_flay_scale.flay_report
-        Devtools.notify_metric_violation(
-          ABOVE_THRESHOLD % [restricted_mass_size, threshold]
-        )
+          next notify_failure(
+            format(ABOVE_THRESHOLD, restricted_mass_size, threshold)
+          ) if above_threshold?
+        end
       end
 
-    private
+      private
 
       # List of files flay will analyze
       #

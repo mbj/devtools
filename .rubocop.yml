@@ -1,5 +1,0 @@
-AllCops:
-  Include:
-    - 'Gemfile'
-  Exclude:
-    - 'vendor/**/*'

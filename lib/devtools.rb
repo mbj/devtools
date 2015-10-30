@@ -13,9 +13,13 @@ require 'adamantium'
 
 # Wrapped tools
 require 'flay'
+require 'flog'
+require 'flog_cli'
 require 'rspec'
 require 'rspec/its'
+require 'rubocop'
 require 'simplecov'
+require 'octokit'
 
 # Main devtools namespace population
 module Devtools
@@ -80,12 +84,19 @@ end # module Devtools
 
 # Devtools implementation
 require 'devtools/config'
+require 'devtools/env'
 require 'devtools/project'
 require 'devtools/project/initializer'
 require 'devtools/project/initializer/rake'
 require 'devtools/project/initializer/rspec'
 require 'devtools/flay'
+require 'devtools/rake/github'
+require 'devtools/rake/base'
+require 'devtools/rake/coverage'
 require 'devtools/rake/flay'
+require 'devtools/rake/flog'
+require 'devtools/rake/rspec'
+require 'devtools/rake/rubocop'
 
 # Devtools self initialization
 module Devtools
