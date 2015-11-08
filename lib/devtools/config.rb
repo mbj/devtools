@@ -157,13 +157,14 @@ module Devtools
       FILE             = 'mutant.yml'.freeze
       DEFAULT_NAME     = ''.freeze
       DEFAULT_STRATEGY = 'rspec'.freeze
+      DEFAULT_COVERAGE = '1/1'.freeze
 
       attribute :name,            [String],                default: DEFAULT_NAME
       attribute :strategy,        [String],                default: DEFAULT_STRATEGY
       attribute :zombify,         [TrueClass, FalseClass], default: false
       attribute :since,           [String, NilClass],      default: nil
       attribute :ignore_subjects, [Array],                 default: []
-      attribute :expect_coverage, [Float],                 default: 1.0
+      attribute :expect_coverage, [String],                default: DEFAULT_COVERAGE
       attribute :namespace,       [String]
     end # Mutant
 
