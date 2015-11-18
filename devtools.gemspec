@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'yard',         '~> 0.8.7.6'
   gem.add_runtime_dependency 'flay',         '~> 2.6.1'
   gem.add_runtime_dependency 'flog',         '~> 4.3.2'
-  gem.add_runtime_dependency 'reek',         '~> 3.6.1'
+  gem.add_runtime_dependency 'reek',         '~> 3.7.0'
   gem.add_runtime_dependency 'rubocop',      '~> 0.35.1'
   gem.add_runtime_dependency 'simplecov',    '~> 0.10.0'
   gem.add_runtime_dependency 'yardstick',    '~> 0.9.9'
