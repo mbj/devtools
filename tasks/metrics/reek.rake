@@ -5,7 +5,7 @@ namespace :metrics do
     config = Devtools.project.reek
 
     Devtools::Rake::Reek.call(
-      files:  FileList['{app,lib}/**/*.rb'].to_a,
+      files:  FileList[config.files].to_a,
       config: config
     )
   end

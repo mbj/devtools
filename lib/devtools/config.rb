@@ -106,7 +106,23 @@ module Devtools
 
     # Reek configuration
     class Reek < self
-      FILE = 'reek.yml'
+      FILE          = 'reek.yml'.freeze
+      DEFAULT_FILES = '{app,lib}/**/*.rb'.freeze
+
+      # Glob for selecting files to check with reek
+      #
+      # @note eventually this will be configurable. Right now though
+      #   devtools does not distinguish between configuration files that
+      #   tell devtools how to run a tool vs. configuration files which
+      #   the tool itself uses. Reek has a configuration file so we can't
+      #   just tack on random config keys inside the file.
+      #
+      # @return [String] file glob
+      #
+      # @api private
+      def files
+        DEFAULT_FILES
+      end
     end # Reek
 
     # Flay configuration
