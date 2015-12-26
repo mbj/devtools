@@ -4,9 +4,6 @@ namespace :metrics do
   task :reek do
     config = Devtools.project.reek
 
-    Devtools::Rake::Reek.call(
-      files:  FileList[config.files].to_a,
-      config: config
-    )
+    Devtools::Rake::Reek.call(config)
   end
 end

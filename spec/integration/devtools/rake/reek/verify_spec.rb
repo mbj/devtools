@@ -1,17 +1,19 @@
 describe Devtools::Rake::Reek, '#verify' do
-  subject(:instance) do
-    described_class.new(config: task_config, files: [file.to_s])
-  end
+  subject(:instance) { described_class.new(config) }
 
   let(:reek_yml)    { Tempfile.new(%w[reek .yml], Dir.mktmpdir) }
   let(:config_file) { Pathname(reek_yml.path)                   }
-  let(:config)      { 'PrimaDonnaMethod: { enabled: false }'    }
+  let(:reek_config) { 'PrimaDonnaMethod: { enabled: false }'    }
   let(:tempfile)    { Tempfile.new(%w[file .rb], Dir.mktmpdir)  }
   let(:file)        { Pathname(tempfile.path)                   }
   let(:directories) { [file.dirname.to_s]                       }
 
-  let(:task_config) do
-    instance_double(Devtools::Config::Reek, config_file: config_file)
+  let(:config) do
+    instance_double(
+      Devtools::Config::Reek,
+      config_file: config_file,
+      files:       "#{file.dirname}/*.rb"
+    )
   end
 
   let(:ruby) do
@@ -42,7 +44,7 @@ EOF
       tempfile.write(ruby)
       tempfile.close
 
-      reek_yml.write(config)
+      reek_yml.write(reek_config)
       reek_yml.close
 
       example.run

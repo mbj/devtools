@@ -2,7 +2,7 @@ module Devtools
   module Rake
     # Reek metric runner
     class Reek
-      include Procto.call(:verify), Adamantium, Anima.new(:files, :config)
+      include Procto.call(:verify), Adamantium, Concord.new(:config)
 
       # Verify reek integration runs successfully
       #
@@ -18,6 +18,17 @@ module Devtools
         return if status.zero?
 
         Devtools.notify_metric_violation("\n\n!!! Reek has found smells - exiting!")
+      end
+
+      private
+
+      # List of files to pass into reek task
+      #
+      # @return [Array<String>]
+      #
+      # @api private
+      def files
+        Dir.glob(config.files)
       end
     end
   end
