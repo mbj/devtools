@@ -2,6 +2,8 @@ module Devtools
   module Rake
     # Reek metric runner
     class Reek
+      VIOLATION_MESSAGE = "\n\n!!! Reek has found smells - exiting!".freeze
+
       include Procto.call(:verify), Adamantium, Concord.new(:config)
 
       # Verify reek integration runs successfully
@@ -11,16 +13,24 @@ module Devtools
       #
       # @api private
       def verify
-        arguments = %W[--config #{config.config_file}] + files
+        return if result.successful?
 
-        status = ::Reek::CLI::Application.new(arguments).execute
-
-        return if status.zero?
-
-        Devtools.notify_metric_violation("\n\n!!! Reek has found smells - exiting!")
+        Devtools.notify_metric_violation(VIOLATION_MESSAGE)
       end
 
       private
+
+      # Result object from running reek analysis
+      #
+      # @return [Devtools::Reek::Result]
+      #
+      # @api private
+      def result
+        Devtools::Reek::Proxy.call(
+          config_file: config.config_file.to_s,
+          files:       files
+        )
+      end
 
       # List of files to pass into reek task
       #
