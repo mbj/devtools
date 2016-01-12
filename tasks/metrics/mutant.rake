@@ -19,6 +19,8 @@ namespace :metrics do
       %W[--ignore #{matcher}]
     end
 
+    jobs = ENV.key?('CIRCLECI') ? %w[--jobs 4] : []
+
     since =
       if config.since
         %W[--since #{config.since}]
@@ -31,11 +33,10 @@ namespace :metrics do
       --require #{config.name}
       --expect-coverage #{config.expect_coverage}
       --use #{config.strategy}
-    ].concat(ignore_subjects).concat(namespaces).concat(since)
+    ].concat(ignore_subjects).concat(namespaces).concat(since).concat(jobs)
 
-    status = namespace::CLI.run(arguments)
-    if status.nonzero?
-      Devtools.notify_metric_violation 'Mutant task is not successful'
+    unless namespace::CLI.run(arguments)
+      Devtools.notify_metric_violation('Mutant task is not successful')
     end
   end
 end
