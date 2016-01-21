@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.files                 = `git ls-files`.split($/)
   gem.executables           = %w[]
   gem.test_files            = `git ls-files -- spec`.split($/)
-  gem.extra_rdoc_files      = %w[README.md TODO]
+  gem.extra_rdoc_files      = %w[README.md]
   gem.required_ruby_version = '>= 2.1'
 
   gem.add_runtime_dependency 'procto',       '~> 0.0.x'
