@@ -1,9 +1,9 @@
 Gem::Specification.new do |gem|
   gem.name        = 'devtools'
-  gem.version     = '0.1.3'
+  gem.version     = '0.1.4'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@schirp-dso.com' ]
-  gem.description = 'A metagem for ROM-style development'
+  gem.description = 'A metagem wrapping development tools'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/rom-rb/devtools'
   gem.license     = 'MIT'
