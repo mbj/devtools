@@ -19,6 +19,7 @@ tmtags
 
 ## PROJECT::GENERAL
 *.gem
+.ruby-version
 coverage
 profiling
 turbulence

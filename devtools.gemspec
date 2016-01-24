@@ -32,4 +32,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'yardstick',    '~> 0.9.9'
   gem.add_runtime_dependency 'mutant',       '~> 0.8.9'
   gem.add_runtime_dependency 'mutant-rspec', '~> 0.8.8'
+  gem.add_runtime_dependency 'octokit',      '~> 4.1.1'
 end
