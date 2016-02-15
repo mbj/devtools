@@ -115,3 +115,11 @@ LambdaCall:
 # Allow additional spaces
 ExtraSpacing:
   Enabled: false
+
+# All objects can still be mutated if their eigenclass is patched
+RedundantFreeze:
+  Enabled: false
+
+# Prefer using `fail` when raising and `raise` when reraising
+SignalException:
+  EnforcedStyle: semantic

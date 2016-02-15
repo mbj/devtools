@@ -59,7 +59,7 @@ module Devtools
     # @api private
     #
     def initialize_environment
-      @spec_root  = root.join(SPEC_DIRECTORY_NAME)
+      @spec_root = root.join(SPEC_DIRECTORY_NAME)
     end
 
     # Initialize configs
