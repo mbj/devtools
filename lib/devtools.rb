@@ -20,18 +20,19 @@ require 'simplecov'
 # Main devtools namespace population
 module Devtools
 
-  ROOT                    = Pathname.new(__FILE__).parent.parent.freeze
-  PROJECT_ROOT            = Pathname.pwd.freeze
-  SHARED_PATH             = ROOT.join('shared').freeze
-  SHARED_SPEC_PATH        = SHARED_PATH.join('spec').freeze
-  DEFAULT_CONFIG_PATH     = ROOT.join('default/config').freeze
-  RAKE_FILES_GLOB         = ROOT.join('tasks/**/*.rake').to_s.freeze
-  LIB_DIRECTORY_NAME      = 'lib'.freeze
-  SPEC_DIRECTORY_NAME     = 'spec'.freeze
-  RAKE_FILE_NAME          = 'Rakefile'.freeze
-  SHARED_SPEC_PATTERN     = '{shared,support}/**/*.rb'.freeze
-  UNIT_TEST_PATH_REGEXP   = %r{\bspec/unit/}.freeze
-  DEFAULT_CONFIG_DIR_NAME = 'config'.freeze
+  ROOT                         = Pathname.new(__FILE__).parent.parent.freeze
+  PROJECT_ROOT                 = Pathname.pwd.freeze
+  SHARED_PATH                  = ROOT.join('shared').freeze
+  SHARED_SPEC_PATH             = SHARED_PATH.join('spec').freeze
+  DEFAULT_CONFIG_PATH          = ROOT.join('default/config').freeze
+  RAKE_FILES_GLOB              = ROOT.join('tasks/**/*.rake').to_s.freeze
+  LIB_DIRECTORY_NAME           = 'lib'.freeze
+  SPEC_DIRECTORY_NAME          = 'spec'.freeze
+  RAKE_FILE_NAME               = 'Rakefile'.freeze
+  SHARED_SPEC_PATTERN          = '{shared,support}/**/*.rb'.freeze
+  UNIT_TEST_PATH_REGEXP        = %r{\bspec/unit/}.freeze
+  INTEGRATION_TEST_PATH_REGEXP = %r{\bspec/integration/}.freeze
+  DEFAULT_CONFIG_DIR_NAME      = 'config'.freeze
 
   private_constant(*constants(false))
 

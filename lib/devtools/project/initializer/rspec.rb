@@ -7,6 +7,16 @@ module Devtools
       class Rspec < self
         include Concord.new(:project)
 
+        INTEGRATION_TEST_FILTER = IceNine.deep_freeze(
+          file_path: INTEGRATION_TEST_PATH_REGEXP
+        )
+
+        UNIT_TEST_FILTER = IceNine.deep_freeze(
+          file_path: UNIT_TEST_PATH_REGEXP
+        )
+
+        private_constant(*constants(false))
+
         # Call initializer for project
         #
         # @param [Project] project
@@ -29,6 +39,23 @@ module Devtools
         def call
           require_shared_spec_files
           enable_unit_test_timeout
+          disable_mutant_for_integration_tests
+        end
+
+        # Assign RSpec metadata to integration tests to disable mutant
+        #
+        # :reek:UtilityFunction for the sake of setting up RSpec project state
+        #
+        # @return [undefined]
+        #
+        # @api private
+        #
+        def disable_mutant_for_integration_tests
+          RSpec
+            .configuration
+            .define_derived_metadata(INTEGRATION_TEST_FILTER) do |metadata|
+              metadata[:mutant] = false
+            end
         end
 
         # Timeout unit tests that take longer than configured amount of time
@@ -44,7 +71,7 @@ module Devtools
         #
         def enable_unit_test_timeout
           timeout = project.devtools.unit_test_timeout
-          RSpec.configuration.around(file_path: UNIT_TEST_PATH_REGEXP) do |example|
+          RSpec.configuration.around(UNIT_TEST_FILTER) do |example|
             Timeout.timeout(timeout, &example)
           end
         end
