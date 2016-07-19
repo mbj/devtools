@@ -49,6 +49,10 @@ RepeatedConditional:
   enabled: true
   exclude: []
   max_ifs: 1
+TooManyConstants:
+  enabled: true
+  exclude:
+  - Devtools
 TooManyInstanceVariables:
   enabled: true
   exclude: []
