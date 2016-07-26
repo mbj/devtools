@@ -1,5 +1,5 @@
 describe Devtools::Flay::FileList, '.call' do
-  subject(:output) { described_class.call([tmpdir.to_s], [exclude]) }
+  subject(:output) { described_class.call([tmpdir.to_s].freeze, [exclude]) }
 
   let(:tmpdir)     { Dir.mktmpdir                     }
   let(:one)        { Pathname(tmpdir).join('1.rb')    }

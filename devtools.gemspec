@@ -19,17 +19,17 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'anima',        '~> 0.3.0'
   gem.add_runtime_dependency 'concord',      '~> 0.1.5'
   gem.add_runtime_dependency 'adamantium',   '~> 0.2.0'
-  gem.add_runtime_dependency 'rspec',        '=  3.4.0'  # blocked by mutant-rspec
-  gem.add_runtime_dependency 'rspec-core',   '=  3.4.4'  # blocked by mutant-rspec
+  gem.add_runtime_dependency 'rspec',        '~> 3.5.0'
+  gem.add_runtime_dependency 'rspec-core',   '~> 3.5.2'
   gem.add_runtime_dependency 'rspec-its',    '~> 1.2.0'
   gem.add_runtime_dependency 'rake',         '~> 11.2.2'
   gem.add_runtime_dependency 'yard',         '~> 0.9.1'
-  gem.add_runtime_dependency 'flay',         '=  2.7.0'  # blocked by interface changes
+  gem.add_runtime_dependency 'flay',         '~> 2.8.0'
   gem.add_runtime_dependency 'flog',         '~> 4.4.0'
   gem.add_runtime_dependency 'reek',         '~> 4.2.0'
-  gem.add_runtime_dependency 'rubocop',      '~> 0.41.2'
+  gem.add_runtime_dependency 'rubocop',      '~> 0.42.0'
   gem.add_runtime_dependency 'simplecov',    '~> 0.12.0'
   gem.add_runtime_dependency 'yardstick',    '~> 0.9.9'
-  gem.add_runtime_dependency 'mutant',       '~> 0.8.10'
-  gem.add_runtime_dependency 'mutant-rspec', '~> 0.8.8'
+  gem.add_runtime_dependency 'mutant',       '~> 0.8.11'
+  gem.add_runtime_dependency 'mutant-rspec', '~> 0.8.11'
 end
