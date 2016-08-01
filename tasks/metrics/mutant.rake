@@ -31,7 +31,6 @@ namespace :metrics do
     arguments  = %W[
       --include lib
       --require #{config.name}
-      --expect-coverage #{config.expect_coverage}
       --use #{config.strategy}
     ].concat(ignore_subjects).concat(namespaces).concat(since).concat(jobs)
 

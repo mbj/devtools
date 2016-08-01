@@ -46,6 +46,8 @@ module Devtools
     class FileList
       include Procto.call, Concord.new(:includes, :excludes)
 
+      GLOB = '**/*.{rb,erb}'.freeze
+
       # Expand includes and filter by excludes
       #
       # @return [Set<Pathname>]
@@ -87,7 +89,7 @@ module Devtools
       #
       # @api private
       def flay_includes
-        ::Flay.expand_dirs_to_files(includes)
+        PathExpander.new(includes.dup, GLOB).process
       end
     end
   end
