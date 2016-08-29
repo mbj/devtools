@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rspec-its',    '~> 1.2.0'
   gem.add_runtime_dependency 'rake',         '~> 11.2.2'
   gem.add_runtime_dependency 'yard',         '~> 0.9.1'
-  gem.add_runtime_dependency 'flay',         '~> 2.8.0'
+  gem.add_runtime_dependency 'flay',         '~> 2.8.1'
   gem.add_runtime_dependency 'flog',         '~> 4.4.0'
   gem.add_runtime_dependency 'reek',         '~> 4.4.0'
   gem.add_runtime_dependency 'rubocop',      '~> 0.42.0'
