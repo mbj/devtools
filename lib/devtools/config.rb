@@ -108,6 +108,11 @@ module Devtools
     end # Reek
 
     # Flay configuration
+    #
+    # @note We cannot use unified Integer until 2.4 since `instance_of?(Integer)` is
+    #   not semantically equivalent to `instance_of?(Fixnum)`
+    #
+    # rubocop:disable Lint/UnifiedInteger
     class Flay < self
       FILE             = 'flay.yml'.freeze
       DEFAULT_LIB_DIRS = %w[lib].freeze
@@ -118,6 +123,7 @@ module Devtools
       attribute :lib_dirs,    [Array], default: DEFAULT_LIB_DIRS
       attribute :excludes,    [Array], default: DEFAULT_EXCLUDES
     end # Flay
+    # rubocop:enable Lint/UnifiedInteger
 
     # Yardstick configuration
     class Yardstick < self
