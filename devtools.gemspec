@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'concord',      '~> 0.1.5'
   gem.add_runtime_dependency 'adamantium',   '~> 0.2.0'
   gem.add_runtime_dependency 'rspec',        '~> 3.5.0'
-  gem.add_runtime_dependency 'rspec-core',   '~> 3.5.2'
+  gem.add_runtime_dependency 'rspec-core',   '~> 3.5.4'
   gem.add_runtime_dependency 'rspec-its',    '~> 1.2.0'
   gem.add_runtime_dependency 'rake',         '~> 11.2.2'
   gem.add_runtime_dependency 'yard',         '~> 0.9.1'
