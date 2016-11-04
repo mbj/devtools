@@ -20,13 +20,17 @@ module Devtools
       # @api private
       def verify
         # Run flay first to ensure the max mass matches the threshold
-        Devtools.notify_metric_violation(
-          BELOW_THRESHOLD % largest_mass
-        ) if below_threshold?
+        if below_threshold?
+          Devtools.notify_metric_violation(
+            BELOW_THRESHOLD % largest_mass
+          )
+        end
 
-        Devtools.notify_metric_violation(
-          TOTAL_MISMATCH % [total_mass, total_score]
-        ) if total_mismatch?
+        if total_mismatch?
+          Devtools.notify_metric_violation(
+            TOTAL_MISMATCH % [total_mass, total_score]
+          )
+        end
 
         # Run flay a second time with the threshold set
         return unless above_threshold?
