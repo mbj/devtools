@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name        = 'devtools'
-  gem.version     = '0.1.15'
+  gem.version     = '0.1.16'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@schirp-dso.com' ]
   gem.description = 'A metagem wrapping development tools'
@@ -27,7 +27,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'flay',         '~> 2.8.1'
   gem.add_runtime_dependency 'flog',         '~> 4.4.0'
   gem.add_runtime_dependency 'reek',         '~> 4.5.0'
-  gem.add_runtime_dependency 'rubocop',      '~> 0.46.0'
+  gem.add_runtime_dependency 'rubocop',      '~> 0.47.0'
   gem.add_runtime_dependency 'simplecov',    '~> 0.12.0'
   gem.add_runtime_dependency 'yardstick',    '~> 0.9.9'
   gem.add_runtime_dependency 'mutant',       '~> 0.8.11'

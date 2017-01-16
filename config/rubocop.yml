@@ -1,5 +1,10 @@
 inherit_from: ../.rubocop.yml
 
+Metrics/BlockLength:
+  Exclude:
+  # Ignore RSpec DSL
+  - spec/**/*
+
 # Avoid parameter lists longer than five parameters.
 ParameterLists:
   Max: 3
@@ -89,7 +94,7 @@ PercentLiteralDelimiters:
 
 # Align if/else blocks with the variable assignment
 EndAlignment:
-  AlignWith: variable
+  EnforcedStyleAlignWith: variable
 
 # Do not always align parameters when it is easier to read
 AlignParameters:
