@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name        = 'devtools'
-  gem.version     = '0.1.16'
+  gem.version     = '0.1.17'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@schirp-dso.com' ]
   gem.description = 'A metagem wrapping development tools'
@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rspec',        '~> 3.5.0'
   gem.add_runtime_dependency 'rspec-core',   '~> 3.5.4'
   gem.add_runtime_dependency 'rspec-its',    '~> 1.2.0'
-  gem.add_runtime_dependency 'rake',         '~> 11.3.0'
+  gem.add_runtime_dependency 'rake',         '~> 12.0.0'
   gem.add_runtime_dependency 'yard',         '~> 0.9.1'
   gem.add_runtime_dependency 'flay',         '~> 2.8.1'
   gem.add_runtime_dependency 'flog',         '~> 4.4.0'
