@@ -35,7 +35,8 @@ module Devtools
         # Run flay a second time with the threshold set
         return unless above_threshold?
 
-        restricted_flay_scale.flay_report
+        puts threshold_result.report
+
         Devtools.notify_metric_violation(
           ABOVE_THRESHOLD % [restricted_mass_size, threshold]
         )
@@ -85,7 +86,7 @@ module Devtools
       #
       # @api private
       def restricted_mass_size
-        restricted_flay_scale.measure.size
+        threshold_result.relative_masses.size
       end
 
       # Sum of all flay mass
@@ -94,7 +95,7 @@ module Devtools
       #
       # @api private
       def total_mass
-        flay_masses.reduce(:+).to_i
+        no_minimum_result.relative_masses.reduce(:+).to_i
       end
 
       # Largest flay mass found
@@ -103,7 +104,7 @@ module Devtools
       #
       # @api private
       def largest_mass
-        flay_masses.max.to_i
+        no_minimum_result.relative_masses.max.to_i
       end
 
       # Flay scale which only measures mass above `threshold`
@@ -111,20 +112,20 @@ module Devtools
       # @return [Flay::Scale]
       #
       # @api private
-      def restricted_flay_scale
-        Devtools::Flay::Scale.new(minimum_mass: threshold.succ, files: files)
+      def threshold_result
+        Devtools::Flay::Scale.call(minimum_mass: threshold.succ, files: files)
       end
-      memoize :restricted_flay_scale
+      memoize :threshold_result
 
       # All flay masses found in `files`
       #
       # @return [Array<Rational>]
       #
       # @api private
-      def flay_masses
+      def no_minimum_result
         Devtools::Flay::Scale.call(minimum_mass: 0, files: files)
       end
-      memoize :flay_masses
+      memoize :no_minimum_result
     end
   end
 end
