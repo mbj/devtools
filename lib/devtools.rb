@@ -6,6 +6,7 @@ require 'yaml'
 require 'fileutils'
 
 # Non stdlib infrastructure
+require 'abstract_type'
 require 'procto'
 require 'anima'
 require 'concord'
