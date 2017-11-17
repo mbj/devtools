@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'adamantium',    '~> 0.2.0'
   gem.add_runtime_dependency 'anima',         '~> 0.3.0'
   gem.add_runtime_dependency 'concord',       '~> 0.1.5'
-  gem.add_runtime_dependency 'flay',          '~> 2.8.1'
+  gem.add_runtime_dependency 'flay',          '~> 2.10.0'
   gem.add_runtime_dependency 'flog',          '~> 4.4.0'
   gem.add_runtime_dependency 'mutant',        '~> 0.8.11'
   gem.add_runtime_dependency 'mutant-rspec',  '~> 0.8.11'
