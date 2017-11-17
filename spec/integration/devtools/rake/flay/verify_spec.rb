@@ -97,7 +97,8 @@ describe Devtools::Rake::Flay, '#verify' do
     end
 
     let(:report) do
-      <<-REPORT
+      # rubocop:disable Layout/IndentHeredoc
+      <<~REPORT
 Total score (lower is better) = 10
 
 Similar code found in :defn (mass = 10)

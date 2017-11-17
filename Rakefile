@@ -1,3 +1,4 @@
+# rubocop:disable Naming/FileName
 require 'devtools'
 
 ENV['DEVTOOLS_SELF'] = '1'

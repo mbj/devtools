@@ -131,3 +131,12 @@ SignalException:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/MixinGrouping:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented

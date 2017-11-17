@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 namespace :metrics do
   require 'flog'
   require 'flog_cli'
@@ -13,9 +14,11 @@ namespace :metrics do
     flog      = Flog.new
     flog.flog(*PathExpander.new(config.lib_dirs.dup, '**/*.rb').process)
 
-    totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }
-                        .map     { |name, score| [name, score.round(1)] }
-                        .sort_by { |name, score| score }
+    totals = flog
+      .totals
+      .reject  { |name, _score| name.end_with?('#none') }
+      .map     { |name, score| [name, score.round(1)]   }
+      .sort_by { |_name, score| score                   }
 
     if totals.any?
       max = totals.last[1]
@@ -24,7 +27,8 @@ namespace :metrics do
       end
     end
 
-    bad_methods = totals.select { |name, score| score > threshold }
+    bad_methods = totals.select { |_name, score| score > threshold }
+
     if bad_methods.any?
       bad_methods.reverse_each do |name, score|
         printf "%8.1f: %s\n", score, name
