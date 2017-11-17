@@ -1,5 +1,4 @@
 AllCops:
+  DisplayCopNames: true
   Include:
     - 'Gemfile'
-  Exclude:
-    - 'vendor/**/*'

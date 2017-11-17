@@ -1,5 +1,6 @@
+# rubocop:disable Metrics/BlockLength
 namespace :metrics do
-  config  = Devtools.project.mutant
+  config = Devtools.project.mutant
 
   desc 'Measure mutation coverage'
   task mutant: :coverage do
@@ -28,7 +29,7 @@ namespace :metrics do
         []
       end
 
-    arguments  = %W[
+    arguments = %W[
       --include lib
       --require #{config.name}
       --use #{config.strategy}
