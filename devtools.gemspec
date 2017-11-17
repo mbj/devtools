@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'mutant-rspec',  '~> 0.8.14'
   gem.add_runtime_dependency 'procto',        '~> 0.0.3'
   gem.add_runtime_dependency 'rake',          '~> 12.0.0'
-  gem.add_runtime_dependency 'reek',          '~> 4.6.0'
+  gem.add_runtime_dependency 'reek',          '~> 4.7.3'
   gem.add_runtime_dependency 'rspec',         '~> 3.5.0'
   gem.add_runtime_dependency 'rspec-core',    '~> 3.5.4'
   gem.add_runtime_dependency 'rspec-its',     '~> 1.2.0'
