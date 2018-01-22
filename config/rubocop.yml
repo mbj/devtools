@@ -1,5 +1,8 @@
 inherit_from: ../.rubocop.yml
 
+AllCops:
+  TargetRubyVersion: 2.3.0
+
 Metrics/BlockLength:
   Exclude:
   # Ignore RSpec DSL
