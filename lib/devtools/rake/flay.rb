@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Devtools
   module Rake
     # Flay metric runner
@@ -6,39 +8,28 @@ module Devtools
               Procto.call(:verify),
               Adamantium
 
-      BELOW_THRESHOLD = 'Adjust flay threshold down to %d'.freeze
-      TOTAL_MISMATCH  = 'Flay total is now %d, but expected %d'.freeze
-      ABOVE_THRESHOLD = '%d chunks have a duplicate mass > %d'.freeze
+      BELOW_THRESHOLD = 'Adjust flay threshold down to %<mass>d'
+      TOTAL_MISMATCH  = 'Flay total is now %<mass>d, but expected %<expected>d'
+      ABOVE_THRESHOLD = '%<mass>d chunks have a duplicate mass > %<threshold>d'
 
       # Verify code specified by `files` does not violate flay expectations
       #
       # @raise [SystemExit] if a violation is found
       # @return [undefined] otherwise
       #
-      # rubocop:disable MethodLength
       #
       # @api private
       def verify
         # Run flay first to ensure the max mass matches the threshold
-        if below_threshold?
-          Devtools.notify_metric_violation(
-            BELOW_THRESHOLD % largest_mass
-          )
-        end
+        below_threshold_message if below_threshold?
 
-        if total_mismatch?
-          Devtools.notify_metric_violation(
-            TOTAL_MISMATCH % [total_mass, total_score]
-          )
-        end
+        total_mismatch_message if total_mismatch?
 
         # Run flay a second time with the threshold set
         return unless above_threshold?
 
         restricted_flay_scale.flay_report
-        Devtools.notify_metric_violation(
-          ABOVE_THRESHOLD % [restricted_mass_size, threshold]
-        )
+        above_threshold_message
       end
 
     private
@@ -77,6 +68,40 @@ module Devtools
       # @api private
       def total_mismatch?
         !total_mass.equal?(total_score)
+      end
+
+      # Above threshold message
+      #
+      # @return [String]
+      #
+      # @api private
+      def above_threshold_message
+        format_values = { mass: restricted_mass_size, threshold: threshold }
+        Devtools.notify_metric_violation(
+          format(ABOVE_THRESHOLD, format_values)
+        )
+      end
+
+      # Below threshold message
+      #
+      # @return [String]
+      #
+      # @api private
+      def below_threshold_message
+        Devtools.notify_metric_violation(
+          format(BELOW_THRESHOLD, mass: largest_mass)
+        )
+      end
+
+      # Total mismatch message
+      #
+      # @return [String]
+      #
+      # @api private
+      def total_mismatch_message
+        Devtools.notify_metric_violation(
+          format(TOTAL_MISMATCH, mass: total_mass, expected: total_score)
+        )
       end
 
       # Size of mass measured by `Flay::Scale` and filtered by `threshold`

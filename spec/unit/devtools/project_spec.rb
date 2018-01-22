@@ -5,7 +5,8 @@ RSpec.describe Devtools::Project do
     subject { object.init_rspec }
 
     it 'calls the rspec initializer' do
-      expect(Devtools::Project::Initializer::Rspec).to receive(:call).with(Devtools.project)
+      expect(Devtools::Project::Initializer::Rspec)
+        .to receive(:call).with(Devtools.project)
       expect(subject).to be(object)
     end
   end

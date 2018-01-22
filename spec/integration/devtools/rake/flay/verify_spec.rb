@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Devtools::Rake::Flay, '#verify' do
   let(:tempfile)    { Tempfile.new(%w[file .rb], Dir.mktmpdir) }
   let(:file)        { Pathname(tempfile.path)                  }
@@ -29,7 +31,7 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'reporting' do
     let(:options) do
-      { threshold: 3, total_score: 3, lib_dirs: directories, excludes: [] }.freeze
+      { threshold: 3, total_score: 3, lib_dirs: directories, excludes: [] }
     end
 
     let(:instance) { described_class.new(options) }
@@ -49,7 +51,12 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when theshold is too low' do
     let(:instance) do
-      described_class.new(threshold: 0, total_score: 0, lib_dirs: directories, excludes: [])
+      described_class.new(
+        threshold: 0,
+        total_score: 0,
+        lib_dirs: directories,
+        excludes: []
+      )
     end
 
     specify do
@@ -61,7 +68,12 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when threshold is too high' do
     let(:instance) do
-      described_class.new(threshold: 1000, total_score: 0, lib_dirs: directories, excludes: [])
+      described_class.new(
+        threshold: 1000,
+        total_score: 0,
+        lib_dirs: directories,
+        excludes: []
+      )
     end
 
     specify do
@@ -73,7 +85,12 @@ describe Devtools::Rake::Flay, '#verify' do
 
   context 'when total is too high' do
     let(:instance) do
-      described_class.new(threshold: 3, total_score: 50, lib_dirs: directories, excludes: [])
+      described_class.new(
+        threshold: 3,
+        total_score: 50,
+        lib_dirs: directories,
+        excludes: []
+      )
     end
 
     specify do
@@ -105,10 +122,16 @@ Similar code found in :defn (mass = 10)
   #{file}:1
   #{file}:5
 REPORT
+      # rubocop:enable Layout/IndentHeredoc
     end
 
     let(:instance) do
-      described_class.new(threshold: 3, total_score: 5, lib_dirs: directories, excludes: [])
+      described_class.new(
+        threshold: 3,
+        total_score: 5,
+        lib_dirs: directories,
+        excludes: []
+      )
     end
 
     specify do
@@ -144,7 +167,12 @@ REPORT
     end
 
     let(:instance) do
-      described_class.new(threshold: 5, total_score: 8, lib_dirs: directories, excludes: [])
+      described_class.new(
+        threshold: 5,
+        total_score: 8,
+        lib_dirs: directories,
+        excludes: []
+      )
     end
 
     it 'sums masses for total' do
@@ -155,7 +183,12 @@ REPORT
   context 'when no duplication masses' do
     let(:ruby) { '' }
     let(:instance) do
-      described_class.new(threshold: 0, total_score: 0, lib_dirs: directories, excludes: [])
+      described_class.new(
+        threshold: 0,
+        total_score: 0,
+        lib_dirs: directories,
+        excludes: []
+      )
     end
 
     specify do

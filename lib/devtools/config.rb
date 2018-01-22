@@ -1,5 +1,6 @@
-module Devtools
+# frozen_string_literal: true
 
+module Devtools
   # Abstract base class of tool configuration
   class Config
     include Adamantium::Flat, AbstractType, Concord.new(:config_dir)
@@ -12,8 +13,8 @@ module Devtools
       # Type check against expected class
       include Concord.new(:name, :allowed_classes)
 
-      ERROR_FORMAT = '%<name>s: Got instance of %<got>s expected %<allowed>s'.freeze
-      CLASS_DELIM  = ','.freeze
+      ERROR_FORMAT = '%<name>s: Got instance of %<got>s expected %<allowed>s'
+      CLASS_DELIM  = ','
 
       # Check value for instance of expected class
       #
@@ -22,13 +23,14 @@ module Devtools
       # @return [Object]
       def call(value)
         klass = value.class
+        format_values = {
+          name: name,
+          got: klass,
+          allowed: allowed_classes.join(CLASS_DELIM)
+        }
 
         unless allowed_classes.any?(&klass.method(:equal?))
-          fail TypeError, ERROR_FORMAT % {
-            name:    name,
-            got:     klass,
-            allowed: allowed_classes.join(CLASS_DELIM)
-          }
+          fail TypeError, format(ERROR_FORMAT, format_values)
         end
 
         value
@@ -99,18 +101,18 @@ module Devtools
 
     # Rubocop configuration
     class Rubocop < self
-      FILE = 'rubocop.yml'.freeze
+      FILE = 'rubocop.yml'
     end # Rubocop
 
     # Reek configuration
     class Reek < self
-      FILE = 'reek.yml'.freeze
+      FILE = 'reek.yml'
     end # Reek
 
     # Flay configuration
     #
     class Flay < self
-      FILE             = 'flay.yml'.freeze
+      FILE             = 'flay.yml'
       DEFAULT_LIB_DIRS = %w[lib].freeze
       DEFAULT_EXCLUDES = %w[].freeze
 
@@ -122,7 +124,7 @@ module Devtools
 
     # Yardstick configuration
     class Yardstick < self
-      FILE    = 'yardstick.yml'.freeze
+      FILE    = 'yardstick.yml'
       OPTIONS = %w[
         threshold
         rules
@@ -145,7 +147,7 @@ module Devtools
 
     # Flog configuration
     class Flog < self
-      FILE             = 'flog.yml'.freeze
+      FILE             = 'flog.yml'
       DEFAULT_LIB_DIRS = %w[lib].freeze
 
       attribute :total_score, [Float]
@@ -155,9 +157,9 @@ module Devtools
 
     # Mutant configuration
     class Mutant < self
-      FILE             = 'mutant.yml'.freeze
-      DEFAULT_NAME     = ''.freeze
-      DEFAULT_STRATEGY = 'rspec'.freeze
+      FILE             = 'mutant.yml'
+      DEFAULT_NAME     = ''
+      DEFAULT_STRATEGY = 'rspec'
 
       attribute :name,            [String],                default: DEFAULT_NAME
       attribute :strategy,        [String],                default: DEFAULT_STRATEGY
@@ -169,7 +171,7 @@ module Devtools
 
     # Devtools configuration
     class Devtools < self
-      FILE                      = 'devtools.yml'.freeze
+      FILE                      = 'devtools.yml'
       DEFAULT_UNIT_TEST_TIMEOUT = 0.1  # 100ms
 
       attribute :unit_test_timeout, [Float], default: DEFAULT_UNIT_TEST_TIMEOUT

@@ -6,7 +6,13 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
   # Ignore RSpec DSL
-  - spec/**/*
+    - spec/**/*
+  # Ignore gemspec DSL
+    - '*.gemspec'
+
+Naming/FileName:
+  Exclude:
+    - Rakefile
 
 # Avoid parameter lists longer than five parameters.
 ParameterLists:
