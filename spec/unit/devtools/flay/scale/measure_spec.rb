@@ -1,7 +1,7 @@
 describe Devtools::Flay::Scale, '#measure' do
   subject(:measure) { instance.measure }
 
-  let(:minimum_mass) { 0        }
+  let(:minimum_mass) { 0 }
   let(:files)        { [instance_double(File)] }
   let(:flay_masses) { { 0 => 5, 1 => 10 } }
 

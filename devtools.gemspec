@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |gem|
   gem.name        = 'devtools'
   gem.version     = '0.1.19'
@@ -30,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rspec',         '~> 3.6.0'
   gem.add_runtime_dependency 'rspec-core',    '~> 3.6.0'
   gem.add_runtime_dependency 'rspec-its',     '~> 1.2.0'
-  gem.add_runtime_dependency 'rubocop',       '~> 0.51.0'
+  gem.add_runtime_dependency 'rubocop',       '~> 0.52.1'
   gem.add_runtime_dependency 'simplecov',     '~> 0.14.0'
   gem.add_runtime_dependency 'yard',          '~> 0.9.9'
   gem.add_runtime_dependency 'yardstick',     '~> 0.9.9'

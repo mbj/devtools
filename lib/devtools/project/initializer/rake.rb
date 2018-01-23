@@ -11,7 +11,9 @@ module Devtools
         #
         # @api rpivate
         def self.call
-          FileList.glob(RAKE_FILES_GLOB).each(&::Rake.application.method(:add_import))
+          FileList
+            .glob(RAKE_FILES_GLOB)
+            .each(&::Rake.application.method(:add_import))
           self
         end
 

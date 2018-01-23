@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Devtools
   module Flay
     # Measure flay mass relative to size of duplicated sexps
@@ -46,7 +48,7 @@ module Devtools
     class FileList
       include Procto.call, Concord.new(:includes, :excludes)
 
-      GLOB = '**/*.{rb,erb}'.freeze
+      GLOB = '**/*.{rb,erb}'
 
       # Expand includes and filter by excludes
       #
