@@ -31,6 +31,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rspec-its',     '~> 1.2.0'
   gem.add_runtime_dependency 'rubocop',       '~> 0.52.1'
   gem.add_runtime_dependency 'simplecov',     '~> 0.15.1'
-  gem.add_runtime_dependency 'yard',          '~> 0.9.9'
+  gem.add_runtime_dependency 'yard',          '~> 0.9.12'
   gem.add_runtime_dependency 'yardstick',     '~> 0.9.9'
 end
