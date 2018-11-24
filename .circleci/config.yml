@@ -1,0 +1,41 @@
+defaults: &defaults
+  working_directory: ~/mutant
+  docker:
+    - image: circleci/ruby:2.5.3
+version: 2
+jobs:
+  unit_specs:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rspec spec/unit
+  integration_specs:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rspec spec/integration
+  metrics:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rake metrics:rubocop
+      - run: bundle exec rake metrics:reek
+      - run: bundle exec rake metrics:flay
+      - run: bundle exec rake metrics:flog
+  mutant:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rake metrics:mutant
+workflows:
+  version: 2
+  test:
+    jobs:
+      - unit_specs
+      - integration_specs
+      - metrics
+      - mutant
