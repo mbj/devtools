@@ -114,15 +114,13 @@ describe Devtools::Rake::Flay, '#verify' do
     end
 
     let(:report) do
-      # rubocop:disable Layout/IndentHeredoc
       <<~REPORT
-Total score (lower is better) = 10
+        Total score (lower is better) = 10
 
-Similar code found in :defn (mass = 10)
-  #{file}:1
-  #{file}:5
-REPORT
-      # rubocop:enable Layout/IndentHeredoc
+        1) Similar code found in :defn (mass = 10)
+          #{file}:1
+          #{file}:5
+      REPORT
     end
 
     let(:instance) do
