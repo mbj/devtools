@@ -3,13 +3,11 @@ namespace :metrics do
   require 'flog'
   require 'flog_cli'
 
-  project = Devtools.project
-  config  = project.flog
-
   # Original code by Marty Andrews:
   # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
   desc 'Measure code complexity'
   task :flog do
+<<<<<<< HEAD
     threshold = config.threshold.to_f.round(1)
     flog      = Flog.new
     flog.flog(*PathExpander.new(config.lib_dirs.dup, '**/*.rb').process)
@@ -38,6 +36,9 @@ namespace :metrics do
         "#{bad_methods.size} methods have a flog complexity > #{threshold}"
       )
     end
+=======
+    Devtools::Rake::Flog.call(Devtools.project.flog)
+>>>>>>> Move flog rake task body to class
   end
 end
 # rubocop:enable Metrics/BlockLength
