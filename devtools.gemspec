@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rspec',         '~> 3.8.0'
   gem.add_runtime_dependency 'rspec-core',    '~> 3.8.0'
   gem.add_runtime_dependency 'rspec-its',     '~> 1.2.0'
-  gem.add_runtime_dependency 'rubocop',       '~> 0.60.0'
+  gem.add_runtime_dependency 'rubocop',       '~> 0.61.1'
   gem.add_runtime_dependency 'simplecov',     '~> 0.16.1'
   gem.add_runtime_dependency 'yard',          '~> 0.9.16'
   gem.add_runtime_dependency 'yardstick',     '~> 0.9.9'
