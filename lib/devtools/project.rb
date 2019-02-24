@@ -9,7 +9,6 @@ module Devtools
       flay:      Config::Flay,
       flog:      Config::Flog,
       reek:      Config::Reek,
-      mutant:    Config::Mutant,
       rubocop:   Config::Rubocop,
       yardstick: Config::Yardstick
     }.freeze

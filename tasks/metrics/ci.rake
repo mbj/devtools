@@ -1,5 +1,5 @@
-desc 'Run all specs, metrics and mutant'
-task ci: %w[ci:metrics metrics:mutant]
+desc 'Run all specs and metrics'
+task ci: %w[ci:metrics]
 
 namespace :ci do
   tasks = %w[
@@ -11,7 +11,4 @@ namespace :ci do
     metrics:reek
     spec:integration
   ]
-
-  desc 'Run metrics (except mutant)'
-  task metrics: tasks
 end
