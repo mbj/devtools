@@ -16,7 +16,6 @@ RSpec.describe Devtools::Project do
     flay:      Devtools::Config::Flay,
     flog:      Devtools::Config::Flog,
     reek:      Devtools::Config::Reek,
-    mutant:    Devtools::Config::Mutant,
     rubocop:   Devtools::Config::Rubocop,
     yardstick: Devtools::Config::Yardstick
   }.each do |name, klass|

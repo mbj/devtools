@@ -155,20 +155,6 @@ module Devtools
       attribute :lib_dirs,    [Array], default: DEFAULT_LIB_DIRS
     end # Flog
 
-    # Mutant configuration
-    class Mutant < self
-      FILE             = 'mutant.yml'
-      DEFAULT_NAME     = ''
-      DEFAULT_STRATEGY = 'rspec'
-
-      attribute :name,            [String],                default: DEFAULT_NAME
-      attribute :strategy,        [String],                default: DEFAULT_STRATEGY
-      attribute :zombify,         [TrueClass, FalseClass], default: false
-      attribute :since,           [String, NilClass],      default: nil
-      attribute :ignore_subjects, [Array],                 default: []
-      attribute :namespace,       [String]
-    end # Mutant
-
     # Devtools configuration
     class Devtools < self
       FILE                      = 'devtools.yml'

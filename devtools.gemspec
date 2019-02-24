@@ -21,8 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'concord',       '~> 0.1.5'
   gem.add_runtime_dependency 'flay',          '~> 2.12.0'
   gem.add_runtime_dependency 'flog',          '~> 4.6.2'
-  gem.add_runtime_dependency 'mutant',        '~> 0.8.24'
-  gem.add_runtime_dependency 'mutant-rspec',  '~> 0.8.24'
   gem.add_runtime_dependency 'procto',        '~> 0.0.3'
   gem.add_runtime_dependency 'rake',          '~> 12.3.0'
   gem.add_runtime_dependency 'reek',          '~> 5.3.0'

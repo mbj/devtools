@@ -1,4 +1,6 @@
-name: devtools
-namespace: Devtools
-ignore_subjects:
-- "Devtools::Flay::Scale#flay"
+---
+includes:
+- lib
+integration: rspec
+requires:
+- devtools
