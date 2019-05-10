@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name        = 'devtools'
-  gem.version     = '0.1.23'
+  gem.version     = '0.1.24'
   gem.authors     = ['Markus Schirp']
   gem.email       = ['mbj@schirp-dso.com']
   gem.description = 'A metagem wrapping development tools'
