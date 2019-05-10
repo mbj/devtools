@@ -32,5 +32,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'yard',          '~> 0.9.16'
   gem.add_runtime_dependency 'yardstick',     '~> 0.9.9'
 
-  gem.add_development_dependency 'mutant', '~> 0.8.24'
+  gem.add_development_dependency 'mutant', '~> 0.8'
 end
