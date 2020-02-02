@@ -5,5 +5,9 @@ gemspec
 gem(
   'mutant',
   git: 'https://github.com/mbj/mutant.git',
-  ref: 'b55665b8ad5983760c38b3ab8c8a0e2c2fe97c1d'
+  branch: 'add/parser-2.7-support'
 )
+
+source 'https://oss:Px2ENN7S91OmWaD5G7MIQJi1dmtmYrEh@gem.mutant.dev' do
+  gem 'mutant-license'
+end

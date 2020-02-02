@@ -106,7 +106,7 @@ EndAlignment:
   EnforcedStyleAlignWith: variable
 
 # Do not always align parameters when it is easier to read
-AlignParameters:
+Layout/ParameterAlignment:
   Exclude:
     - spec/**/*_spec.rb
 
@@ -115,7 +115,7 @@ ClassCheck:
   EnforcedStyle: kind_of?
 
 # Do not prefer double quotes to be used when %q or %Q is more appropriate
-UnneededPercentQ:
+Style/RedundantPercentQ:
   Enabled: false
 
 # Allow a maximum ABC score
