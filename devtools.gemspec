@@ -8,12 +8,11 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'https://github.com/rom-rb/devtools'
   gem.license     = 'MIT'
 
-  gem.require_paths         = %w[lib]
-  gem.files                 = `git ls-files`.split("\n")
-  gem.executables           = %w[]
-  gem.test_files            = `git ls-files -- spec`.split("\n")
-  gem.extra_rdoc_files      = %w[README.md]
-  gem.required_ruby_version = '>= 2.5'
+  gem.require_paths    = %w[lib]
+  gem.files            = `git ls-files`.split("\n")
+  gem.executables      = %w[]
+  gem.test_files       = `git ls-files -- spec`.split("\n")
+  gem.extra_rdoc_files = %w[README.md]
 
   gem.add_runtime_dependency 'abstract_type', '~> 0.0.7'
   gem.add_runtime_dependency 'adamantium',    '~> 0.2.0'
